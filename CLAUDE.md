@@ -164,3 +164,53 @@ DER/DET/DDT — y lo deja en `graphify-out/` (`graph.json`, `GRAPH_REPORT.md`,
   son entidades separadas en el grafo aunque describan lo mismo. Si un
   `graphify path` entre un término de esquema y uno de negocio no
   encuentra camino, no asumas que la relación no existe en el proyecto.
+- Otra nota conocida: `graphify update .` solo re-extrae AST de código
+  (sin costo de LLM) — **no** conecta conceptos de negocio de los docs
+  (`ESPECIFICACIONES.md`, `backend/CLAUDE.md`) con código nuevo, aunque
+  ese código implemente justo lo que el doc describe (ej. se implementó
+  `login()`/`authService.js` para "login multiempresa" y
+  `graphify query "login multiempresa"` sigue devolviendo solo nodos de
+  código, cero nodos de doc). Para que un concepto de negocio quede
+  enlazado a su código hace falta una re-extracción semántica completa:
+  `graphify extract .` con un backend LLM configurado (`ANTHROPIC_API_KEY`
+  u otra key), no `graphify update`.
+
+## 9. Entorno y secretos
+
+- Los `.env` reales (raíz, `backend/.env`, `frontend/.env`) están bloqueados
+  para lectura/escritura de Claude Code por política de permisos — no
+  asumas que se pueden leer directamente. Los `.env.example` de cada
+  carpeta sí son legibles y son la fuente de verdad de qué variables
+  existen; revísalos para saber qué pedirle al usuario en vez de adivinar
+  nombres o valores por defecto.
+- Si hace falta un valor real (credencial, host, password) para depurar,
+  pídeselo puntualmente al usuario — nunca lo inventes ni asumas un
+  default silencioso.
+- Antes de depurar un contenedor (`mysql`, `backend`, `worker`) que falla
+  por autenticación/conexión, revisa si el volumen de datos (`mysql_data`)
+  quedó con credenciales desactualizadas respecto al `.env` actual — causa
+  frecuente de fallos que parecen de configuración. `docker compose down
+  -v` recrea el volumen desde cero (borra datos locales; no usar si hay
+  datos de desarrollo que importe conservar).
+
+## 10. Verificación antes de reportar terminado
+
+- No declares resuelto un fix de infraestructura (Docker, nginx, BullMQ,
+  email worker) solo porque el archivo quedó escrito. Reinicia el
+  servicio afectado, confirma `docker compose ps` en `running`/`healthy`,
+  revisa logs, y si aplica corre un caso real de punta a punta (ej. una
+  factura completa por la cola de conciliación) antes de decir que quedó
+  listo.
+- Para bugs con más de un modo de falla posible (duplicados, colas,
+  deduplicación), enumera los modos de falla y verifica el estado real
+  del sistema — índices únicos existentes en MySQL, nombres reales de
+  recursos externos (SIESA, buzón IMAP) — antes de tocar código. No
+  asumas nombres ni esquemas por memoria.
+
+## 11. Convenciones Git
+
+- Si agregas una variable de entorno nueva, actualiza el `.env.example`
+  correspondiente en el mismo commit — no lo dejes pendiente para después.
+- Si en algún momento aparece un `.git` anidado dentro de `frontend/` u
+  otra subcarpeta, avisa antes de intentar `git add` desde la raíz — un
+  repo anidado no se puede agregar como archivos normales del repo padre.

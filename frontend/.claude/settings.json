@@ -1,0 +1,5 @@
+{
+	"model": "Sonnet",
+	"maxStepTokens": 4000,
+	"autoAnalyticsEnabled": false
+}
