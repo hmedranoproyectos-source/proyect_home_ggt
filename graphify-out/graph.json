@@ -61,15 +61,257 @@
   },
   "nodes": [
     {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 11,
+      "community_name": "devDependencies",
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "proyect_ggt_home",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_proyect_ggt_home",
+      "community": 11,
+      "community_name": "devDependencies",
+      "norm_label": "proyect_ggt_home"
+    },
+    {
+      "label": "validate-infra.js",
+      "file_type": "code",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "validate-infra.js",
+      "norm_label": "validate-infra.js",
+      "id": "claude_hooks_validate_infra"
+    },
+    {
+      "label": "fs",
+      "file_type": "code",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "validate-infra.js",
+      "norm_label": "fs",
+      "id": "claude_hooks_validate_infra_fs"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "validate-infra.js",
+      "norm_label": "path",
+      "id": "claude_hooks_validate_infra_path"
+    },
+    {
+      "label": "{ execSync }",
+      "file_type": "code",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "validate-infra.js",
+      "norm_label": "{ execsync }",
+      "id": "claude_hooks_validate_infra_execsync"
+    },
+    {
+      "label": "input",
+      "file_type": "code",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "validate-infra.js",
+      "norm_label": "input",
+      "id": "claude_hooks_validate_infra_input"
+    },
+    {
+      "label": "base",
+      "file_type": "code",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L22",
+      "_origin": "ast",
+      "community": 24,
+      "community_name": "validate-infra.js",
+      "norm_label": "base",
+      "id": "claude_hooks_validate_infra_base"
+    },
+    {
+      "label": "SKILL.md",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "skill.md",
+      "id": "claude_skills_find_skills_skill"
+    },
+    {
+      "label": "Find Skills",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "find skills",
+      "id": "claude_skills_find_skills_skill_find_skills"
+    },
+    {
+      "label": "When to Use This Skill",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "when to use this skill",
+      "id": "claude_skills_find_skills_skill_when_to_use_this_skill"
+    },
+    {
+      "label": "What is the Skills CLI?",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "what is the skills cli?",
+      "id": "claude_skills_find_skills_skill_what_is_the_skills_cli"
+    },
+    {
+      "label": "How to Help Users Find Skills",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L33",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "how to help users find skills",
+      "id": "claude_skills_find_skills_skill_how_to_help_users_find_skills"
+    },
+    {
+      "label": "Step 1: Understand What They Need",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "step 1: understand what they need",
+      "id": "claude_skills_find_skills_skill_step_1_understand_what_they_need"
+    },
+    {
+      "label": "Step 2: Check the Leaderboard First",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L43",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "step 2: check the leaderboard first",
+      "id": "claude_skills_find_skills_skill_step_2_check_the_leaderboard_first"
+    },
+    {
+      "label": "Step 3: Search for Skills",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L51",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "step 3: search for skills",
+      "id": "claude_skills_find_skills_skill_step_3_search_for_skills"
+    },
+    {
+      "label": "Step 4: Verify Quality Before Recommending",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L65",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "step 4: verify quality before recommending",
+      "id": "claude_skills_find_skills_skill_step_4_verify_quality_before_recommending"
+    },
+    {
+      "label": "Step 5: Present Options to the User",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L73",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "step 5: present options to the user",
+      "id": "claude_skills_find_skills_skill_step_5_present_options_to_the_user"
+    },
+    {
+      "label": "Step 6: Offer to Install",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L95",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "step 6: offer to install",
+      "id": "claude_skills_find_skills_skill_step_6_offer_to_install"
+    },
+    {
+      "label": "Common Skill Categories",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "common skill categories",
+      "id": "claude_skills_find_skills_skill_common_skill_categories"
+    },
+    {
+      "label": "Tips for Effective Searches",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L119",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "tips for effective searches",
+      "id": "claude_skills_find_skills_skill_tips_for_effective_searches"
+    },
+    {
+      "label": "When No Skills Are Found",
+      "file_type": "document",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L125",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Find Skills",
+      "norm_label": "when no skills are found",
+      "id": "claude_skills_find_skills_skill_when_no_skills_are_found"
+    },
+    {
       "label": "backend/package.json",
       "file_type": "code",
       "source_file": "backend/package.json",
       "source_location": "L1",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "backend/package.json",
-      "id": "backend_package",
-      "community_name": "backend/package.json"
+      "id": "backend_package"
     },
     {
       "label": "name",
@@ -78,9 +320,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "name",
-      "id": "backend_package_name",
-      "community_name": "backend/package.json"
+      "id": "backend_package_name"
     },
     {
       "label": "version",
@@ -89,9 +331,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "version",
-      "id": "backend_package_version",
-      "community_name": "backend/package.json"
+      "id": "backend_package_version"
     },
     {
       "label": "description",
@@ -100,9 +342,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "description",
-      "id": "backend_package_description",
-      "community_name": "backend/package.json"
+      "id": "backend_package_description"
     },
     {
       "label": "main",
@@ -111,9 +353,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "main",
-      "id": "backend_package_main",
-      "community_name": "backend/package.json"
+      "id": "backend_package_main"
     },
     {
       "label": "scripts",
@@ -122,9 +364,9 @@
       "source_location": "L6",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "scripts",
-      "id": "backend_package_scripts",
-      "community_name": "backend/package.json"
+      "id": "backend_package_scripts"
     },
     {
       "label": "start",
@@ -133,9 +375,9 @@
       "source_location": "L7",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "start",
-      "id": "backend_package_scripts_start",
-      "community_name": "backend/package.json"
+      "id": "backend_package_scripts_start"
     },
     {
       "label": "dev",
@@ -144,9 +386,9 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "dev",
-      "id": "backend_package_scripts_dev",
-      "community_name": "backend/package.json"
+      "id": "backend_package_scripts_dev"
     },
     {
       "label": "worker",
@@ -155,9 +397,9 @@
       "source_location": "L9",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "worker",
-      "id": "backend_package_scripts_worker",
-      "community_name": "backend/package.json"
+      "id": "backend_package_scripts_worker"
     },
     {
       "label": "seed:auth",
@@ -166,9 +408,9 @@
       "source_location": "L10",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "seed:auth",
-      "id": "backend_package_scripts_seed_auth",
-      "community_name": "backend/package.json"
+      "id": "backend_package_scripts_seed_auth"
     },
     {
       "label": "test",
@@ -177,9 +419,9 @@
       "source_location": "L11",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "test",
-      "id": "backend_package_scripts_test",
-      "community_name": "backend/package.json"
+      "id": "backend_package_scripts_test"
     },
     {
       "label": "keywords",
@@ -188,9 +430,9 @@
       "source_location": "L13",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "keywords",
-      "id": "backend_package_keywords",
-      "community_name": "backend/package.json"
+      "id": "backend_package_keywords"
     },
     {
       "label": "author",
@@ -199,9 +441,9 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "author",
-      "id": "backend_package_author",
-      "community_name": "backend/package.json"
+      "id": "backend_package_author"
     },
     {
       "label": "license",
@@ -210,9 +452,9 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "license",
-      "id": "backend_package_license",
-      "community_name": "backend/package.json"
+      "id": "backend_package_license"
     },
     {
       "label": "type",
@@ -221,9 +463,9 @@
       "source_location": "L16",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "type",
-      "id": "backend_package_type",
-      "community_name": "backend/package.json"
+      "id": "backend_package_type"
     },
     {
       "label": "dependencies",
@@ -232,9 +474,9 @@
       "source_location": "L17",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "dependencies",
-      "id": "backend_package_dependencies",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies"
     },
     {
       "label": "bcrypt",
@@ -243,9 +485,9 @@
       "source_location": "L18",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "bcrypt",
-      "id": "backend_package_dependencies_bcrypt",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_bcrypt"
     },
     {
       "label": "bcrypt",
@@ -254,9 +496,9 @@
       "source_location": "L18",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "bcrypt",
-      "id": "bcrypt",
-      "community_name": "dependencies"
+      "id": "bcrypt"
     },
     {
       "label": "bullmq",
@@ -265,9 +507,9 @@
       "source_location": "L19",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "bullmq",
-      "id": "backend_package_dependencies_bullmq",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_bullmq"
     },
     {
       "label": "bullmq",
@@ -276,9 +518,9 @@
       "source_location": "L19",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "bullmq",
-      "id": "bullmq",
-      "community_name": "dependencies"
+      "id": "bullmq"
     },
     {
       "label": "cors",
@@ -287,9 +529,9 @@
       "source_location": "L20",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "cors",
-      "id": "backend_package_dependencies_cors",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_cors"
     },
     {
       "label": "cors",
@@ -298,9 +540,9 @@
       "source_location": "L20",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "cors",
-      "id": "cors",
-      "community_name": "dependencies"
+      "id": "cors"
     },
     {
       "label": "dotenv",
@@ -309,9 +551,9 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "dotenv",
-      "id": "backend_package_dependencies_dotenv",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_dotenv"
     },
     {
       "label": "dotenv",
@@ -320,9 +562,9 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "dotenv",
-      "id": "dotenv",
-      "community_name": "dependencies"
+      "id": "dotenv"
     },
     {
       "label": "express",
@@ -331,9 +573,9 @@
       "source_location": "L22",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "express",
-      "id": "backend_package_dependencies_express",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_express"
     },
     {
       "label": "express",
@@ -342,9 +584,9 @@
       "source_location": "L22",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "express",
-      "id": "express",
-      "community_name": "dependencies"
+      "id": "express"
     },
     {
       "label": "express-rate-limit",
@@ -353,9 +595,9 @@
       "source_location": "L23",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "express-rate-limit",
-      "id": "backend_package_dependencies_express_rate_limit",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_express_rate_limit"
     },
     {
       "label": "express-rate-limit",
@@ -364,9 +606,9 @@
       "source_location": "L23",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "express-rate-limit",
-      "id": "express_rate_limit",
-      "community_name": "dependencies"
+      "id": "express_rate_limit"
     },
     {
       "label": "ioredis",
@@ -375,9 +617,9 @@
       "source_location": "L24",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "ioredis",
-      "id": "backend_package_dependencies_ioredis",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_ioredis"
     },
     {
       "label": "ioredis",
@@ -386,9 +628,9 @@
       "source_location": "L24",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "ioredis",
-      "id": "ioredis",
-      "community_name": "dependencies"
+      "id": "ioredis"
     },
     {
       "label": "jsonwebtoken",
@@ -397,9 +639,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "jsonwebtoken",
-      "id": "backend_package_dependencies_jsonwebtoken",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_jsonwebtoken"
     },
     {
       "label": "jsonwebtoken",
@@ -408,9 +650,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "jsonwebtoken",
-      "id": "jsonwebtoken",
-      "community_name": "dependencies"
+      "id": "jsonwebtoken"
     },
     {
       "label": "morgan",
@@ -419,9 +661,9 @@
       "source_location": "L26",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "morgan",
-      "id": "backend_package_dependencies_morgan",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_morgan"
     },
     {
       "label": "morgan",
@@ -430,9 +672,9 @@
       "source_location": "L26",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "morgan",
-      "id": "morgan",
-      "community_name": "dependencies"
+      "id": "morgan"
     },
     {
       "label": "mysql2",
@@ -441,9 +683,9 @@
       "source_location": "L27",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "mysql2",
-      "id": "backend_package_dependencies_mysql2",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_mysql2"
     },
     {
       "label": "mysql2",
@@ -452,9 +694,9 @@
       "source_location": "L27",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "mysql2",
-      "id": "mysql2",
-      "community_name": "dependencies"
+      "id": "mysql2"
     },
     {
       "label": "socket.io",
@@ -463,9 +705,9 @@
       "source_location": "L28",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "socket.io",
-      "id": "backend_package_dependencies_socket_io",
-      "community_name": "dependencies"
+      "id": "backend_package_dependencies_socket_io"
     },
     {
       "label": "socket.io",
@@ -474,9 +716,9 @@
       "source_location": "L28",
       "_origin": "ast",
       "community": 2,
+      "community_name": "dependencies",
       "norm_label": "socket.io",
-      "id": "socket_io",
-      "community_name": "dependencies"
+      "id": "socket_io"
     },
     {
       "label": "devDependencies",
@@ -485,9 +727,9 @@
       "source_location": "L30",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "devdependencies",
-      "id": "backend_package_devdependencies",
-      "community_name": "backend/package.json"
+      "id": "backend_package_devdependencies"
     },
     {
       "label": "nodemon",
@@ -496,9 +738,9 @@
       "source_location": "L31",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "nodemon",
-      "id": "backend_package_devdependencies_nodemon",
-      "community_name": "backend/package.json"
+      "id": "backend_package_devdependencies_nodemon"
     },
     {
       "label": "nodemon",
@@ -507,9 +749,9 @@
       "source_location": "L31",
       "_origin": "ast",
       "community": 7,
+      "community_name": "backend/package.json",
       "norm_label": "nodemon",
-      "id": "nodemon",
-      "community_name": "backend/package.json"
+      "id": "nodemon"
     },
     {
       "label": "auth.controller.js",
@@ -518,9 +760,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "auth.controller.js",
-      "id": "backend_src_api_auth_auth_controller",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_controller"
     },
     {
       "label": "authService",
@@ -529,9 +771,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "authservice",
-      "id": "backend_src_api_auth_auth_controller_authservice",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_controller_authservice"
     },
     {
       "label": "login()",
@@ -540,9 +782,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "login()",
-      "id": "backend_src_api_auth_auth_controller_login",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_controller_login"
     },
     {
       "label": "selectCompany()",
@@ -551,9 +793,9 @@
       "source_location": "L40",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "selectcompany()",
-      "id": "backend_src_api_auth_auth_controller_selectcompany",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_controller_selectcompany"
     },
     {
       "label": "me()",
@@ -562,9 +804,9 @@
       "source_location": "L69",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "me()",
-      "id": "backend_src_api_auth_auth_controller_me",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_controller_me"
     },
     {
       "label": "auth.routes.js",
@@ -573,9 +815,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "auth.routes.js",
-      "id": "backend_src_api_auth_auth_routes",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes"
     },
     {
       "label": "express",
@@ -584,9 +826,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "express",
-      "id": "backend_src_api_auth_auth_routes_express",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes_express"
     },
     {
       "label": "rateLimit",
@@ -595,9 +837,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "ratelimit",
-      "id": "backend_src_api_auth_auth_routes_ratelimit",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes_ratelimit"
     },
     {
       "label": "authController",
@@ -606,9 +848,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "authcontroller",
-      "id": "backend_src_api_auth_auth_routes_authcontroller",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes_authcontroller"
     },
     {
       "label": "{ requireAuth, requirePreSession }",
@@ -617,9 +859,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "{ requireauth, requirepresession }",
-      "id": "backend_src_api_auth_auth_routes_requireauth_requirepresession",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes_requireauth_requirepresession"
     },
     {
       "label": "router",
@@ -628,9 +870,9 @@
       "source_location": "L6",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "router",
-      "id": "backend_src_api_auth_auth_routes_router",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes_router"
     },
     {
       "label": "loginLimiter",
@@ -639,9 +881,9 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "loginlimiter",
-      "id": "backend_src_api_auth_auth_routes_loginlimiter",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_api_auth_auth_routes_loginlimiter"
     },
     {
       "label": "db.js",
@@ -650,9 +892,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "db.js",
-      "id": "backend_src_config_db",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_db"
     },
     {
       "label": "mysql",
@@ -661,9 +903,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "mysql",
-      "id": "backend_src_config_db_mysql",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_db_mysql"
     },
     {
       "label": "env",
@@ -672,9 +914,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "env",
-      "id": "backend_src_config_db_env",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_db_env"
     },
     {
       "label": "pool",
@@ -683,9 +925,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "pool",
-      "id": "backend_src_config_db_pool",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_db_pool"
     },
     {
       "label": "env.js",
@@ -694,9 +936,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "env.js",
-      "id": "backend_src_config_env",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_env"
     },
     {
       "label": "REQUIRED_VARS",
@@ -705,9 +947,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "required_vars",
-      "id": "backend_src_config_env_required_vars",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_env_required_vars"
     },
     {
       "label": "missing",
@@ -716,9 +958,9 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "missing",
-      "id": "backend_src_config_env_missing",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_env_missing"
     },
     {
       "label": "redis.js",
@@ -727,9 +969,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "redis.js",
-      "id": "backend_src_config_redis",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_redis"
     },
     {
       "label": "IORedis",
@@ -738,9 +980,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "ioredis",
-      "id": "backend_src_config_redis_ioredis",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_redis_ioredis"
     },
     {
       "label": "env",
@@ -749,9 +991,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "env",
-      "id": "backend_src_config_redis_env",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_redis_env"
     },
     {
       "label": "connection",
@@ -760,9 +1002,9 @@
       "source_location": "L6",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "connection",
-      "id": "backend_src_config_redis_connection",
-      "community_name": "src/index.js"
+      "id": "backend_src_config_redis_connection"
     },
     {
       "label": "src/index.js",
@@ -771,9 +1013,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "src/index.js",
-      "id": "backend_src_index",
-      "community_name": "src/index.js"
+      "id": "backend_src_index"
     },
     {
       "label": "env",
@@ -782,9 +1024,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "env",
-      "id": "backend_src_index_env",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_env"
     },
     {
       "label": "http",
@@ -793,9 +1035,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "http",
-      "id": "backend_src_index_http",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_http"
     },
     {
       "label": "express",
@@ -804,9 +1046,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "express",
-      "id": "backend_src_index_express",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_express"
     },
     {
       "label": "cors",
@@ -815,9 +1057,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "cors",
-      "id": "backend_src_index_cors",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_cors"
     },
     {
       "label": "morgan",
@@ -826,9 +1068,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "morgan",
-      "id": "backend_src_index_morgan",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_morgan"
     },
     {
       "label": "{ Server }",
@@ -837,9 +1079,9 @@
       "source_location": "L6",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "{ server }",
-      "id": "backend_src_index_server",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_server"
     },
     {
       "label": "db",
@@ -848,9 +1090,9 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "db",
-      "id": "backend_src_index_db",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_db"
     },
     {
       "label": "redis",
@@ -859,9 +1101,9 @@
       "source_location": "L9",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "redis",
-      "id": "backend_src_index_redis",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_redis"
     },
     {
       "label": "authRoutes",
@@ -870,9 +1112,9 @@
       "source_location": "L10",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "authroutes",
-      "id": "backend_src_index_authroutes",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_authroutes"
     },
     {
       "label": "app",
@@ -881,9 +1123,9 @@
       "source_location": "L12",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "app",
-      "id": "backend_src_index_app",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_app"
     },
     {
       "label": "checkDb()",
@@ -892,9 +1134,9 @@
       "source_location": "L18",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "checkdb()",
-      "id": "backend_src_index_checkdb",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_checkdb"
     },
     {
       "label": "checkRedis()",
@@ -903,9 +1145,9 @@
       "source_location": "L28",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "checkredis()",
-      "id": "backend_src_index_checkredis",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_checkredis"
     },
     {
       "label": "httpServer",
@@ -914,9 +1156,9 @@
       "source_location": "L71",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "httpserver",
-      "id": "backend_src_index_httpserver",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_httpserver"
     },
     {
       "label": "io",
@@ -925,9 +1167,9 @@
       "source_location": "L72",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "io",
-      "id": "backend_src_index_io",
-      "community_name": "src/index.js"
+      "id": "backend_src_index_io"
     },
     {
       "label": "auth.js",
@@ -936,9 +1178,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "auth.js",
-      "id": "backend_src_middleware_auth",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth"
     },
     {
       "label": "jwt",
@@ -947,9 +1189,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "jwt",
-      "id": "backend_src_middleware_auth_jwt",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth_jwt"
     },
     {
       "label": "env",
@@ -958,9 +1200,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "env",
-      "id": "backend_src_middleware_auth_env",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth_env"
     },
     {
       "label": "extractToken()",
@@ -969,9 +1211,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "extracttoken()",
-      "id": "backend_src_middleware_auth_extracttoken",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth_extracttoken"
     },
     {
       "label": "requireAuth()",
@@ -980,9 +1222,9 @@
       "source_location": "L16",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "requireauth()",
-      "id": "backend_src_middleware_auth_requireauth",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth_requireauth"
     },
     {
       "label": "requirePreSession()",
@@ -991,9 +1233,9 @@
       "source_location": "L37",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "requirepresession()",
-      "id": "backend_src_middleware_auth_requirepresession",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth_requirepresession"
     },
     {
       "label": "requirePermission()",
@@ -1002,9 +1244,9 @@
       "source_location": "L58",
       "_origin": "ast",
       "community": 5,
+      "community_name": "auth.routes.js",
       "norm_label": "requirepermission()",
-      "id": "backend_src_middleware_auth_requirepermission",
-      "community_name": "auth.routes.js"
+      "id": "backend_src_middleware_auth_requirepermission"
     },
     {
       "label": "conciliacionQueue.js",
@@ -1013,9 +1255,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "conciliacionqueue.js",
-      "id": "backend_src_queues_conciliacionqueue",
-      "community_name": "src/index.js"
+      "id": "backend_src_queues_conciliacionqueue"
     },
     {
       "label": "{ Queue }",
@@ -1024,9 +1266,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "{ queue }",
-      "id": "backend_src_queues_conciliacionqueue_queue",
-      "community_name": "src/index.js"
+      "id": "backend_src_queues_conciliacionqueue_queue"
     },
     {
       "label": "env",
@@ -1035,9 +1277,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "env",
-      "id": "backend_src_queues_conciliacionqueue_env",
-      "community_name": "src/index.js"
+      "id": "backend_src_queues_conciliacionqueue_env"
     },
     {
       "label": "connection",
@@ -1046,9 +1288,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "connection",
-      "id": "backend_src_queues_conciliacionqueue_connection",
-      "community_name": "src/index.js"
+      "id": "backend_src_queues_conciliacionqueue_connection"
     },
     {
       "label": "conciliacionQueue",
@@ -1057,9 +1299,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "conciliacionqueue",
-      "id": "backend_src_queues_conciliacionqueue_conciliacionqueue",
-      "community_name": "src/index.js"
+      "id": "backend_src_queues_conciliacionqueue_conciliacionqueue"
     },
     {
       "label": "seedAuth.js",
@@ -1068,9 +1310,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "seedauth.js",
-      "id": "backend_src_seeds_seedauth",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth"
     },
     {
       "label": "bcrypt",
@@ -1079,9 +1321,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "bcrypt",
-      "id": "backend_src_seeds_seedauth_bcrypt",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_bcrypt"
     },
     {
       "label": "db",
@@ -1090,9 +1332,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "db",
-      "id": "backend_src_seeds_seedauth_db",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_db"
     },
     {
       "label": "COMPANIA_DEFAULT",
@@ -1101,9 +1343,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "compania_default",
-      "id": "backend_src_seeds_seedauth_compania_default",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_compania_default"
     },
     {
       "label": "nextId()",
@@ -1112,9 +1354,9 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "nextid()",
-      "id": "backend_src_seeds_seedauth_nextid",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_nextid"
     },
     {
       "label": "getOrCreateCompania()",
@@ -1123,9 +1365,9 @@
       "source_location": "L22",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "getorcreatecompania()",
-      "id": "backend_src_seeds_seedauth_getorcreatecompania",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_getorcreatecompania"
     },
     {
       "label": "getOrCreateUsuarioAdmin()",
@@ -1134,9 +1376,9 @@
       "source_location": "L43",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "getorcreateusuarioadmin()",
-      "id": "backend_src_seeds_seedauth_getorcreateusuarioadmin",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_getorcreateusuarioadmin"
     },
     {
       "label": "getOrCreateRolAdministrador()",
@@ -1145,9 +1387,9 @@
       "source_location": "L69",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "getorcreateroladministrador()",
-      "id": "backend_src_seeds_seedauth_getorcreateroladministrador",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_getorcreateroladministrador"
     },
     {
       "label": "getOrCreatePermisoVerFacturas()",
@@ -1156,9 +1398,9 @@
       "source_location": "L92",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "getorcreatepermisoverfacturas()",
-      "id": "backend_src_seeds_seedauth_getorcreatepermisoverfacturas",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_getorcreatepermisoverfacturas"
     },
     {
       "label": "ensureRolPermiso()",
@@ -1167,9 +1409,9 @@
       "source_location": "L114",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "ensurerolpermiso()",
-      "id": "backend_src_seeds_seedauth_ensurerolpermiso",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_ensurerolpermiso"
     },
     {
       "label": "ensureUsuarioRol()",
@@ -1178,9 +1420,9 @@
       "source_location": "L131",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "ensureusuariorol()",
-      "id": "backend_src_seeds_seedauth_ensureusuariorol",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_ensureusuariorol"
     },
     {
       "label": "main()",
@@ -1189,9 +1431,9 @@
       "source_location": "L148",
       "_origin": "ast",
       "community": 12,
+      "community_name": "seedAuth.js",
       "norm_label": "main()",
-      "id": "backend_src_seeds_seedauth_main",
-      "community_name": "seedAuth.js"
+      "id": "backend_src_seeds_seedauth_main"
     },
     {
       "label": "authService.js",
@@ -1200,9 +1442,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "authservice.js",
-      "id": "backend_src_services_authservice",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice"
     },
     {
       "label": "bcrypt",
@@ -1211,9 +1453,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "bcrypt",
-      "id": "backend_src_services_authservice_bcrypt",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_bcrypt"
     },
     {
       "label": "jwt",
@@ -1222,9 +1464,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "jwt",
-      "id": "backend_src_services_authservice_jwt",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_jwt"
     },
     {
       "label": "db",
@@ -1233,9 +1475,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "db",
-      "id": "backend_src_services_authservice_db",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_db"
     },
     {
       "label": "env",
@@ -1244,9 +1486,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "env",
-      "id": "backend_src_services_authservice_env",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_env"
     },
     {
       "label": "findUserByUsername()",
@@ -1255,9 +1497,9 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "finduserbyusername()",
-      "id": "backend_src_services_authservice_finduserbyusername",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_finduserbyusername"
     },
     {
       "label": "getCompaniasForUser()",
@@ -1266,9 +1508,9 @@
       "source_location": "L16",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "getcompaniasforuser()",
-      "id": "backend_src_services_authservice_getcompaniasforuser",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_getcompaniasforuser"
     },
     {
       "label": "userHasAccessToCompania()",
@@ -1277,9 +1519,9 @@
       "source_location": "L27",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "userhasaccesstocompania()",
-      "id": "backend_src_services_authservice_userhasaccesstocompania",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_userhasaccesstocompania"
     },
     {
       "label": "getRolesAndPermisos()",
@@ -1288,9 +1530,9 @@
       "source_location": "L35",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "getrolesandpermisos()",
-      "id": "backend_src_services_authservice_getrolesandpermisos",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_getrolesandpermisos"
     },
     {
       "label": "signFinalToken()",
@@ -1299,9 +1541,9 @@
       "source_location": "L59",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "signfinaltoken()",
-      "id": "backend_src_services_authservice_signfinaltoken",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_signfinaltoken"
     },
     {
       "label": "signPreSessionToken()",
@@ -1310,9 +1552,9 @@
       "source_location": "L67",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "signpresessiontoken()",
-      "id": "backend_src_services_authservice_signpresessiontoken",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_signpresessiontoken"
     },
     {
       "label": "login()",
@@ -1321,9 +1563,9 @@
       "source_location": "L73",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "login()",
-      "id": "backend_src_services_authservice_login",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_login"
     },
     {
       "label": "selectCompany()",
@@ -1332,9 +1574,9 @@
       "source_location": "L104",
       "_origin": "ast",
       "community": 10,
+      "community_name": "authService.js",
       "norm_label": "selectcompany()",
-      "id": "backend_src_services_authservice_selectcompany",
-      "community_name": "authService.js"
+      "id": "backend_src_services_authservice_selectcompany"
     },
     {
       "label": "workers/index.js",
@@ -1343,9 +1585,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "workers/index.js",
-      "id": "backend_src_workers_index",
-      "community_name": "src/index.js"
+      "id": "backend_src_workers_index"
     },
     {
       "label": "env",
@@ -1354,9 +1596,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "env",
-      "id": "backend_src_workers_index_env",
-      "community_name": "src/index.js"
+      "id": "backend_src_workers_index_env"
     },
     {
       "label": "{ Worker }",
@@ -1365,9 +1607,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "{ worker }",
-      "id": "backend_src_workers_index_worker",
-      "community_name": "src/index.js"
+      "id": "backend_src_workers_index_worker"
     },
     {
       "label": "connection",
@@ -1376,9 +1618,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 0,
+      "community_name": "src/index.js",
       "norm_label": "connection",
-      "id": "backend_src_workers_index_connection",
-      "community_name": "src/index.js"
+      "id": "backend_src_workers_index_connection"
     },
     {
       "label": "layout.tsx",
@@ -1387,9 +1629,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 14,
+      "community_name": "layout.tsx",
       "norm_label": "layout.tsx",
-      "id": "frontend_app_layout",
-      "community_name": "layout.tsx"
+      "id": "frontend_app_layout"
     },
     {
       "label": "geistSans",
@@ -1398,9 +1640,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 14,
+      "community_name": "layout.tsx",
       "norm_label": "geistsans",
-      "id": "frontend_app_layout_geistsans",
-      "community_name": "layout.tsx"
+      "id": "frontend_app_layout_geistsans"
     },
     {
       "label": "geistMono",
@@ -1409,9 +1651,9 @@
       "source_location": "L10",
       "_origin": "ast",
       "community": 14,
+      "community_name": "layout.tsx",
       "norm_label": "geistmono",
-      "id": "frontend_app_layout_geistmono",
-      "community_name": "layout.tsx"
+      "id": "frontend_app_layout_geistmono"
     },
     {
       "label": "metadata",
@@ -1420,9 +1662,9 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 14,
+      "community_name": "layout.tsx",
       "norm_label": "metadata",
-      "id": "frontend_app_layout_metadata",
-      "community_name": "layout.tsx"
+      "id": "frontend_app_layout_metadata"
     },
     {
       "label": "RootLayout()",
@@ -1431,9 +1673,9 @@
       "source_location": "L20",
       "_origin": "ast",
       "community": 14,
+      "community_name": "layout.tsx",
       "norm_label": "rootlayout()",
-      "id": "frontend_app_layout_rootlayout",
-      "community_name": "layout.tsx"
+      "id": "frontend_app_layout_rootlayout"
     },
     {
       "label": "page.tsx",
@@ -1442,9 +1684,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 15,
+      "community_name": "page.tsx",
       "norm_label": "page.tsx",
-      "id": "frontend_app_page",
-      "community_name": "page.tsx"
+      "id": "frontend_app_page"
     },
     {
       "label": "Home()",
@@ -1453,9 +1695,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 15,
+      "community_name": "page.tsx",
       "norm_label": "home()",
-      "id": "frontend_app_page_home",
-      "community_name": "page.tsx"
+      "id": "frontend_app_page_home"
     },
     {
       "label": "eslint.config.mjs",
@@ -1464,9 +1706,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 16,
+      "community_name": "eslint.config.mjs",
       "norm_label": "eslint.config.mjs",
-      "id": "frontend_eslint_config",
-      "community_name": "eslint.config.mjs"
+      "id": "frontend_eslint_config"
     },
     {
       "label": "eslintConfig",
@@ -1475,9 +1717,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 16,
+      "community_name": "eslint.config.mjs",
       "norm_label": "eslintconfig",
-      "id": "frontend_eslint_config_eslintconfig",
-      "community_name": "eslint.config.mjs"
+      "id": "frontend_eslint_config_eslintconfig"
     },
     {
       "label": "next.config.ts",
@@ -1486,9 +1728,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 17,
+      "community_name": "next.config.ts",
       "norm_label": "next.config.ts",
-      "id": "frontend_next_config",
-      "community_name": "next.config.ts"
+      "id": "frontend_next_config"
     },
     {
       "label": "nextConfig",
@@ -1497,9 +1739,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 17,
+      "community_name": "next.config.ts",
       "norm_label": "nextconfig",
-      "id": "frontend_next_config_nextconfig",
-      "community_name": "next.config.ts"
+      "id": "frontend_next_config_nextconfig"
     },
     {
       "label": "frontend/package.json",
@@ -1508,9 +1750,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "frontend/package.json",
-      "id": "frontend_package",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package"
     },
     {
       "label": "name",
@@ -1519,9 +1761,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "name",
-      "id": "frontend_package_name",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_name"
     },
     {
       "label": "version",
@@ -1530,9 +1772,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "version",
-      "id": "frontend_package_version",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_version"
     },
     {
       "label": "private",
@@ -1541,9 +1783,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "private",
-      "id": "frontend_package_private",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_private"
     },
     {
       "label": "scripts",
@@ -1552,9 +1794,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "scripts",
-      "id": "frontend_package_scripts",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_scripts"
     },
     {
       "label": "dev",
@@ -1563,9 +1805,9 @@
       "source_location": "L6",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "dev",
-      "id": "frontend_package_scripts_dev",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_scripts_dev"
     },
     {
       "label": "build",
@@ -1574,9 +1816,9 @@
       "source_location": "L7",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "build",
-      "id": "frontend_package_scripts_build",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_scripts_build"
     },
     {
       "label": "start",
@@ -1585,9 +1827,9 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "start",
-      "id": "frontend_package_scripts_start",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_scripts_start"
     },
     {
       "label": "lint",
@@ -1596,9 +1838,9 @@
       "source_location": "L9",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "lint",
-      "id": "frontend_package_scripts_lint",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_scripts_lint"
     },
     {
       "label": "dependencies",
@@ -1607,9 +1849,9 @@
       "source_location": "L11",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "dependencies",
-      "id": "frontend_package_dependencies",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_dependencies"
     },
     {
       "label": "next",
@@ -1618,9 +1860,9 @@
       "source_location": "L12",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "next",
-      "id": "frontend_package_dependencies_next",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_dependencies_next"
     },
     {
       "label": "next",
@@ -1629,9 +1871,9 @@
       "source_location": "L12",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "next",
-      "id": "next",
-      "community_name": "frontend/package.json"
+      "id": "next"
     },
     {
       "label": "react",
@@ -1640,9 +1882,9 @@
       "source_location": "L13",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "react",
-      "id": "frontend_package_dependencies_react",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_dependencies_react"
     },
     {
       "label": "react",
@@ -1651,9 +1893,9 @@
       "source_location": "L13",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "react",
-      "id": "react",
-      "community_name": "frontend/package.json"
+      "id": "react"
     },
     {
       "label": "react-dom",
@@ -1662,9 +1904,9 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "react-dom",
-      "id": "frontend_package_dependencies_react_dom",
-      "community_name": "frontend/package.json"
+      "id": "frontend_package_dependencies_react_dom"
     },
     {
       "label": "react-dom",
@@ -1673,9 +1915,9 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "react-dom",
-      "id": "react_dom",
-      "community_name": "frontend/package.json"
+      "id": "react_dom"
     },
     {
       "label": "devDependencies",
@@ -1683,10 +1925,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "devdependencies",
-      "id": "frontend_package_devdependencies",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies"
     },
     {
       "label": "@types/node",
@@ -1694,10 +1936,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "@types/node",
-      "id": "frontend_package_devdependencies_types_node",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies_types_node"
     },
     {
       "label": "@types/node",
@@ -1705,10 +1947,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "@types/node",
-      "id": "types_node",
-      "community_name": "devDependencies"
+      "id": "types_node"
     },
     {
       "label": "@types/react",
@@ -1716,10 +1958,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "@types/react",
-      "id": "frontend_package_devdependencies_types_react",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies_types_react"
     },
     {
       "label": "@types/react",
@@ -1727,10 +1969,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "@types/react",
-      "id": "types_react",
-      "community_name": "devDependencies"
+      "id": "types_react"
     },
     {
       "label": "@types/react-dom",
@@ -1738,10 +1980,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "@types/react-dom",
-      "id": "frontend_package_devdependencies_types_react_dom",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies_types_react_dom"
     },
     {
       "label": "@types/react-dom",
@@ -1749,10 +1991,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "@types/react-dom",
-      "id": "types_react_dom",
-      "community_name": "devDependencies"
+      "id": "types_react_dom"
     },
     {
       "label": "eslint",
@@ -1760,10 +2002,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "eslint",
-      "id": "frontend_package_devdependencies_eslint",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies_eslint"
     },
     {
       "label": "eslint",
@@ -1771,10 +2013,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "eslint",
-      "id": "eslint",
-      "community_name": "devDependencies"
+      "id": "eslint"
     },
     {
       "label": "eslint-config-next",
@@ -1782,10 +2024,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "eslint-config-next",
-      "id": "frontend_package_devdependencies_eslint_config_next",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies_eslint_config_next"
     },
     {
       "label": "eslint-config-next",
@@ -1793,10 +2035,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "eslint-config-next",
-      "id": "eslint_config_next",
-      "community_name": "devDependencies"
+      "id": "eslint_config_next"
     },
     {
       "label": "typescript",
@@ -1804,10 +2046,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "typescript",
-      "id": "frontend_package_devdependencies_typescript",
-      "community_name": "devDependencies"
+      "id": "frontend_package_devdependencies_typescript"
     },
     {
       "label": "typescript",
@@ -1815,10 +2057,10 @@
       "source_file": "frontend/package.json",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 11,
+      "community": 9,
+      "community_name": "frontend/package.json",
       "norm_label": "typescript",
-      "id": "typescript",
-      "community_name": "devDependencies"
+      "id": "typescript"
     },
     {
       "label": "tsconfig.json",
@@ -1827,9 +2069,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "tsconfig.json",
-      "id": "frontend_tsconfig",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig"
     },
     {
       "label": "compilerOptions",
@@ -1838,9 +2080,9 @@
       "source_location": "L2",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "compileroptions",
-      "id": "frontend_tsconfig_compileroptions",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions"
     },
     {
       "label": "target",
@@ -1849,9 +2091,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "target",
-      "id": "frontend_tsconfig_compileroptions_target",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_target"
     },
     {
       "label": "lib",
@@ -1860,9 +2102,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "lib",
-      "id": "frontend_tsconfig_compileroptions_lib",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_lib"
     },
     {
       "label": "dom",
@@ -1871,9 +2113,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "dom",
-      "id": "ref_dom",
-      "community_name": "compilerOptions"
+      "id": "ref_dom"
     },
     {
       "label": "dom.iterable",
@@ -1882,9 +2124,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "dom.iterable",
-      "id": "ref_dom_iterable",
-      "community_name": "compilerOptions"
+      "id": "ref_dom_iterable"
     },
     {
       "label": "esnext",
@@ -1893,9 +2135,9 @@
       "source_location": "L4",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "esnext",
-      "id": "ref_esnext",
-      "community_name": "compilerOptions"
+      "id": "ref_esnext"
     },
     {
       "label": "allowJs",
@@ -1904,9 +2146,9 @@
       "source_location": "L5",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "allowjs",
-      "id": "frontend_tsconfig_compileroptions_allowjs",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_allowjs"
     },
     {
       "label": "skipLibCheck",
@@ -1915,9 +2157,9 @@
       "source_location": "L6",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "skiplibcheck",
-      "id": "frontend_tsconfig_compileroptions_skiplibcheck",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_skiplibcheck"
     },
     {
       "label": "strict",
@@ -1926,9 +2168,9 @@
       "source_location": "L7",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "strict",
-      "id": "frontend_tsconfig_compileroptions_strict",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_strict"
     },
     {
       "label": "noEmit",
@@ -1937,9 +2179,9 @@
       "source_location": "L8",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "noemit",
-      "id": "frontend_tsconfig_compileroptions_noemit",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_noemit"
     },
     {
       "label": "esModuleInterop",
@@ -1948,9 +2190,9 @@
       "source_location": "L9",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "esmoduleinterop",
-      "id": "frontend_tsconfig_compileroptions_esmoduleinterop",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_esmoduleinterop"
     },
     {
       "label": "module",
@@ -1959,9 +2201,9 @@
       "source_location": "L10",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "module",
-      "id": "frontend_tsconfig_compileroptions_module",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_module"
     },
     {
       "label": "moduleResolution",
@@ -1970,9 +2212,9 @@
       "source_location": "L11",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "moduleresolution",
-      "id": "frontend_tsconfig_compileroptions_moduleresolution",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_moduleresolution"
     },
     {
       "label": "resolveJsonModule",
@@ -1981,9 +2223,9 @@
       "source_location": "L12",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "resolvejsonmodule",
-      "id": "frontend_tsconfig_compileroptions_resolvejsonmodule",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_resolvejsonmodule"
     },
     {
       "label": "isolatedModules",
@@ -1992,9 +2234,9 @@
       "source_location": "L13",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "isolatedmodules",
-      "id": "frontend_tsconfig_compileroptions_isolatedmodules",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_isolatedmodules"
     },
     {
       "label": "jsx",
@@ -2003,9 +2245,9 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "jsx",
-      "id": "frontend_tsconfig_compileroptions_jsx",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_jsx"
     },
     {
       "label": "incremental",
@@ -2014,9 +2256,9 @@
       "source_location": "L15",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "incremental",
-      "id": "frontend_tsconfig_compileroptions_incremental",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_incremental"
     },
     {
       "label": "plugins",
@@ -2025,9 +2267,9 @@
       "source_location": "L16",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "plugins",
-      "id": "frontend_tsconfig_compileroptions_plugins",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_plugins"
     },
     {
       "label": "paths",
@@ -2036,9 +2278,9 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "paths",
-      "id": "frontend_tsconfig_compileroptions_paths",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_compileroptions_paths"
     },
     {
       "label": "include",
@@ -2047,9 +2289,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "include",
-      "id": "frontend_tsconfig_include",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_include"
     },
     {
       "label": "next-env.d.ts",
@@ -2058,9 +2300,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "next-env.d.ts",
-      "id": "ref_next_env_d_ts",
-      "community_name": "compilerOptions"
+      "id": "ref_next_env_d_ts"
     },
     {
       "label": "**/*.ts",
@@ -2069,9 +2311,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "**/*.ts",
-      "id": "ref_ts",
-      "community_name": "compilerOptions"
+      "id": "ref_ts"
     },
     {
       "label": "**/*.tsx",
@@ -2080,9 +2322,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "**/*.tsx",
-      "id": "ref_tsx",
-      "community_name": "compilerOptions"
+      "id": "ref_tsx"
     },
     {
       "label": ".next/types/**/*.ts",
@@ -2091,9 +2333,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": ".next/types/**/*.ts",
-      "id": "ref_next_types_ts",
-      "community_name": "compilerOptions"
+      "id": "ref_next_types_ts"
     },
     {
       "label": ".next/dev/types/**/*.ts",
@@ -2102,9 +2344,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": ".next/dev/types/**/*.ts",
-      "id": "ref_next_dev_types_ts",
-      "community_name": "compilerOptions"
+      "id": "ref_next_dev_types_ts"
     },
     {
       "label": "**/*.mts",
@@ -2113,9 +2355,9 @@
       "source_location": "L25",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "**/*.mts",
-      "id": "ref_mts",
-      "community_name": "compilerOptions"
+      "id": "ref_mts"
     },
     {
       "label": "exclude",
@@ -2124,9 +2366,9 @@
       "source_location": "L33",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "exclude",
-      "id": "frontend_tsconfig_exclude",
-      "community_name": "compilerOptions"
+      "id": "frontend_tsconfig_exclude"
     },
     {
       "label": "node_modules",
@@ -2135,9 +2377,9 @@
       "source_location": "L33",
       "_origin": "ast",
       "community": 1,
+      "community_name": "compilerOptions",
       "norm_label": "node_modules",
-      "id": "ref_node_modules",
-      "community_name": "compilerOptions"
+      "id": "ref_node_modules"
     },
     {
       "label": "00_create_database.sql",
@@ -2146,9 +2388,9 @@
       "source_location": null,
       "_origin": "ast",
       "community": 22,
+      "community_name": "00_create_database.sql",
       "norm_label": "00_create_database.sql",
-      "id": "mysql_init_00_create_database",
-      "community_name": "00_create_database.sql"
+      "id": "mysql_init_00_create_database"
     },
     {
       "label": "01_schema.sql",
@@ -2157,9 +2399,9 @@
       "source_location": null,
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "01_schema.sql",
-      "id": "mysql_init_01_schema",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema"
     },
     {
       "label": "adjuntos_correos",
@@ -2168,9 +2410,9 @@
       "source_location": "L3",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "adjuntos_correos",
-      "id": "mysql_init_01_schema_adjuntos_correos",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_adjuntos_correos"
     },
     {
       "label": "buzones",
@@ -2179,9 +2421,9 @@
       "source_location": "L11",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "buzones",
-      "id": "mysql_init_01_schema_buzones",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_buzones"
     },
     {
       "label": "companias",
@@ -2190,9 +2432,9 @@
       "source_location": "L16",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "companias",
-      "id": "mysql_init_01_schema_companias",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_companias"
     },
     {
       "label": "config_buzon_fe",
@@ -2201,9 +2443,9 @@
       "source_location": "L21",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "config_buzon_fe",
-      "id": "mysql_init_01_schema_config_buzon_fe",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_config_buzon_fe"
     },
     {
       "label": "correos",
@@ -2212,9 +2454,9 @@
       "source_location": "L32",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "correos",
-      "id": "mysql_init_01_schema_correos",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_correos"
     },
     {
       "label": "detalles_entrada_almacen",
@@ -2223,9 +2465,9 @@
       "source_location": "L40",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "detalles_entrada_almacen",
-      "id": "mysql_init_01_schema_detalles_entrada_almacen",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_detalles_entrada_almacen"
     },
     {
       "label": "detalles_facturas",
@@ -2234,9 +2476,9 @@
       "source_location": "L50",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "detalles_facturas",
-      "id": "mysql_init_01_schema_detalles_facturas",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_detalles_facturas"
     },
     {
       "label": "detalles_ordenes_compras",
@@ -2245,9 +2487,9 @@
       "source_location": "L64",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "detalles_ordenes_compras",
-      "id": "mysql_init_01_schema_detalles_ordenes_compras",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_detalles_ordenes_compras"
     },
     {
       "label": "entradas_almacen",
@@ -2256,9 +2498,9 @@
       "source_location": "L77",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "entradas_almacen",
-      "id": "mysql_init_01_schema_entradas_almacen",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_entradas_almacen"
     },
     {
       "label": "equivalencias_proveedores",
@@ -2267,9 +2509,9 @@
       "source_location": "L90",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "equivalencias_proveedores",
-      "id": "mysql_init_01_schema_equivalencias_proveedores",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_equivalencias_proveedores"
     },
     {
       "label": "estados_documentos",
@@ -2278,9 +2520,9 @@
       "source_location": "L98",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "estados_documentos",
-      "id": "mysql_init_01_schema_estados_documentos",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_estados_documentos"
     },
     {
       "label": "facturas",
@@ -2289,9 +2531,9 @@
       "source_location": "L103",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "facturas",
-      "id": "mysql_init_01_schema_facturas",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_facturas"
     },
     {
       "label": "facturas_dian",
@@ -2300,9 +2542,9 @@
       "source_location": "L126",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "facturas_dian",
-      "id": "mysql_init_01_schema_facturas_dian",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_facturas_dian"
     },
     {
       "label": "facturas_erp",
@@ -2311,9 +2553,9 @@
       "source_location": "L145",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "facturas_erp",
-      "id": "mysql_init_01_schema_facturas_erp",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_facturas_erp"
     },
     {
       "label": "ordenes_compras",
@@ -2322,9 +2564,9 @@
       "source_location": "L162",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "ordenes_compras",
-      "id": "mysql_init_01_schema_ordenes_compras",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_ordenes_compras"
     },
     {
       "label": "parametros",
@@ -2333,9 +2575,9 @@
       "source_location": "L179",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "parametros",
-      "id": "mysql_init_01_schema_parametros",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_parametros"
     },
     {
       "label": "permisos",
@@ -2344,9 +2586,9 @@
       "source_location": "L186",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "permisos",
-      "id": "mysql_init_01_schema_permisos",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_permisos"
     },
     {
       "label": "proveedores",
@@ -2355,9 +2597,9 @@
       "source_location": "L190",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "proveedores",
-      "id": "mysql_init_01_schema_proveedores",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_proveedores"
     },
     {
       "label": "roles",
@@ -2366,9 +2608,9 @@
       "source_location": "L199",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "roles",
-      "id": "mysql_init_01_schema_roles",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_roles"
     },
     {
       "label": "roles_permisos",
@@ -2377,9 +2619,9 @@
       "source_location": "L205",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "roles_permisos",
-      "id": "mysql_init_01_schema_roles_permisos",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_roles_permisos"
     },
     {
       "label": "usuarios",
@@ -2388,9 +2630,9 @@
       "source_location": "L212",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "usuarios",
-      "id": "mysql_init_01_schema_usuarios",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_usuarios"
     },
     {
       "label": "usuarios_roles",
@@ -2399,9 +2641,9 @@
       "source_location": "L217",
       "_origin": "ast",
       "community": 3,
+      "community_name": "01_schema.sql",
       "norm_label": "usuarios_roles",
-      "id": "mysql_init_01_schema_usuarios_roles",
-      "community_name": "01_schema.sql"
+      "id": "mysql_init_01_schema_usuarios_roles"
     },
     {
       "label": "Recibo FE Create.sql",
@@ -2410,9 +2652,9 @@
       "source_location": null,
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "recibo fe create.sql",
-      "id": "mysql_init_source_recibo_fe_create",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create"
     },
     {
       "label": "adjuntos_correos",
@@ -2421,9 +2663,9 @@
       "source_location": "L1",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "adjuntos_correos",
-      "id": "mysql_init_source_recibo_fe_create_adjuntos_correos",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_adjuntos_correos"
     },
     {
       "label": "buzones",
@@ -2432,9 +2674,9 @@
       "source_location": "L9",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "buzones",
-      "id": "mysql_init_source_recibo_fe_create_buzones",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_buzones"
     },
     {
       "label": "companias",
@@ -2443,9 +2685,9 @@
       "source_location": "L14",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "companias",
-      "id": "mysql_init_source_recibo_fe_create_companias",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_companias"
     },
     {
       "label": "config_buzon_fe",
@@ -2454,9 +2696,9 @@
       "source_location": "L19",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "config_buzon_fe",
-      "id": "mysql_init_source_recibo_fe_create_config_buzon_fe",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_config_buzon_fe"
     },
     {
       "label": "correos",
@@ -2465,9 +2707,9 @@
       "source_location": "L30",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "correos",
-      "id": "mysql_init_source_recibo_fe_create_correos",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_correos"
     },
     {
       "label": "detalles_entrada_almacen",
@@ -2476,9 +2718,9 @@
       "source_location": "L38",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "detalles_entrada_almacen",
-      "id": "mysql_init_source_recibo_fe_create_detalles_entrada_almacen",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_detalles_entrada_almacen"
     },
     {
       "label": "detalles_facturas",
@@ -2487,9 +2729,9 @@
       "source_location": "L48",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "detalles_facturas",
-      "id": "mysql_init_source_recibo_fe_create_detalles_facturas",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_detalles_facturas"
     },
     {
       "label": "detalles_ordenes_compras",
@@ -2498,9 +2740,9 @@
       "source_location": "L62",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "detalles_ordenes_compras",
-      "id": "mysql_init_source_recibo_fe_create_detalles_ordenes_compras",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_detalles_ordenes_compras"
     },
     {
       "label": "entradas_almacen",
@@ -2509,9 +2751,9 @@
       "source_location": "L75",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "entradas_almacen",
-      "id": "mysql_init_source_recibo_fe_create_entradas_almacen",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_entradas_almacen"
     },
     {
       "label": "equivalencias_proveedores",
@@ -2520,9 +2762,9 @@
       "source_location": "L88",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "equivalencias_proveedores",
-      "id": "mysql_init_source_recibo_fe_create_equivalencias_proveedores",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_equivalencias_proveedores"
     },
     {
       "label": "estados_documentos",
@@ -2531,9 +2773,9 @@
       "source_location": "L96",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "estados_documentos",
-      "id": "mysql_init_source_recibo_fe_create_estados_documentos",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_estados_documentos"
     },
     {
       "label": "facturas",
@@ -2542,9 +2784,9 @@
       "source_location": "L101",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "facturas",
-      "id": "mysql_init_source_recibo_fe_create_facturas",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_facturas"
     },
     {
       "label": "facturas_dian",
@@ -2553,9 +2795,9 @@
       "source_location": "L123",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "facturas_dian",
-      "id": "mysql_init_source_recibo_fe_create_facturas_dian",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_facturas_dian"
     },
     {
       "label": "facturas_erp",
@@ -2564,9 +2806,9 @@
       "source_location": "L142",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "facturas_erp",
-      "id": "mysql_init_source_recibo_fe_create_facturas_erp",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_facturas_erp"
     },
     {
       "label": "ordenes_compras",
@@ -2575,9 +2817,9 @@
       "source_location": "L159",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "ordenes_compras",
-      "id": "mysql_init_source_recibo_fe_create_ordenes_compras",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_ordenes_compras"
     },
     {
       "label": "parametros",
@@ -2586,9 +2828,9 @@
       "source_location": "L175",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "parametros",
-      "id": "mysql_init_source_recibo_fe_create_parametros",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_parametros"
     },
     {
       "label": "permisos",
@@ -2597,9 +2839,9 @@
       "source_location": "L182",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "permisos",
-      "id": "mysql_init_source_recibo_fe_create_permisos",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_permisos"
     },
     {
       "label": "proveedores",
@@ -2608,9 +2850,9 @@
       "source_location": "L186",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "proveedores",
-      "id": "mysql_init_source_recibo_fe_create_proveedores",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_proveedores"
     },
     {
       "label": "roles",
@@ -2619,9 +2861,9 @@
       "source_location": "L195",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "roles",
-      "id": "mysql_init_source_recibo_fe_create_roles",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_roles"
     },
     {
       "label": "roles_permisos",
@@ -2630,9 +2872,9 @@
       "source_location": "L201",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "roles_permisos",
-      "id": "mysql_init_source_recibo_fe_create_roles_permisos",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_roles_permisos"
     },
     {
       "label": "usuarios",
@@ -2641,9 +2883,9 @@
       "source_location": "L208",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "usuarios",
-      "id": "mysql_init_source_recibo_fe_create_usuarios",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_usuarios"
     },
     {
       "label": "usuarios_roles",
@@ -2652,9 +2894,9 @@
       "source_location": "L213",
       "_origin": "ast",
       "community": 4,
+      "community_name": "Recibo FE Create.sql",
       "norm_label": "usuarios_roles",
-      "id": "mysql_init_source_recibo_fe_create_usuarios_roles",
-      "community_name": "Recibo FE Create.sql"
+      "id": "mysql_init_source_recibo_fe_create_usuarios_roles"
     },
     {
       "label": "CLAUDE.md \u2014 Root Project Documentation",
@@ -2667,8 +2909,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "claude.md \u2014 root project documentation",
-      "id": "claude_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_md"
     },
     {
       "label": "ESPECIFICACIONES.md \u2014 Functional & Technical Specification",
@@ -2681,8 +2923,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "especificaciones.md \u2014 functional & technical specification",
-      "id": "especificaciones_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "especificaciones_md"
     },
     {
       "label": "docker-compose.yml \u2014 Service Orchestration",
@@ -2695,8 +2937,8 @@
       "contributor": null,
       "community": 20,
       "norm_label": "docker-compose.yml \u2014 service orchestration",
-      "id": "docker_compose_yml",
-      "community_name": "docker-compose.yml \u2014 Service Orchestration"
+      "community_name": "docker-compose.yml \u2014 Service Orchestration",
+      "id": "docker_compose_yml"
     },
     {
       "label": "backend/CLAUDE.md \u2014 Backend Developer Guide",
@@ -2709,8 +2951,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "backend/claude.md \u2014 backend developer guide",
-      "id": "backend_claude_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "backend_claude_md"
     },
     {
       "label": "frontend/CLAUDE.md \u2014 Frontend Developer Guide",
@@ -2723,8 +2965,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "frontend/claude.md \u2014 frontend developer guide",
-      "id": "frontend_claude_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "frontend_claude_md"
     },
     {
       "label": "frontend/AGENTS.md \u2014 Next.js Agent Rules",
@@ -2737,8 +2979,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "frontend/agents.md \u2014 next.js agent rules",
-      "id": "frontend_agents_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "frontend_agents_md"
     },
     {
       "label": "frontend/README.md \u2014 Frontend README",
@@ -2751,8 +2993,8 @@
       "contributor": null,
       "community": 21,
       "norm_label": "frontend/readme.md \u2014 frontend readme",
-      "id": "frontend_readme_md",
-      "community_name": "frontend/README.md \u2014 Frontend README"
+      "community_name": "frontend/README.md \u2014 Frontend README",
+      "id": "frontend_readme_md"
     },
     {
       "label": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
@@ -2765,8 +3007,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify skill.md \u2014 knowledge graph pipeline skill",
-      "id": "claude_skills_graphify_skill_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_skill_md"
     },
     {
       "label": "graphify extraction-spec.md \u2014 Semantic Extraction Subagent Prompt",
@@ -2779,8 +3021,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify extraction-spec.md \u2014 semantic extraction subagent prompt",
-      "id": "claude_skills_graphify_references_extraction_spec_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_extraction_spec_md"
     },
     {
       "label": "graphify query.md \u2014 Query/Path/Explain Reference",
@@ -2793,8 +3035,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify query.md \u2014 query/path/explain reference",
-      "id": "claude_skills_graphify_references_query_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_query_md"
     },
     {
       "label": "graphify update.md \u2014 Incremental Update & Cluster-Only Reference",
@@ -2807,8 +3049,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify update.md \u2014 incremental update & cluster-only reference",
-      "id": "claude_skills_graphify_references_update_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_update_md"
     },
     {
       "label": "graphify exports.md \u2014 Extra Export Formats Reference",
@@ -2821,8 +3063,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify exports.md \u2014 extra export formats reference",
-      "id": "claude_skills_graphify_references_exports_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_exports_md"
     },
     {
       "label": "graphify github-and-merge.md \u2014 GitHub Clone & Cross-Repo Merge Reference",
@@ -2835,8 +3077,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify github-and-merge.md \u2014 github clone & cross-repo merge reference",
-      "id": "claude_skills_graphify_references_github_and_merge_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_github_and_merge_md"
     },
     {
       "label": "graphify add-watch.md \u2014 Add URL & Watch Folder Reference",
@@ -2849,8 +3091,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify add-watch.md \u2014 add url & watch folder reference",
-      "id": "claude_skills_graphify_references_add_watch_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_add_watch_md"
     },
     {
       "label": "graphify transcribe.md \u2014 Video/Audio Transcription Reference",
@@ -2863,8 +3105,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify transcribe.md \u2014 video/audio transcription reference",
-      "id": "claude_skills_graphify_references_transcribe_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_transcribe_md"
     },
     {
       "label": "graphify hooks.md \u2014 Commit Hook & CLAUDE.md Integration Reference",
@@ -2877,8 +3119,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify hooks.md \u2014 commit hook & claude.md integration reference",
-      "id": "claude_skills_graphify_references_hooks_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "claude_skills_graphify_references_hooks_md"
     },
     {
       "label": ".claude/CLAUDE.md \u2014 Graphify Skill Entry Point",
@@ -2891,8 +3133,8 @@
       "contributor": null,
       "community": 8,
       "norm_label": ".claude/claude.md \u2014 graphify skill entry point",
-      "id": "dot_claude_claude_md",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "dot_claude_claude_md"
     },
     {
       "label": "Email Worker (node-imap + mailparser, 10min scan)",
@@ -2905,8 +3147,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "email worker (node-imap + mailparser, 10min scan)",
-      "id": "concept_email_worker",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_email_worker"
     },
     {
       "label": "Conciliaci\u00f3n Worker (BullMQ job processor)",
@@ -2919,8 +3161,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "conciliacion worker (bullmq job processor)",
-      "id": "concept_conciliacion_worker",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_conciliacion_worker"
     },
     {
       "label": "SIESA SOAP Adapter",
@@ -2933,8 +3175,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "siesa soap adapter",
-      "id": "concept_siesa_adapter",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_siesa_adapter"
     },
     {
       "label": "UBL 2.1 XML Parser",
@@ -2947,8 +3189,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "ubl 2.1 xml parser",
-      "id": "concept_ubl_parser",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_ubl_parser"
     },
     {
       "label": "validateInvoice() \u2014 Conciliation Algorithm",
@@ -2961,8 +3203,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "validateinvoice() \u2014 conciliation algorithm",
-      "id": "concept_validate_invoice",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_validate_invoice"
     },
     {
       "label": "estados_documentos \u2014 State Machine Catalog",
@@ -2975,8 +3217,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "estados_documentos \u2014 state machine catalog",
-      "id": "concept_estados_documentos",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_estados_documentos"
     },
     {
       "label": "auditoria_acciones \u2014 Audit Log Table (RC-06, not yet in DDL)",
@@ -2989,8 +3231,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "auditoria_acciones \u2014 audit log table (rc-06, not yet in ddl)",
-      "id": "concept_auditoria_acciones",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_auditoria_acciones"
     },
     {
       "label": "facturas \u2014 Core Invoice Table",
@@ -3003,8 +3245,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "facturas \u2014 core invoice table",
-      "id": "concept_facturas",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_facturas"
     },
     {
       "label": "facturas_dian \u2014 UBL XML Mirror Table",
@@ -3017,8 +3259,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "facturas_dian \u2014 ubl xml mirror table",
-      "id": "concept_facturas_dian",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_facturas_dian"
     },
     {
       "label": "facturas_erp \u2014 SIESA ERP Mirror Table",
@@ -3031,8 +3273,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "facturas_erp \u2014 siesa erp mirror table",
-      "id": "concept_facturas_erp",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_facturas_erp"
     },
     {
       "label": "detalles_facturas \u2014 Invoice Line Items Table",
@@ -3045,8 +3287,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "detalles_facturas \u2014 invoice line items table",
-      "id": "concept_detalles_facturas",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_detalles_facturas"
     },
     {
       "label": "ordenes_compras \u2014 Purchase Orders Table",
@@ -3059,8 +3301,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "ordenes_compras \u2014 purchase orders table",
-      "id": "concept_ordenes_compras",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_ordenes_compras"
     },
     {
       "label": "equivalencias_proveedores \u2014 Supplier SKU Mapping Table",
@@ -3073,8 +3315,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "equivalencias_proveedores \u2014 supplier sku mapping table",
-      "id": "concept_equivalencias_proveedores",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_equivalencias_proveedores"
     },
     {
       "label": "entradas_almacen \u2014 Warehouse Entry Table",
@@ -3087,8 +3329,8 @@
       "contributor": null,
       "community": 13,
       "norm_label": "entradas_almacen \u2014 warehouse entry table",
-      "id": "concept_entradas_almacen",
-      "community_name": "validateInvoice() \u2014 Conciliation Algorithm"
+      "community_name": "validateInvoice() \u2014 Conciliation Algorithm",
+      "id": "concept_entradas_almacen"
     },
     {
       "label": "companias \u2014 Multi-company Anchor Table",
@@ -3101,8 +3343,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "companias \u2014 multi-company anchor table",
-      "id": "concept_companias",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_companias"
     },
     {
       "label": "usuarios_roles \u2014 User Role per Company",
@@ -3115,8 +3357,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "usuarios_roles \u2014 user role per company",
-      "id": "concept_usuarios_roles",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_usuarios_roles"
     },
     {
       "label": "BullMQ Conciliation Queue",
@@ -3129,8 +3371,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "bullmq conciliation queue",
-      "id": "concept_bullmq_queue",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_bullmq_queue"
     },
     {
       "label": "Socket.io Real-time Dashboard Events",
@@ -3143,8 +3385,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "socket.io real-time dashboard events",
-      "id": "concept_socketio_dashboard",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_socketio_dashboard"
     },
     {
       "label": "Excel Insumo DIAN Mapper (xlsx/SheetJS)",
@@ -3157,8 +3399,8 @@
       "contributor": null,
       "community": 18,
       "norm_label": "excel insumo dian mapper (xlsx/sheetjs)",
-      "id": "concept_excel_mapper",
-      "community_name": "Excel Insumo DIAN Mapper (xlsx/SheetJS)"
+      "community_name": "Excel Insumo DIAN Mapper (xlsx/SheetJS)",
+      "id": "concept_excel_mapper"
     },
     {
       "label": "config_buzon_fe \u2014 IMAP Mailbox Config Table",
@@ -3171,8 +3413,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "config_buzon_fe \u2014 imap mailbox config table",
-      "id": "concept_config_buzon_fe",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_config_buzon_fe"
     },
     {
       "label": "Multi-company (id_cia) Filtering Convention",
@@ -3185,8 +3427,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "multi-company (id_cia) filtering convention",
-      "id": "concept_multiempresa",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_multiempresa"
     },
     {
       "label": "NextAuth.js Multi-company Session (id_cia + roles)",
@@ -3199,8 +3441,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "nextauth.js multi-company session (id_cia + roles)",
-      "id": "concept_nextauth_multicompany",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_nextauth_multicompany"
     },
     {
       "label": "Backend Auth Middleware (requireAuth, requirePermission)",
@@ -3213,8 +3455,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "backend auth middleware (requireauth, requirepermission)",
-      "id": "concept_auth_middleware",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "concept_auth_middleware"
     },
     {
       "label": "seedAuth.js \u2014 Auth Seed Script",
@@ -3227,8 +3469,8 @@
       "contributor": null,
       "community": 19,
       "norm_label": "seedauth.js \u2014 auth seed script",
-      "id": "concept_seed_auth",
-      "community_name": "seedAuth.js \u2014 Auth Seed Script"
+      "community_name": "seedAuth.js \u2014 Auth Seed Script",
+      "id": "concept_seed_auth"
     },
     {
       "label": "MySQL 8.0 Service",
@@ -3241,8 +3483,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "mysql 8.0 service",
-      "id": "service_mysql",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_mysql"
     },
     {
       "label": "Redis 7 Service",
@@ -3255,8 +3497,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "redis 7 service",
-      "id": "service_redis",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_redis"
     },
     {
       "label": "Backend Express API Service",
@@ -3269,8 +3511,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "backend express api service",
-      "id": "service_backend",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_backend"
     },
     {
       "label": "BullMQ Worker Service",
@@ -3283,8 +3525,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "bullmq worker service",
-      "id": "service_worker",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_worker"
     },
     {
       "label": "Frontend Next.js Service",
@@ -3297,8 +3539,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "frontend next.js service",
-      "id": "service_frontend",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_frontend"
     },
     {
       "label": "Nginx Reverse Proxy Service",
@@ -3311,8 +3553,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "nginx reverse proxy service",
-      "id": "service_nginx",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_nginx"
     },
     {
       "label": "phpMyAdmin Service (Dev Only)",
@@ -3325,8 +3567,8 @@
       "contributor": null,
       "community": 6,
       "norm_label": "phpmyadmin service (dev only)",
-      "id": "service_phpmyadmin",
-      "community_name": "Backend Express API Service"
+      "community_name": "Backend Express API Service",
+      "id": "service_phpmyadmin"
     },
     {
       "label": "graphify Full Build Pipeline",
@@ -3339,11 +3581,220 @@
       "contributor": null,
       "community": 8,
       "norm_label": "graphify full build pipeline",
-      "id": "concept_graphify_pipeline",
-      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill"
+      "community_name": "graphify SKILL.md \u2014 Knowledge Graph Pipeline Skill",
+      "id": "concept_graphify_pipeline"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme",
+      "target": "readme_proyect_ggt_home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_hooks_validate_infra",
+      "target": "claude_hooks_validate_infra_base"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_hooks_validate_infra",
+      "target": "claude_hooks_validate_infra_execsync"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_hooks_validate_infra",
+      "target": "claude_hooks_validate_infra_fs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_hooks_validate_infra",
+      "target": "claude_hooks_validate_infra_input"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/hooks/validate-infra.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_hooks_validate_infra",
+      "target": "claude_hooks_validate_infra_path"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill",
+      "target": "claude_skills_find_skills_skill_find_skills"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_find_skills",
+      "target": "claude_skills_find_skills_skill_common_skill_categories"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_find_skills",
+      "target": "claude_skills_find_skills_skill_how_to_help_users_find_skills"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L119",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_find_skills",
+      "target": "claude_skills_find_skills_skill_tips_for_effective_searches"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_find_skills",
+      "target": "claude_skills_find_skills_skill_what_is_the_skills_cli"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L125",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_find_skills",
+      "target": "claude_skills_find_skills_skill_when_no_skills_are_found"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_find_skills",
+      "target": "claude_skills_find_skills_skill_when_to_use_this_skill"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_how_to_help_users_find_skills",
+      "target": "claude_skills_find_skills_skill_step_1_understand_what_they_need"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_how_to_help_users_find_skills",
+      "target": "claude_skills_find_skills_skill_step_2_check_the_leaderboard_first"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_how_to_help_users_find_skills",
+      "target": "claude_skills_find_skills_skill_step_3_search_for_skills"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_how_to_help_users_find_skills",
+      "target": "claude_skills_find_skills_skill_step_4_verify_quality_before_recommending"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_how_to_help_users_find_skills",
+      "target": "claude_skills_find_skills_skill_step_5_present_options_to_the_user"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/skills/find-skills/SKILL.md",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "claude_skills_find_skills_skill_how_to_help_users_find_skills",
+      "target": "claude_skills_find_skills_skill_step_6_offer_to_install"
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -7448,5 +7899,6 @@
       "confidence_score": 0.95,
       "source_file": "ESPECIFICACIONES.md"
     }
-  ]
+  ],
+  "built_at_commit": "be2317f8be7bfe6ebe97fd81876a9f3437997f70"
 }
