@@ -32,4 +32,12 @@ module.exports = {
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '8h',
   BULLMQ_MAX_RETRIES: Number(process.env.BULLMQ_MAX_RETRIES) || 5,
+  SIESA_WSDL_URL: process.env.SIESA_WSDL_URL,
+  SIESA_USER: process.env.SIESA_USER,
+  SIESA_PASSWORD: process.env.SIESA_PASSWORD,
+  SIESA_CONEXION_NOMBRE: process.env.SIESA_CONEXION_NOMBRE,
+  IMAP_HOST: process.env.IMAP_HOST,
+  IMAP_PORT: Number(process.env.IMAP_PORT) || 993,
+  IMAP_USER: process.env.IMAP_USER,
+  IMAP_PASSWORD: process.env.IMAP_PASSWORD,
 };

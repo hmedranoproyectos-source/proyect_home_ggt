@@ -8,6 +8,8 @@ const { Server } = require('socket.io');
 const db = require('./config/db');
 const redis = require('./config/redis');
 const authRoutes = require('./api/auth/auth.routes');
+const siesaRoutes = require('./api/siesa/siesa.routes');
+const configRoutes = require('./api/config/config.routes');
 
 const app = express();
 
@@ -62,6 +64,8 @@ app.get('/api/companias', async (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/siesa', siesaRoutes);
+app.use('/api/config', configRoutes);
 
 app.use((err, req, res, next) => {
   console.error('[api] error no controlado:', err.stack);
