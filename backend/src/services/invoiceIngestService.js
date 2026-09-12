@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const ESTADOS = require('../constants/estados');
+const { normalizarNit } = require('../utils/nit');
 const {
   parseUblInvoice,
   UblParseError,
@@ -77,9 +78,21 @@ async function registrarCorreo(conn, { idBuzon, mail, adjuntos }) {
 // worker de conciliacion contra el WS. cod_erp se deja con el NIT como valor
 // provisional para que el cruce posterior pueda encontrarlo.
 async function getOrCreateProveedor(conn, { idCia, nit, razonSocial }) {
+  // Segunda linea de defensa de RC-04: el id_proveedor forma parte de la clave
+  // UNIQUE de `facturas`, asi que un cod_erp mal normalizado crearia un
+  // proveedor duplicado y dejaria pasar la misma factura dos veces. El parser
+  // ya normaliza, pero este servicio tambien recibe datos de la carga Excel
+  // (RI-03) y de reprocesos, que no pasan por el parser UBL. Se usa la misma
+  // funcion que el parser a proposito: tener dos normalizaciones distintas fue
+  // justo lo que dejo pasar un duplicado.
+  const codErp = normalizarNit(nit);
+  if (!codErp) {
+    throw new Error(`NIT de proveedor invalido: "${nit}"`);
+  }
+
   const [existentes] = await conn.query(
     'SELECT id FROM proveedores WHERE id_cia = ? AND cod_erp = ? LIMIT 1',
-    [idCia, nit]
+    [idCia, codErp]
   );
   if (existentes.length > 0) return existentes[0].id;
 
@@ -87,7 +100,7 @@ async function getOrCreateProveedor(conn, { idCia, nit, razonSocial }) {
     `INSERT INTO proveedores
        (id_cia, cod_erp, razon_social, cod_erp_sucursal)
      VALUES (?, ?, ?, '001')`,
-    [idCia, nit, truncate(razonSocial) || nit]
+    [idCia, codErp, truncate(razonSocial) || codErp]
   );
   return result.insertId;
 }

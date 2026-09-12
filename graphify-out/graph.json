@@ -56,6 +56,45 @@
   },
   "nodes": [
     {
+      "label": "DocumentoNoFacturaError",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L28",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_documentonofacturaerror",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "documentonofacturaerror"
+    },
+    {
+      "label": "UblParseError",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L16",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_ublparseerror",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "ublparseerror"
+    },
+    {
+      "label": "FacturaDuplicadaError",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L95",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_facturaduplicadaerror",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "facturaduplicadaerror"
+    },
+    {
       "label": "checkDb()",
       "file_type": "code",
       "source_file": "backend/src/index.js",
@@ -290,10 +329,10 @@
       "source_location": "L56",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_buildpvstrparametros",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "buildpvstrparametros()"
+      "norm_label": "buildpvstrparametros()",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_buildpvstrparametros"
     },
     {
       "label": "ejecutarConsulta()",
@@ -302,10 +341,10 @@
       "source_location": "L85",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_ejecutarconsulta",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "ejecutarconsulta()"
+      "norm_label": "ejecutarconsulta()",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_ejecutarconsulta"
     },
     {
       "label": "omitAttrs()",
@@ -314,10 +353,10 @@
       "source_location": "L68",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_omitattrs",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "omitattrs()"
+      "norm_label": "omitattrs()",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_omitattrs"
     },
     {
       "label": "parseResultado()",
@@ -326,10 +365,10 @@
       "source_location": "L77",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "parseresultado()"
+      "norm_label": "parseresultado()",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado"
     },
     {
       "label": "buildPvstrDatos()",
@@ -386,10 +425,10 @@
       "source_location": "L7",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesaconsultas_controller_consultahandler",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "consultahandler()"
+      "norm_label": "consultahandler()",
+      "id": "backend_src_api_siesa_siesaconsultas_controller_consultahandler"
     },
     {
       "label": "RootLayout()",
@@ -416,64 +455,472 @@
       "id": "frontend_app_page_home"
     },
     {
-      "label": "countEmails()",
+      "label": "expandirZip()",
       "file_type": "code",
-      "source_file": "backend/src/api/config/config.controller.js",
-      "source_location": "L12",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L19",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_api_config_config_controller_countemails",
+      "id": "backend_src_services_attachmentextractor_expandirzip",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "countemails()"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "expandirzip()"
     },
     {
-      "label": "testEmailConnection()",
+      "label": "extension()",
       "file_type": "code",
-      "source_file": "backend/src/api/config/config.controller.js",
-      "source_location": "L3",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L11",
       "_callable": true,
       "_origin": "ast",
-      "id": "backend_src_api_config_config_controller_testemailconnection",
+      "id": "backend_src_services_attachmentextractor_extension",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "testemailconnection()"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "extension()"
+    },
+    {
+      "label": "extraerAdjuntos()",
+      "file_type": "code",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L67",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_attachmentextractor_extraeradjuntos",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "extraeradjuntos()"
     },
     {
       "label": "buildImapConfig()",
       "file_type": "code",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L6",
+      "source_location": "L7",
       "_callable": true,
       "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_buildimapconfig",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "buildimapconfig()",
-      "id": "backend_src_services_emailconnectionservice_buildimapconfig"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "buildimapconfig()"
     },
     {
-      "label": "testConnection()",
+      "label": "countMessages()",
       "file_type": "code",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L29",
+      "source_location": "L61",
       "_callable": true,
       "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_countmessages",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "testconnection()",
-      "id": "backend_src_services_emailconnectionservice_testconnection"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "countmessages()"
     },
     {
       "label": "finish()",
       "file_type": "code",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L37",
+      "source_location": "L69",
       "_callable": true,
       "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_countmessages_finish",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "finish()",
-      "id": "backend_src_services_emailconnectionservice_testconnection_finish"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "finish()"
+    },
+    {
+      "label": "fetchUnreadMessages()",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L106",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_fetchunreadmessages",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "fetchunreadmessages()"
+    },
+    {
+      "label": "finish()",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L114",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_fetchunreadmessages_finish",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "finish()"
+    },
+    {
+      "label": "marcarComoLeido()",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L189",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_marcarcomoleido",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "marcarcomoleido()"
+    },
+    {
+      "label": "finish()",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L198",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_marcarcomoleido_finish",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "finish()"
+    },
+    {
+      "label": "testConnection()",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L30",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_testconnection",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "testconnection()"
+    },
+    {
+      "label": "finish()",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L38",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_testconnection_finish",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "finish()"
+    },
+    {
+      "label": "procesarEscaneo()",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L43",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "procesarescaneo()"
+    },
+    {
+      "label": "resolverBuzon()",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_resolverbuzon",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "resolverbuzon()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L29",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_documentonofacturaerror_constructor",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": "extractLines()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L169",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_extractlines",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "extractlines()"
+    },
+    {
+      "label": "extractParty()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L117",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_extractparty",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "extractparty()"
+    },
+    {
+      "label": "extractTaxes()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L148",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_extracttaxes",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "extracttaxes()"
+    },
+    {
+      "label": "first()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L54",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_first",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "first()"
+    },
+    {
+      "label": "parseDate()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L104",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_parsedate",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "parsedate()"
+    },
+    {
+      "label": "parseUblInvoice()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L225",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "parseublinvoice()"
+    },
+    {
+      "label": "splitInvoiceNumber()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L87",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_splitinvoicenumber",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "splitinvoicenumber()"
+    },
+    {
+      "label": "text()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L66",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_text",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "text()"
+    },
+    {
+      "label": "textAt()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L73",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_textat",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "textat()"
+    },
+    {
+      "label": "toNumber()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L79",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_tonumber",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "tonumber()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L17",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_ublparseerror_constructor",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L96",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_facturaduplicadaerror_constructor",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": "getOrCreateProveedor()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L79",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_getorcreateproveedor",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "getorcreateproveedor()"
+    },
+    {
+      "label": "ingestarCorreo()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L223",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_ingestarcorreo",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "ingestarcorreo()"
+    },
+    {
+      "label": "joinAddresses()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L31",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_joinaddresses",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "joinaddresses()"
+    },
+    {
+      "label": "persistirFactura()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L107",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_persistirfactura",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "persistirfactura()"
+    },
+    {
+      "label": "registrarCorreo()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L43",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_registrarcorreo",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "registrarcorreo()"
+    },
+    {
+      "label": "truncate()",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L25",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_truncate",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "truncate()"
+    },
+    {
+      "label": "registrarSchedulerEscaneo()",
+      "file_type": "code",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L29",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_queues_emailqueue_registrarschedulerescaneo",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "registrarschedulerescaneo()"
+    },
+    {
+      "label": "bootstrap()",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L47",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_workers_index_bootstrap",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "bootstrap()"
+    },
+    {
+      "label": "shutdown()",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L63",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_workers_index_shutdown",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "shutdown()"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L105",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline_main",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "main()"
+    },
+    {
+      "label": "seedBuzon()",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L54",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline_seedbuzon",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "seedbuzon()"
+    },
+    {
+      "label": "seedEstados()",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L26",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline_seedestados",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "seedestados()"
     },
     {
       "label": "login()",
@@ -510,6 +957,30 @@
       "norm_label": "selectcompany()",
       "community_name": "auth.routes.js",
       "id": "backend_src_api_auth_auth_controller_selectcompany"
+    },
+    {
+      "label": "countEmails()",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.controller.js",
+      "source_location": "L12",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "countemails()",
+      "id": "backend_src_api_config_config_controller_countemails"
+    },
+    {
+      "label": "testEmailConnection()",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.controller.js",
+      "source_location": "L3",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "testemailconnection()",
+      "id": "backend_src_api_config_config_controller_testemailconnection"
     },
     {
       "label": "extractToken()",
@@ -558,127 +1029,6 @@
       "norm_label": "requirepresession()",
       "community_name": "auth.routes.js",
       "id": "backend_src_middleware_auth_requirepresession"
-    },
-    {
-      "label": "db.js",
-      "file_type": "code",
-      "source_file": "backend/src/config/db.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "db.js",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_db"
-    },
-    {
-      "label": "env",
-      "file_type": "code",
-      "source_file": "backend/src/config/db.js",
-      "source_location": "L2",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "env",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_db_env"
-    },
-    {
-      "label": "mysql",
-      "file_type": "code",
-      "source_file": "backend/src/config/db.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "mysql",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_db_mysql"
-    },
-    {
-      "label": "pool",
-      "file_type": "code",
-      "source_file": "backend/src/config/db.js",
-      "source_location": "L4",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "pool",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_db_pool"
-    },
-    {
-      "label": "env.js",
-      "file_type": "code",
-      "source_file": "backend/src/config/env.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "src/index.js",
-      "norm_label": "env.js",
-      "id": "backend_src_config_env"
-    },
-    {
-      "label": "missing",
-      "file_type": "code",
-      "source_file": "backend/src/config/env.js",
-      "source_location": "L14",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "src/index.js",
-      "norm_label": "missing",
-      "id": "backend_src_config_env_missing"
-    },
-    {
-      "label": "REQUIRED_VARS",
-      "file_type": "code",
-      "source_file": "backend/src/config/env.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "src/index.js",
-      "norm_label": "required_vars",
-      "id": "backend_src_config_env_required_vars"
-    },
-    {
-      "label": "redis.js",
-      "file_type": "code",
-      "source_file": "backend/src/config/redis.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "redis.js",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_redis"
-    },
-    {
-      "label": "connection",
-      "file_type": "code",
-      "source_file": "backend/src/config/redis.js",
-      "source_location": "L6",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "connection",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_redis_connection"
-    },
-    {
-      "label": "env",
-      "file_type": "code",
-      "source_file": "backend/src/config/redis.js",
-      "source_location": "L2",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "env",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_redis_env"
-    },
-    {
-      "label": "IORedis",
-      "file_type": "code",
-      "source_file": "backend/src/config/redis.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "ioredis",
-      "community_name": "src/index.js",
-      "id": "backend_src_config_redis_ioredis"
     },
     {
       "label": "src/index.js",
@@ -844,105 +1194,6 @@
       "community_name": "src/index.js",
       "norm_label": "siesaroutes",
       "id": "backend_src_index_siesaroutes"
-    },
-    {
-      "label": "conciliacionQueue.js",
-      "file_type": "code",
-      "source_file": "backend/src/queues/conciliacionQueue.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "conciliacionqueue.js",
-      "community_name": "src/index.js",
-      "id": "backend_src_queues_conciliacionqueue"
-    },
-    {
-      "label": "conciliacionQueue",
-      "file_type": "code",
-      "source_file": "backend/src/queues/conciliacionQueue.js",
-      "source_location": "L5",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "conciliacionqueue",
-      "community_name": "src/index.js",
-      "id": "backend_src_queues_conciliacionqueue_conciliacionqueue"
-    },
-    {
-      "label": "connection",
-      "file_type": "code",
-      "source_file": "backend/src/queues/conciliacionQueue.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "connection",
-      "community_name": "src/index.js",
-      "id": "backend_src_queues_conciliacionqueue_connection"
-    },
-    {
-      "label": "env",
-      "file_type": "code",
-      "source_file": "backend/src/queues/conciliacionQueue.js",
-      "source_location": "L2",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "env",
-      "community_name": "src/index.js",
-      "id": "backend_src_queues_conciliacionqueue_env"
-    },
-    {
-      "label": "{ Queue }",
-      "file_type": "code",
-      "source_file": "backend/src/queues/conciliacionQueue.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "{ queue }",
-      "community_name": "src/index.js",
-      "id": "backend_src_queues_conciliacionqueue_queue"
-    },
-    {
-      "label": "workers/index.js",
-      "file_type": "code",
-      "source_file": "backend/src/workers/index.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "workers/index.js",
-      "community_name": "src/index.js",
-      "id": "backend_src_workers_index"
-    },
-    {
-      "label": "connection",
-      "file_type": "code",
-      "source_file": "backend/src/workers/index.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "connection",
-      "community_name": "src/index.js",
-      "id": "backend_src_workers_index_connection"
-    },
-    {
-      "label": "env",
-      "file_type": "code",
-      "source_file": "backend/src/workers/index.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "env",
-      "community_name": "src/index.js",
-      "id": "backend_src_workers_index_env"
-    },
-    {
-      "label": "{ Worker }",
-      "file_type": "code",
-      "source_file": "backend/src/workers/index.js",
-      "source_location": "L2",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "{ worker }",
-      "community_name": "src/index.js",
-      "id": "backend_src_workers_index_worker"
     },
     {
       "label": "SKILL.md",
@@ -1236,10 +1487,10 @@
       "source_file": "backend/src/adapters/siesa/siesaConsultasService.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "siesaconsultasservice.js"
+      "norm_label": "siesaconsultasservice.js",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice"
     },
     {
       "label": "CONSULTAS",
@@ -1247,10 +1498,10 @@
       "source_file": "backend/src/adapters/siesa/siesaConsultasService.js",
       "source_location": "L24",
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_consultas",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "consultas"
+      "norm_label": "consultas",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_consultas"
     },
     {
       "label": "env",
@@ -1258,10 +1509,10 @@
       "source_file": "backend/src/adapters/siesa/siesaConsultasService.js",
       "source_location": "L2",
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_env",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "env"
+      "norm_label": "env",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_env"
     },
     {
       "label": "{ getClient }",
@@ -1269,10 +1520,10 @@
       "source_file": "backend/src/adapters/siesa/siesaConsultasService.js",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_getclient",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "{ getclient }"
+      "norm_label": "{ getclient }",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_getclient"
     },
     {
       "label": "xml2js",
@@ -1280,10 +1531,10 @@
       "source_file": "backend/src/adapters/siesa/siesaConsultasService.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_xml2js",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "xml2js"
+      "norm_label": "xml2js",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_xml2js"
     },
     {
       "label": "xmlBuilder",
@@ -1291,10 +1542,10 @@
       "source_file": "backend/src/adapters/siesa/siesaConsultasService.js",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "backend_src_adapters_siesa_siesaconsultasservice_xmlbuilder",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "xmlbuilder"
+      "norm_label": "xmlbuilder",
+      "id": "backend_src_adapters_siesa_siesaconsultasservice_xmlbuilder"
     },
     {
       "label": "siesaService.js",
@@ -1379,10 +1630,10 @@
       "source_file": "backend/src/api/siesa/siesa.routes.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesa_routes",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "siesa.routes.js"
+      "norm_label": "siesa.routes.js",
+      "id": "backend_src_api_siesa_siesa_routes"
     },
     {
       "label": "consultasController",
@@ -1390,10 +1641,10 @@
       "source_file": "backend/src/api/siesa/siesa.routes.js",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesa_routes_consultascontroller",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "consultascontroller"
+      "norm_label": "consultascontroller",
+      "id": "backend_src_api_siesa_siesa_routes_consultascontroller"
     },
     {
       "label": "express",
@@ -1401,10 +1652,10 @@
       "source_file": "backend/src/api/siesa/siesa.routes.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesa_routes_express",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "express"
+      "norm_label": "express",
+      "id": "backend_src_api_siesa_siesa_routes_express"
     },
     {
       "label": "{ requireAuth, requirePermission }",
@@ -1412,10 +1663,10 @@
       "source_file": "backend/src/api/siesa/siesa.routes.js",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesa_routes_requireauth_requirepermission",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "{ requireauth, requirepermission }"
+      "norm_label": "{ requireauth, requirepermission }",
+      "id": "backend_src_api_siesa_siesa_routes_requireauth_requirepermission"
     },
     {
       "label": "router",
@@ -1423,10 +1674,10 @@
       "source_file": "backend/src/api/siesa/siesa.routes.js",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesa_routes_router",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "router"
+      "norm_label": "router",
+      "id": "backend_src_api_siesa_siesa_routes_router"
     },
     {
       "label": "siesaController",
@@ -1434,10 +1685,10 @@
       "source_file": "backend/src/api/siesa/siesa.routes.js",
       "source_location": "L2",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesa_routes_siesacontroller",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "siesacontroller"
+      "norm_label": "siesacontroller",
+      "id": "backend_src_api_siesa_siesa_routes_siesacontroller"
     },
     {
       "label": "siesaConsultas.controller.js",
@@ -1445,10 +1696,10 @@
       "source_file": "backend/src/api/siesa/siesaConsultas.controller.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesaconsultas_controller",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "siesaconsultas.controller.js"
+      "norm_label": "siesaconsultas.controller.js",
+      "id": "backend_src_api_siesa_siesaconsultas_controller"
     },
     {
       "label": "siesaConsultasService",
@@ -1456,10 +1707,10 @@
       "source_file": "backend/src/api/siesa/siesaConsultas.controller.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_api_siesa_siesaconsultas_controller_siesaconsultasservice",
       "community": 14,
       "community_name": "siesaConsultasService.js",
-      "norm_label": "siesaconsultasservice"
+      "norm_label": "siesaconsultasservice",
+      "id": "backend_src_api_siesa_siesaconsultas_controller_siesaconsultasservice"
     },
     {
       "label": "validate-infra.js",
@@ -1979,81 +2230,48 @@
       "id": "mysql_init_00_create_database"
     },
     {
-      "label": "config.controller.js",
+      "label": "attachmentExtractor.js",
       "file_type": "code",
-      "source_file": "backend/src/api/config/config.controller.js",
+      "source_file": "backend/src/services/attachmentExtractor.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_api_config_config_controller",
+      "id": "backend_src_services_attachmentextractor",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "config.controller.js"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "attachmentextractor.js"
     },
     {
-      "label": "emailConnectionService",
+      "label": "AdmZip",
       "file_type": "code",
-      "source_file": "backend/src/api/config/config.controller.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "backend_src_api_config_config_controller_emailconnectionservice",
-      "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "emailconnectionservice"
-    },
-    {
-      "label": "config.routes.js",
-      "file_type": "code",
-      "source_file": "backend/src/api/config/config.routes.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "backend_src_api_config_config_routes",
-      "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "config.routes.js"
-    },
-    {
-      "label": "configController",
-      "file_type": "code",
-      "source_file": "backend/src/api/config/config.routes.js",
+      "source_file": "backend/src/services/attachmentExtractor.js",
       "source_location": "L2",
       "_origin": "ast",
-      "id": "backend_src_api_config_config_routes_configcontroller",
+      "id": "backend_src_services_attachmentextractor_admzip",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "configcontroller"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "admzip"
     },
     {
-      "label": "express",
+      "label": "EXTENSIONES_INTERES",
       "file_type": "code",
-      "source_file": "backend/src/api/config/config.routes.js",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "backend_src_services_attachmentextractor_extensiones_interes",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "extensiones_interes"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "backend/src/services/attachmentExtractor.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_src_api_config_config_routes_express",
+      "id": "backend_src_services_attachmentextractor_path",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "express"
-    },
-    {
-      "label": "{ requireAuth, requirePermission }",
-      "file_type": "code",
-      "source_file": "backend/src/api/config/config.routes.js",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "backend_src_api_config_config_routes_requireauth_requirepermission",
-      "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "{ requireauth, requirepermission }"
-    },
-    {
-      "label": "router",
-      "file_type": "code",
-      "source_file": "backend/src/api/config/config.routes.js",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "backend_src_api_config_config_routes_router",
-      "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "router"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "path"
     },
     {
       "label": "emailConnectionService.js",
@@ -2061,21 +2279,21 @@
       "source_file": "backend/src/services/emailConnectionService.js",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "emailconnectionservice.js",
-      "id": "backend_src_services_emailconnectionservice"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "emailconnectionservice.js"
     },
     {
       "label": "env",
       "file_type": "code",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L2",
+      "source_location": "L3",
       "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_env",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "env",
-      "id": "backend_src_services_emailconnectionservice_env"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "env"
     },
     {
       "label": "Imap",
@@ -2083,10 +2301,87 @@
       "source_file": "backend/src/services/emailConnectionService.js",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_imap",
       "community": 23,
-      "community_name": "config.routes.js",
-      "norm_label": "imap",
-      "id": "backend_src_services_emailconnectionservice_imap"
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "imap"
+    },
+    {
+      "label": "{ simpleParser }",
+      "file_type": "code",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "backend_src_services_emailconnectionservice_simpleparser",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "{ simpleparser }"
+    },
+    {
+      "label": "emailScanProcessor.js",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "emailscanprocessor.js"
+    },
+    {
+      "label": "conciliacionQueue",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_conciliacionqueue",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "conciliacionqueue"
+    },
+    {
+      "label": "db",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_db",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "db"
+    },
+    {
+      "label": "{ extraerAdjuntos }",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_extraeradjuntos",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "{ extraeradjuntos }"
+    },
+    {
+      "label": "{\n  fetchUnreadMessages,\n  marcarComoLeido,\n}",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_fetchunreadmessages_marcarcomoleido",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "{\n  fetchunreadmessages,\n  marcarcomoleido,\n}"
+    },
+    {
+      "label": "{ ingestarCorreo }",
+      "file_type": "code",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "backend_src_workers_emailscanprocessor_ingestarcorreo",
+      "community": 23,
+      "community_name": "emailScanProcessor.js",
+      "norm_label": "{ ingestarcorreo }"
     },
     {
       "label": "tsconfig.json",
@@ -2408,323 +2703,939 @@
       "id": "ref_tsx"
     },
     {
+      "label": "estados.js",
+      "file_type": "code",
+      "source_file": "backend/src/constants/estados.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_constants_estados",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "estados.js"
+    },
+    {
+      "label": "ESTADOS",
+      "file_type": "code",
+      "source_file": "backend/src/constants/estados.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "backend_src_constants_estados_estados",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "estados"
+    },
+    {
+      "label": "ublInvoiceParser.js",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "ublinvoiceparser.js"
+    },
+    {
+      "label": "CODIGOS_IMPUESTO",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L141",
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_codigos_impuesto",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "codigos_impuesto"
+    },
+    {
+      "label": "DOCUMENTOS_NO_FACTURA",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_documentos_no_factura",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "documentos_no_factura"
+    },
+    {
+      "label": "{ parseStringPromise }",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_parsestringpromise",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "{ parsestringpromise }"
+    },
+    {
+      "label": "XML_OPTIONS",
+      "file_type": "code",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "backend_src_parsers_ublinvoiceparser_xml_options",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "xml_options"
+    },
+    {
+      "label": "invoiceIngestService.js",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "invoiceingestservice.js"
+    },
+    {
+      "label": "db",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_db",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "db"
+    },
+    {
+      "label": "ESTADOS",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_estados",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "estados"
+    },
+    {
+      "label": "{\n  parseUblInvoice,\n  UblParseError,\n  DocumentoNoFacturaError,\n}",
+      "file_type": "code",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "backend_src_services_invoiceingestservice_parseublinvoice_ublparseerror_documentonofacturaerror",
+      "community": 30,
+      "community_name": "ublInvoiceParser.js",
+      "norm_label": "{\n  parseublinvoice,\n  ublparseerror,\n  documentonofacturaerror,\n}"
+    },
+    {
+      "label": "workers/index.js",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_workers_index",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "workers/index.js"
+    },
+    {
+      "label": "conciliacionWorker",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_conciliacionworker",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "conciliacionworker"
+    },
+    {
+      "label": "connection",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_connection",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "connection"
+    },
+    {
+      "label": "emailWorker",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_emailworker",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "emailworker"
+    },
+    {
+      "label": "env",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_env",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "env"
+    },
+    {
+      "label": "{ procesarEscaneo }",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_procesarescaneo",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "{ procesarescaneo }"
+    },
+    {
+      "label": "{\n  registrarSchedulerEscaneo,\n  EMAIL_QUEUE_NAME,\n  EMAIL_SCAN_PATTERN,\n}",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_registrarschedulerescaneo_email_queue_name_email_scan_pattern",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "{\n  registrarschedulerescaneo,\n  email_queue_name,\n  email_scan_pattern,\n}"
+    },
+    {
+      "label": "{ Worker }",
+      "file_type": "code",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "backend_src_workers_index_worker",
+      "community": 31,
+      "community_name": "workers/index.js",
+      "norm_label": "{ worker }"
+    },
+    {
+      "label": "redis.js",
+      "file_type": "code",
+      "source_file": "backend/src/config/redis.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "redis.js",
+      "community_name": "redis.js",
+      "id": "backend_src_config_redis"
+    },
+    {
+      "label": "connection",
+      "file_type": "code",
+      "source_file": "backend/src/config/redis.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "connection",
+      "community_name": "redis.js",
+      "id": "backend_src_config_redis_connection"
+    },
+    {
+      "label": "env",
+      "file_type": "code",
+      "source_file": "backend/src/config/redis.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "env",
+      "community_name": "redis.js",
+      "id": "backend_src_config_redis_env"
+    },
+    {
+      "label": "IORedis",
+      "file_type": "code",
+      "source_file": "backend/src/config/redis.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "ioredis",
+      "community_name": "redis.js",
+      "id": "backend_src_config_redis_ioredis"
+    },
+    {
+      "label": "conciliacionQueue.js",
+      "file_type": "code",
+      "source_file": "backend/src/queues/conciliacionQueue.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "conciliacionqueue.js",
+      "community_name": "redis.js",
+      "id": "backend_src_queues_conciliacionqueue"
+    },
+    {
+      "label": "conciliacionQueue",
+      "file_type": "code",
+      "source_file": "backend/src/queues/conciliacionQueue.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "conciliacionqueue",
+      "community_name": "redis.js",
+      "id": "backend_src_queues_conciliacionqueue_conciliacionqueue"
+    },
+    {
+      "label": "connection",
+      "file_type": "code",
+      "source_file": "backend/src/queues/conciliacionQueue.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "connection",
+      "community_name": "redis.js",
+      "id": "backend_src_queues_conciliacionqueue_connection"
+    },
+    {
+      "label": "env",
+      "file_type": "code",
+      "source_file": "backend/src/queues/conciliacionQueue.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "env",
+      "community_name": "redis.js",
+      "id": "backend_src_queues_conciliacionqueue_env"
+    },
+    {
+      "label": "{ Queue }",
+      "file_type": "code",
+      "source_file": "backend/src/queues/conciliacionQueue.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 32,
+      "norm_label": "{ queue }",
+      "community_name": "redis.js",
+      "id": "backend_src_queues_conciliacionqueue_queue"
+    },
+    {
+      "label": "db.js",
+      "file_type": "code",
+      "source_file": "backend/src/config/db.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 33,
+      "norm_label": "db.js",
+      "community_name": "env.js",
+      "id": "backend_src_config_db"
+    },
+    {
+      "label": "env",
+      "file_type": "code",
+      "source_file": "backend/src/config/db.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 33,
+      "norm_label": "env",
+      "community_name": "env.js",
+      "id": "backend_src_config_db_env"
+    },
+    {
+      "label": "mysql",
+      "file_type": "code",
+      "source_file": "backend/src/config/db.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 33,
+      "norm_label": "mysql",
+      "community_name": "env.js",
+      "id": "backend_src_config_db_mysql"
+    },
+    {
+      "label": "pool",
+      "file_type": "code",
+      "source_file": "backend/src/config/db.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 33,
+      "norm_label": "pool",
+      "community_name": "env.js",
+      "id": "backend_src_config_db_pool"
+    },
+    {
+      "label": "env.js",
+      "file_type": "code",
+      "source_file": "backend/src/config/env.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "env.js",
+      "norm_label": "env.js",
+      "id": "backend_src_config_env"
+    },
+    {
+      "label": "missing",
+      "file_type": "code",
+      "source_file": "backend/src/config/env.js",
+      "source_location": "L14",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "env.js",
+      "norm_label": "missing",
+      "id": "backend_src_config_env_missing"
+    },
+    {
+      "label": "REQUIRED_VARS",
+      "file_type": "code",
+      "source_file": "backend/src/config/env.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 33,
+      "community_name": "env.js",
+      "norm_label": "required_vars",
+      "id": "backend_src_config_env_required_vars"
+    },
+    {
+      "label": "seedPipeline.js",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "seedpipeline.js"
+    },
+    {
+      "label": "db",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline_db",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "db"
+    },
+    {
+      "label": "env",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline_env",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "env"
+    },
+    {
+      "label": "ESTADOS",
+      "file_type": "code",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_src_seeds_seedpipeline_estados",
+      "community": 34,
+      "community_name": "seedPipeline.js",
+      "norm_label": "estados"
+    },
+    {
+      "label": "emailQueue.js",
+      "file_type": "code",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_queues_emailqueue",
+      "community": 35,
+      "community_name": "emailQueue.js",
+      "norm_label": "emailqueue.js"
+    },
+    {
+      "label": "connection",
+      "file_type": "code",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "backend_src_queues_emailqueue_connection",
+      "community": 35,
+      "community_name": "emailQueue.js",
+      "norm_label": "connection"
+    },
+    {
+      "label": "emailQueue",
+      "file_type": "code",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "backend_src_queues_emailqueue_emailqueue",
+      "community": 35,
+      "community_name": "emailQueue.js",
+      "norm_label": "emailqueue"
+    },
+    {
+      "label": "env",
+      "file_type": "code",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "backend_src_queues_emailqueue_env",
+      "community": 35,
+      "community_name": "emailQueue.js",
+      "norm_label": "env"
+    },
+    {
+      "label": "{ Queue }",
+      "file_type": "code",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_src_queues_emailqueue_queue",
+      "community": 35,
+      "community_name": "emailQueue.js",
+      "norm_label": "{ queue }"
+    },
+    {
+      "label": "adjuntos_correos",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "adjuntos_correos",
+      "community": 36,
+      "community_name": "adjuntos_correos",
+      "norm_label": "adjuntos_correos"
+    },
+    {
+      "label": "buzones",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "buzones",
+      "community": 37,
+      "community_name": "buzones",
+      "norm_label": "buzones"
+    },
+    {
+      "label": "config_buzon_fe",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "config_buzon_fe",
+      "community": 38,
+      "community_name": "config_buzon_fe",
+      "norm_label": "config_buzon_fe"
+    },
+    {
+      "label": "correos",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "correos",
+      "community": 39,
+      "community_name": "correos",
+      "norm_label": "correos"
+    },
+    {
+      "label": "detalles_facturas",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "detalles_facturas",
+      "community": 40,
+      "community_name": "detalles_facturas",
+      "norm_label": "detalles_facturas"
+    },
+    {
+      "label": "facturas",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "facturas",
+      "community": 41,
+      "community_name": "facturas",
+      "norm_label": "facturas"
+    },
+    {
+      "label": "facturas_dian",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "facturas_dian",
+      "community": 42,
+      "community_name": "facturas_dian",
+      "norm_label": "facturas_dian"
+    },
+    {
+      "label": "02_autoincrement_pipeline.sql",
+      "file_type": "code",
+      "source_file": "mysql-init/02_autoincrement_pipeline.sql",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "mysql_init_02_autoincrement_pipeline",
+      "community": 43,
+      "community_name": "02_autoincrement_pipeline.sql",
+      "norm_label": "02_autoincrement_pipeline.sql"
+    },
+    {
       "label": "dependencies",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
+      "id": "backend_package_dependencies",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "dependencies",
-      "id": "backend_package_dependencies"
+      "norm_label": "dependencies"
+    },
+    {
+      "label": "adm-zip",
+      "file_type": "code",
+      "source_file": "backend/package.json",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "backend_package_dependencies_adm_zip",
+      "community": 5,
+      "community_name": "dependencies",
+      "norm_label": "adm-zip"
     },
     {
       "label": "bcrypt",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L18",
+      "source_location": "L20",
       "_origin": "ast",
+      "id": "backend_package_dependencies_bcrypt",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "bcrypt",
-      "id": "backend_package_dependencies_bcrypt"
+      "norm_label": "bcrypt"
     },
     {
       "label": "bullmq",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
+      "id": "backend_package_dependencies_bullmq",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "bullmq",
-      "id": "backend_package_dependencies_bullmq"
+      "norm_label": "bullmq"
     },
     {
       "label": "cors",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L20",
+      "source_location": "L22",
       "_origin": "ast",
+      "id": "backend_package_dependencies_cors",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "cors",
-      "id": "backend_package_dependencies_cors"
+      "norm_label": "cors"
     },
     {
       "label": "dotenv",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L21",
+      "source_location": "L23",
       "_origin": "ast",
+      "id": "backend_package_dependencies_dotenv",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "dotenv",
-      "id": "backend_package_dependencies_dotenv"
+      "norm_label": "dotenv"
     },
     {
       "label": "express",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L22",
+      "source_location": "L24",
       "_origin": "ast",
+      "id": "backend_package_dependencies_express",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "express",
-      "id": "backend_package_dependencies_express"
+      "norm_label": "express"
     },
     {
       "label": "express-rate-limit",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L23",
+      "source_location": "L25",
       "_origin": "ast",
+      "id": "backend_package_dependencies_express_rate_limit",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "express-rate-limit",
-      "id": "backend_package_dependencies_express_rate_limit"
+      "norm_label": "express-rate-limit"
     },
     {
       "label": "imap",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L24",
+      "source_location": "L26",
       "_origin": "ast",
+      "id": "backend_package_dependencies_imap",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "imap",
-      "id": "backend_package_dependencies_imap"
+      "norm_label": "imap"
     },
     {
       "label": "ioredis",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L25",
+      "source_location": "L27",
       "_origin": "ast",
+      "id": "backend_package_dependencies_ioredis",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "ioredis",
-      "id": "backend_package_dependencies_ioredis"
+      "norm_label": "ioredis"
     },
     {
       "label": "jsonwebtoken",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L26",
+      "source_location": "L28",
       "_origin": "ast",
+      "id": "backend_package_dependencies_jsonwebtoken",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "jsonwebtoken",
-      "id": "backend_package_dependencies_jsonwebtoken"
+      "norm_label": "jsonwebtoken"
+    },
+    {
+      "label": "mailparser",
+      "file_type": "code",
+      "source_file": "backend/package.json",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "backend_package_dependencies_mailparser",
+      "community": 5,
+      "community_name": "dependencies",
+      "norm_label": "mailparser"
     },
     {
       "label": "morgan",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L27",
+      "source_location": "L30",
       "_origin": "ast",
+      "id": "backend_package_dependencies_morgan",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "morgan",
-      "id": "backend_package_dependencies_morgan"
+      "norm_label": "morgan"
     },
     {
       "label": "mysql2",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L28",
+      "source_location": "L31",
       "_origin": "ast",
+      "id": "backend_package_dependencies_mysql2",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "mysql2",
-      "id": "backend_package_dependencies_mysql2"
+      "norm_label": "mysql2"
     },
     {
       "label": "soap",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L29",
+      "source_location": "L32",
       "_origin": "ast",
+      "id": "backend_package_dependencies_soap",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "soap",
-      "id": "backend_package_dependencies_soap"
+      "norm_label": "soap"
     },
     {
       "label": "socket.io",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L30",
+      "source_location": "L33",
       "_origin": "ast",
+      "id": "backend_package_dependencies_socket_io",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "socket.io",
-      "id": "backend_package_dependencies_socket_io"
+      "norm_label": "socket.io"
     },
     {
       "label": "xml2js",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L31",
+      "source_location": "L34",
       "_origin": "ast",
+      "id": "backend_package_dependencies_xml2js",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "xml2js",
-      "id": "backend_package_dependencies_xml2js"
+      "norm_label": "xml2js"
+    },
+    {
+      "label": "adm-zip",
+      "file_type": "concept",
+      "source_file": "backend/package.json",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "adm_zip",
+      "community": 5,
+      "community_name": "dependencies",
+      "norm_label": "adm-zip"
     },
     {
       "label": "bcrypt",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L18",
+      "source_location": "L20",
       "_origin": "ast",
+      "id": "bcrypt",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "bcrypt",
-      "id": "bcrypt"
+      "norm_label": "bcrypt"
     },
     {
       "label": "bullmq",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L19",
+      "source_location": "L21",
       "_origin": "ast",
+      "id": "bullmq",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "bullmq",
-      "id": "bullmq"
+      "norm_label": "bullmq"
     },
     {
       "label": "cors",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L20",
+      "source_location": "L22",
       "_origin": "ast",
+      "id": "cors",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "cors",
-      "id": "cors"
+      "norm_label": "cors"
     },
     {
       "label": "dotenv",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L21",
+      "source_location": "L23",
       "_origin": "ast",
+      "id": "dotenv",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "dotenv",
-      "id": "dotenv"
+      "norm_label": "dotenv"
     },
     {
       "label": "express",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L22",
+      "source_location": "L24",
       "_origin": "ast",
+      "id": "express",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "express",
-      "id": "express"
+      "norm_label": "express"
     },
     {
       "label": "express-rate-limit",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L23",
+      "source_location": "L25",
       "_origin": "ast",
+      "id": "express_rate_limit",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "express-rate-limit",
-      "id": "express_rate_limit"
+      "norm_label": "express-rate-limit"
     },
     {
       "label": "imap",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L24",
+      "source_location": "L26",
       "_origin": "ast",
+      "id": "imap",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "imap",
-      "id": "imap"
+      "norm_label": "imap"
     },
     {
       "label": "ioredis",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L25",
+      "source_location": "L27",
       "_origin": "ast",
+      "id": "ioredis",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "ioredis",
-      "id": "ioredis"
+      "norm_label": "ioredis"
     },
     {
       "label": "jsonwebtoken",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L26",
+      "source_location": "L28",
       "_origin": "ast",
+      "id": "jsonwebtoken",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "jsonwebtoken",
-      "id": "jsonwebtoken"
+      "norm_label": "jsonwebtoken"
+    },
+    {
+      "label": "mailparser",
+      "file_type": "concept",
+      "source_file": "backend/package.json",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "mailparser",
+      "community": 5,
+      "community_name": "dependencies",
+      "norm_label": "mailparser"
     },
     {
       "label": "morgan",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L27",
+      "source_location": "L30",
       "_origin": "ast",
+      "id": "morgan",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "morgan",
-      "id": "morgan"
+      "norm_label": "morgan"
     },
     {
       "label": "mysql2",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L28",
+      "source_location": "L31",
       "_origin": "ast",
+      "id": "mysql2",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "mysql2",
-      "id": "mysql2"
+      "norm_label": "mysql2"
     },
     {
       "label": "soap",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L29",
+      "source_location": "L32",
       "_origin": "ast",
+      "id": "soap",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "soap",
-      "id": "soap"
+      "norm_label": "soap"
     },
     {
       "label": "socket.io",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L30",
+      "source_location": "L33",
       "_origin": "ast",
+      "id": "socket_io",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "socket.io",
-      "id": "socket_io"
+      "norm_label": "socket.io"
     },
     {
       "label": "xml2js",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L31",
+      "source_location": "L34",
       "_origin": "ast",
+      "id": "xml2js",
       "community": 5,
       "community_name": "dependencies",
-      "norm_label": "xml2js",
-      "id": "xml2js"
+      "norm_label": "xml2js"
     },
     {
       "label": "01_schema.sql",
@@ -3332,6 +4243,83 @@
       "id": "backend_src_api_auth_auth_routes_router"
     },
     {
+      "label": "config.controller.js",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.controller.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "config.controller.js",
+      "id": "backend_src_api_config_config_controller"
+    },
+    {
+      "label": "emailConnectionService",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.controller.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "emailconnectionservice",
+      "id": "backend_src_api_config_config_controller_emailconnectionservice"
+    },
+    {
+      "label": "config.routes.js",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.routes.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "config.routes.js",
+      "id": "backend_src_api_config_config_routes"
+    },
+    {
+      "label": "configController",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.routes.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "configcontroller",
+      "id": "backend_src_api_config_config_routes_configcontroller"
+    },
+    {
+      "label": "express",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.routes.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "express",
+      "id": "backend_src_api_config_config_routes_express"
+    },
+    {
+      "label": "{ requireAuth, requirePermission }",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.routes.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "{ requireauth, requirepermission }",
+      "id": "backend_src_api_config_config_routes_requireauth_requirepermission"
+    },
+    {
+      "label": "router",
+      "file_type": "code",
+      "source_file": "backend/src/api/config/config.routes.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 8,
+      "community_name": "auth.routes.js",
+      "norm_label": "router",
+      "id": "backend_src_api_config_config_routes_router"
+    },
+    {
       "label": "auth.js",
       "file_type": "code",
       "source_file": "backend/src/middleware/auth.js",
@@ -3370,21 +4358,21 @@
       "source_file": "backend/package.json",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "backend_package",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "backend/package.json",
-      "id": "backend_package"
+      "norm_label": "backend/package.json"
     },
     {
       "label": "author",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
+      "id": "backend_package_author",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "author",
-      "id": "backend_package_author"
+      "norm_label": "author"
     },
     {
       "label": "description",
@@ -3392,54 +4380,54 @@
       "source_file": "backend/package.json",
       "source_location": "L4",
       "_origin": "ast",
+      "id": "backend_package_description",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "description",
-      "id": "backend_package_description"
+      "norm_label": "description"
     },
     {
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L33",
+      "source_location": "L36",
       "_origin": "ast",
+      "id": "backend_package_devdependencies",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "devdependencies",
-      "id": "backend_package_devdependencies"
+      "norm_label": "devdependencies"
     },
     {
       "label": "nodemon",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L34",
+      "source_location": "L37",
       "_origin": "ast",
+      "id": "backend_package_devdependencies_nodemon",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "nodemon",
-      "id": "backend_package_devdependencies_nodemon"
+      "norm_label": "nodemon"
     },
     {
       "label": "keywords",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
+      "id": "backend_package_keywords",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "keywords",
-      "id": "backend_package_keywords"
+      "norm_label": "keywords"
     },
     {
       "label": "license",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
+      "id": "backend_package_license",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "license",
-      "id": "backend_package_license"
+      "norm_label": "license"
     },
     {
       "label": "main",
@@ -3447,10 +4435,10 @@
       "source_file": "backend/package.json",
       "source_location": "L5",
       "_origin": "ast",
+      "id": "backend_package_main",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "main",
-      "id": "backend_package_main"
+      "norm_label": "main"
     },
     {
       "label": "name",
@@ -3458,10 +4446,10 @@
       "source_file": "backend/package.json",
       "source_location": "L2",
       "_origin": "ast",
+      "id": "backend_package_name",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "name",
-      "id": "backend_package_name"
+      "norm_label": "name"
     },
     {
       "label": "scripts",
@@ -3469,10 +4457,10 @@
       "source_file": "backend/package.json",
       "source_location": "L6",
       "_origin": "ast",
+      "id": "backend_package_scripts",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "scripts",
-      "id": "backend_package_scripts"
+      "norm_label": "scripts"
     },
     {
       "label": "dev",
@@ -3480,10 +4468,10 @@
       "source_file": "backend/package.json",
       "source_location": "L8",
       "_origin": "ast",
+      "id": "backend_package_scripts_dev",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "dev",
-      "id": "backend_package_scripts_dev"
+      "norm_label": "dev"
     },
     {
       "label": "seed:auth",
@@ -3491,10 +4479,21 @@
       "source_file": "backend/package.json",
       "source_location": "L10",
       "_origin": "ast",
+      "id": "backend_package_scripts_seed_auth",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "seed:auth",
-      "id": "backend_package_scripts_seed_auth"
+      "norm_label": "seed:auth"
+    },
+    {
+      "label": "seed:pipeline",
+      "file_type": "code",
+      "source_file": "backend/package.json",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_package_scripts_seed_pipeline",
+      "community": 9,
+      "community_name": "backend/package.json",
+      "norm_label": "seed:pipeline"
     },
     {
       "label": "start",
@@ -3502,10 +4501,10 @@
       "source_file": "backend/package.json",
       "source_location": "L7",
       "_origin": "ast",
+      "id": "backend_package_scripts_start",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "start",
-      "id": "backend_package_scripts_start"
+      "norm_label": "start"
     },
     {
       "label": "test",
@@ -3513,10 +4512,10 @@
       "source_file": "backend/package.json",
       "source_location": "L11",
       "_origin": "ast",
+      "id": "backend_package_scripts_test",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "test",
-      "id": "backend_package_scripts_test"
+      "norm_label": "test"
     },
     {
       "label": "worker",
@@ -3524,21 +4523,21 @@
       "source_file": "backend/package.json",
       "source_location": "L9",
       "_origin": "ast",
+      "id": "backend_package_scripts_worker",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "worker",
-      "id": "backend_package_scripts_worker"
+      "norm_label": "worker"
     },
     {
       "label": "type",
       "file_type": "code",
       "source_file": "backend/package.json",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
+      "id": "backend_package_type",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "type",
-      "id": "backend_package_type"
+      "norm_label": "type"
     },
     {
       "label": "version",
@@ -3546,21 +4545,21 @@
       "source_file": "backend/package.json",
       "source_location": "L3",
       "_origin": "ast",
+      "id": "backend_package_version",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "version",
-      "id": "backend_package_version"
+      "norm_label": "version"
     },
     {
       "label": "nodemon",
       "file_type": "concept",
       "source_file": "backend/package.json",
-      "source_location": "L34",
+      "source_location": "L37",
       "_origin": "ast",
+      "id": "nodemon",
       "community": 9,
       "community_name": "backend/package.json",
-      "norm_label": "nodemon",
-      "id": "nodemon"
+      "norm_label": "nodemon"
     },
     {
       "label": "conciliacion.js service (validateInvoice)",
@@ -4904,9 +5903,9 @@
       "source_location": "L110",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice_ejecutarconsulta",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_buildpvstrparametros",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_buildpvstrparametros"
     },
     {
       "relation": "calls",
@@ -4916,9 +5915,9 @@
       "source_location": "L117",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice_ejecutarconsulta",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado"
     },
     {
       "relation": "calls",
@@ -4979,6 +5978,186 @@
       "confidence_score": 1.0,
       "source": "backend_src_middleware_auth_requirepresession",
       "target": "backend_src_middleware_auth_extracttoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L176",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_extractlines",
+      "target": "backend_src_parsers_ublinvoiceparser_textat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L176",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_extractlines",
+      "target": "backend_src_parsers_ublinvoiceparser_tonumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L119",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_extractparty",
+      "target": "backend_src_parsers_ublinvoiceparser_textat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L157",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_extracttaxes",
+      "target": "backend_src_parsers_ublinvoiceparser_textat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L158",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_extracttaxes",
+      "target": "backend_src_parsers_ublinvoiceparser_tonumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_textat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L264",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_splitinvoicenumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_extractparty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L273",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_extracttaxes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L274",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_extractlines",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L290",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_parsedate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L294",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "target": "backend_src_parsers_ublinvoiceparser_tonumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_textat",
+      "target": "backend_src_parsers_ublinvoiceparser_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_textat",
+      "target": "backend_src_parsers_ublinvoiceparser_text",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5075,6 +6254,66 @@
       "confidence_score": 1.0,
       "source": "backend_src_seeds_seedauth_main",
       "target": "backend_src_seeds_seedauth_ensureusuariorol"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L107",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline_main",
+      "target": "backend_src_seeds_seedpipeline_seedestados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline_main",
+      "target": "backend_src_seeds_seedpipeline_seedbuzon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor_expandirzip",
+      "target": "backend_src_services_attachmentextractor_extension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor_extraeradjuntos",
+      "target": "backend_src_services_attachmentextractor_extension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L76",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor_extraeradjuntos",
+      "target": "backend_src_services_attachmentextractor_expandirzip",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -5177,24 +6416,252 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L30",
+      "source_location": "L62",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
+      "source": "backend_src_services_emailconnectionservice_countmessages",
+      "target": "backend_src_services_emailconnectionservice_buildimapconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L82",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_countmessages",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido_finish",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L107",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_fetchunreadmessages",
+      "target": "backend_src_services_emailconnectionservice_buildimapconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L127",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_fetchunreadmessages",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido_finish",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L191",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_marcarcomoleido",
+      "target": "backend_src_services_emailconnectionservice_buildimapconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
       "source": "backend_src_services_emailconnectionservice_testconnection",
-      "target": "backend_src_services_emailconnectionservice_buildimapconfig"
+      "target": "backend_src_services_emailconnectionservice_buildimapconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_testconnection",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido_finish",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_getorcreateproveedor",
+      "target": "backend_src_services_invoiceingestservice_truncate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L230",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_ingestarcorreo",
+      "target": "backend_src_services_invoiceingestservice_registrarcorreo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L236",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_ingestarcorreo",
+      "target": "backend_src_parsers_ublinvoiceparser_parseublinvoice"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L237",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_ingestarcorreo",
+      "target": "backend_src_services_invoiceingestservice_persistirfactura",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L143",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_persistirfactura",
+      "target": "backend_src_services_invoiceingestservice_getorcreateproveedor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_registrarcorreo",
+      "target": "backend_src_services_invoiceingestservice_joinaddresses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_registrarcorreo",
+      "target": "backend_src_services_invoiceingestservice_truncate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L127",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "target": "backend_src_workers_emailscanprocessor_resolverbuzon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "target": "backend_src_services_emailconnectionservice_fetchunreadmessages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "target": "backend_src_services_attachmentextractor_extraeradjuntos"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "target": "backend_src_services_invoiceingestservice_ingestarcorreo"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index_bootstrap",
+      "target": "backend_src_queues_emailqueue_registrarschedulerescaneo"
     },
     {
       "relation": "contains",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L37",
+      "source_location": "L198",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_src_services_emailconnectionservice_testconnection",
-      "target": "backend_src_services_emailconnectionservice_testconnection_finish"
+      "source": "backend_src_services_emailconnectionservice_marcarcomoleido",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido_finish",
+      "confidence_score": 1.0
     },
     {
       "relation": "extends",
@@ -5320,25 +6787,13 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "backend/package.json",
-      "source_location": "L18",
-      "weight": 1.0,
-      "context": "import",
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_bcrypt",
-      "target": "bcrypt"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
       "source_location": "L19",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_bullmq",
-      "target": "bullmq"
+      "source": "backend_package_dependencies_adm_zip",
+      "target": "adm_zip",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5348,9 +6803,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_cors",
-      "target": "cors"
+      "source": "backend_package_dependencies_bcrypt",
+      "target": "bcrypt",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5360,9 +6815,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_dotenv",
-      "target": "dotenv"
+      "source": "backend_package_dependencies_bullmq",
+      "target": "bullmq",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5372,9 +6827,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_express",
-      "target": "express"
+      "source": "backend_package_dependencies_cors",
+      "target": "cors",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5384,9 +6839,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_express_rate_limit",
-      "target": "express_rate_limit"
+      "source": "backend_package_dependencies_dotenv",
+      "target": "dotenv",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5396,9 +6851,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_imap",
-      "target": "imap"
+      "source": "backend_package_dependencies_express",
+      "target": "express",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5408,9 +6863,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_ioredis",
-      "target": "ioredis"
+      "source": "backend_package_dependencies_express_rate_limit",
+      "target": "express_rate_limit",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5420,9 +6875,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_jsonwebtoken",
-      "target": "jsonwebtoken"
+      "source": "backend_package_dependencies_imap",
+      "target": "imap",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5432,9 +6887,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_morgan",
-      "target": "morgan"
+      "source": "backend_package_dependencies_ioredis",
+      "target": "ioredis",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5444,9 +6899,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_mysql2",
-      "target": "mysql2"
+      "source": "backend_package_dependencies_jsonwebtoken",
+      "target": "jsonwebtoken",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5456,9 +6911,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_soap",
-      "target": "soap"
+      "source": "backend_package_dependencies_mailparser",
+      "target": "mailparser",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5468,9 +6923,9 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_socket_io",
-      "target": "socket_io"
+      "source": "backend_package_dependencies_morgan",
+      "target": "morgan",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5480,9 +6935,33 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies_xml2js",
-      "target": "xml2js"
+      "source": "backend_package_dependencies_mysql2",
+      "target": "mysql2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "context": "import",
+      "_origin": "ast",
+      "source": "backend_package_dependencies_soap",
+      "target": "soap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "context": "import",
+      "_origin": "ast",
+      "source": "backend_package_dependencies_socket_io",
+      "target": "socket_io",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5492,9 +6971,21 @@
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
-      "confidence_score": 1.0,
+      "source": "backend_package_dependencies_xml2js",
+      "target": "xml2js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "context": "import",
+      "_origin": "ast",
       "source": "backend_package_devdependencies_nodemon",
-      "target": "nodemon"
+      "target": "nodemon",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5531,6 +7022,114 @@
       "confidence_score": 1.0,
       "source": "backend_src_api_auth_auth_routes",
       "target": "backend_src_middleware_auth_requirepresession"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_parsers_ublinvoiceparser_documentonofacturaerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_parsers_ublinvoiceparser_ublparseerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_emailconnectionservice_fetchunreadmessages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_attachmentextractor_extraeradjuntos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_invoiceingestservice_ingestarcorreo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_queues_emailqueue_registrarschedulerescaneo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -5660,9 +7259,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_config_env",
-      "confidence_score": 1.0
+      "target": "backend_src_config_env"
     },
     {
       "relation": "imports_from",
@@ -5672,9 +7271,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaclient",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaclient"
     },
     {
       "relation": "imports_from",
@@ -5744,9 +7343,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_controller",
-      "target": "backend_src_services_emailconnectionservice",
-      "confidence_score": 1.0
+      "target": "backend_src_services_emailconnectionservice"
     },
     {
       "relation": "imports_from",
@@ -5756,9 +7355,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_routes",
-      "target": "backend_src_api_config_config_controller",
-      "confidence_score": 1.0
+      "target": "backend_src_api_config_config_controller"
     },
     {
       "relation": "imports_from",
@@ -5768,9 +7367,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_routes",
-      "target": "backend_src_middleware_auth",
-      "confidence_score": 1.0
+      "target": "backend_src_middleware_auth"
     },
     {
       "relation": "imports_from",
@@ -5792,9 +7391,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesa_controller",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesa_controller"
     },
     {
       "relation": "imports_from",
@@ -5804,9 +7403,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesaconsultas_controller",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesaconsultas_controller"
     },
     {
       "relation": "imports_from",
@@ -5816,9 +7415,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_middleware_auth",
-      "confidence_score": 1.0
+      "target": "backend_src_middleware_auth"
     },
     {
       "relation": "imports_from",
@@ -5828,9 +7427,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesaconsultas_controller",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice"
     },
     {
       "relation": "imports_from",
@@ -5968,6 +7567,30 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_config_redis",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/seeds/seedAuth.js",
       "source_location": "L3",
       "weight": 1.0,
@@ -5975,6 +7598,30 @@
       "confidence_score": 1.0,
       "source": "backend_src_seeds_seedauth",
       "target": "backend_src_config_db"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_config_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_config_env",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -6005,12 +7652,108 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice",
+      "target": "backend_src_config_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_config_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_src_services_emailconnectionservice",
-      "target": "backend_src_config_env"
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_constants_estados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_parsers_ublinvoiceparser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_config_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_emailconnectionservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_attachmentextractor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_services_invoiceingestservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_queues_conciliacionqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -6020,9 +7763,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_workers_index",
-      "target": "backend_src_config_env"
+      "target": "backend_src_config_env",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -6032,20 +7775,33 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_workers_index",
-      "target": "backend_src_config_redis"
+      "target": "backend_src_config_redis",
+      "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L13",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_keywords"
+      "source": "backend_src_workers_index",
+      "target": "backend_src_queues_emailqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_emailscanprocessor",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6054,9 +7810,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package",
-      "target": "backend_package_author"
+      "target": "backend_package_keywords",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6065,9 +7821,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package",
-      "target": "backend_package_license"
+      "target": "backend_package_author",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6076,9 +7832,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package",
-      "target": "backend_package_type"
+      "target": "backend_package_license",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6087,75 +7843,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package",
-      "target": "backend_package_dependencies"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_name"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_version"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L33",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_devdependencies"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_description"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_main"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/package.json",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package",
-      "target": "backend_package_scripts"
+      "target": "backend_package_type",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6164,9 +7854,75 @@
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_bcrypt"
+      "source": "backend_package",
+      "target": "backend_package_dependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package",
+      "target": "backend_package_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package",
+      "target": "backend_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package",
+      "target": "backend_package_devdependencies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package",
+      "target": "backend_package_description",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package",
+      "target": "backend_package_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package",
+      "target": "backend_package_scripts",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6175,9 +7931,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_bullmq"
+      "target": "backend_package_dependencies_adm_zip",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6186,9 +7942,9 @@
       "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_cors"
+      "target": "backend_package_dependencies_bcrypt",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6197,9 +7953,9 @@
       "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_dotenv"
+      "target": "backend_package_dependencies_bullmq",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6208,9 +7964,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_express"
+      "target": "backend_package_dependencies_cors",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6219,9 +7975,9 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_express_rate_limit"
+      "target": "backend_package_dependencies_dotenv",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6230,9 +7986,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_imap"
+      "target": "backend_package_dependencies_express",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6241,9 +7997,9 @@
       "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_ioredis"
+      "target": "backend_package_dependencies_express_rate_limit",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6252,9 +8008,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_jsonwebtoken"
+      "target": "backend_package_dependencies_imap",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6263,9 +8019,9 @@
       "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_morgan"
+      "target": "backend_package_dependencies_ioredis",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6274,9 +8030,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_mysql2"
+      "target": "backend_package_dependencies_jsonwebtoken",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6285,9 +8041,9 @@
       "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_soap"
+      "target": "backend_package_dependencies_mailparser",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6296,9 +8052,9 @@
       "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_socket_io"
+      "target": "backend_package_dependencies_morgan",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6307,9 +8063,31 @@
       "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_dependencies",
-      "target": "backend_package_dependencies_xml2js"
+      "target": "backend_package_dependencies_mysql2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package_dependencies",
+      "target": "backend_package_dependencies_soap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package_dependencies",
+      "target": "backend_package_dependencies_socket_io",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6318,9 +8096,20 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
+      "source": "backend_package_dependencies",
+      "target": "backend_package_dependencies_xml2js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
       "source": "backend_package_devdependencies",
-      "target": "backend_package_devdependencies_nodemon"
+      "target": "backend_package_devdependencies_nodemon",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6329,9 +8118,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_scripts",
-      "target": "backend_package_scripts_seed_auth"
+      "target": "backend_package_scripts_seed_auth",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6340,9 +8129,20 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_scripts",
-      "target": "backend_package_scripts_test"
+      "target": "backend_package_scripts_test",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/package.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_package_scripts",
+      "target": "backend_package_scripts_seed_pipeline",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6351,9 +8151,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_scripts",
-      "target": "backend_package_scripts_start"
+      "target": "backend_package_scripts_start",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6362,9 +8162,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_scripts",
-      "target": "backend_package_scripts_dev"
+      "target": "backend_package_scripts_dev",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6373,9 +8173,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_package_scripts",
-      "target": "backend_package_scripts_worker"
+      "target": "backend_package_scripts_worker",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6406,9 +8206,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_xml2js",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_xml2js"
     },
     {
       "relation": "contains",
@@ -6417,9 +8217,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_env",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_env"
     },
     {
       "relation": "contains",
@@ -6428,9 +8228,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_consultas",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_consultas"
     },
     {
       "relation": "contains",
@@ -6439,9 +8239,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_getclient",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_getclient"
     },
     {
       "relation": "contains",
@@ -6450,9 +8250,9 @@
       "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_buildpvstrparametros",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_buildpvstrparametros"
     },
     {
       "relation": "contains",
@@ -6461,9 +8261,9 @@
       "source_location": "L68",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_omitattrs",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_omitattrs"
     },
     {
       "relation": "contains",
@@ -6472,9 +8272,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_xmlbuilder",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_xmlbuilder"
     },
     {
       "relation": "contains",
@@ -6483,9 +8283,9 @@
       "source_location": "L77",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado",
-      "confidence_score": 1.0
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado"
     },
     {
       "relation": "contains",
@@ -6637,9 +8437,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_controller",
-      "target": "backend_src_api_config_config_controller_emailconnectionservice",
-      "confidence_score": 1.0
+      "target": "backend_src_api_config_config_controller_emailconnectionservice"
     },
     {
       "relation": "contains",
@@ -6648,9 +8448,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_routes",
-      "target": "backend_src_api_config_config_routes_express",
-      "confidence_score": 1.0
+      "target": "backend_src_api_config_config_routes_express"
     },
     {
       "relation": "contains",
@@ -6659,9 +8459,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_routes",
-      "target": "backend_src_api_config_config_routes_configcontroller",
-      "confidence_score": 1.0
+      "target": "backend_src_api_config_config_routes_configcontroller"
     },
     {
       "relation": "contains",
@@ -6670,9 +8470,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_routes",
-      "target": "backend_src_api_config_config_routes_requireauth_requirepermission",
-      "confidence_score": 1.0
+      "target": "backend_src_api_config_config_routes_requireauth_requirepermission"
     },
     {
       "relation": "contains",
@@ -6681,9 +8481,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_config_config_routes",
-      "target": "backend_src_api_config_config_routes_router",
-      "confidence_score": 1.0
+      "target": "backend_src_api_config_config_routes_router"
     },
     {
       "relation": "contains",
@@ -6703,9 +8503,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesa_routes_express",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesa_routes_express"
     },
     {
       "relation": "contains",
@@ -6714,9 +8514,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesa_routes_siesacontroller",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesa_routes_siesacontroller"
     },
     {
       "relation": "contains",
@@ -6725,9 +8525,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesa_routes_consultascontroller",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesa_routes_consultascontroller"
     },
     {
       "relation": "contains",
@@ -6736,9 +8536,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesa_routes_requireauth_requirepermission",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesa_routes_requireauth_requirepermission"
     },
     {
       "relation": "contains",
@@ -6747,9 +8547,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesa_routes",
-      "target": "backend_src_api_siesa_siesa_routes_router",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesa_routes_router"
     },
     {
       "relation": "contains",
@@ -6758,9 +8558,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesaconsultas_controller",
-      "target": "backend_src_api_siesa_siesaconsultas_controller_siesaconsultasservice",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesaconsultas_controller_siesaconsultasservice"
     },
     {
       "relation": "contains",
@@ -6769,9 +8569,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "backend_src_api_siesa_siesaconsultas_controller",
-      "target": "backend_src_api_siesa_siesaconsultas_controller_consultahandler",
-      "confidence_score": 1.0
+      "target": "backend_src_api_siesa_siesaconsultas_controller_consultahandler"
     },
     {
       "relation": "contains",
@@ -6860,6 +8660,17 @@
       "confidence_score": 1.0,
       "source": "backend_src_config_redis",
       "target": "backend_src_config_redis_connection"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/constants/estados.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_constants_estados",
+      "target": "backend_src_constants_estados_estados",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7073,6 +8884,171 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_parsestringpromise",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_parsedate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L117",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_extractparty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_codigos_impuesto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_extracttaxes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_ublparseerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L169",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_extractlines",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_documentonofacturaerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_documentos_no_factura",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_xml_options",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L66",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_textat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_tonumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_splitinvoicenumber",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/queues/conciliacionQueue.js",
       "source_location": "L1",
       "weight": 1.0,
@@ -7113,6 +9089,50 @@
       "confidence_score": 1.0,
       "source": "backend_src_queues_conciliacionqueue",
       "target": "backend_src_queues_conciliacionqueue_conciliacionqueue"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_queues_emailqueue_queue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_queues_emailqueue_emailqueue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_queues_emailqueue_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_queues_emailqueue_connection",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7238,6 +9258,127 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_seeds_seedpipeline_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_seeds_seedpipeline_estados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_seeds_seedpipeline_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_seeds_seedpipeline_seedestados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_seeds_seedpipeline_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/seeds/seedPipeline.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_seeds_seedpipeline",
+      "target": "backend_src_seeds_seedpipeline_seedbuzon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor",
+      "target": "backend_src_services_attachmentextractor_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor",
+      "target": "backend_src_services_attachmentextractor_extension",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor",
+      "target": "backend_src_services_attachmentextractor_expandirzip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor",
+      "target": "backend_src_services_attachmentextractor_admzip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_attachmentextractor",
+      "target": "backend_src_services_attachmentextractor_extensiones_interes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/src/services/authService.js",
       "source_location": "L1",
       "weight": 1.0,
@@ -7352,9 +9493,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_services_emailconnectionservice",
-      "target": "backend_src_services_emailconnectionservice_imap"
+      "target": "backend_src_services_emailconnectionservice_imap",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7363,20 +9504,196 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_services_emailconnectionservice",
-      "target": "backend_src_services_emailconnectionservice_env"
+      "target": "backend_src_services_emailconnectionservice_simpleparser",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice",
+      "target": "backend_src_services_emailconnectionservice_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice",
+      "target": "backend_src_services_emailconnectionservice_buildimapconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_countmessages",
+      "target": "backend_src_services_emailconnectionservice_countmessages_finish",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L114",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_fetchunreadmessages",
+      "target": "backend_src_services_emailconnectionservice_fetchunreadmessages_finish",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_emailconnectionservice_testconnection",
+      "target": "backend_src_services_emailconnectionservice_testconnection_finish",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_estados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_truncate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_parseublinvoice_ublparseerror_documentonofacturaerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_joinaddresses",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_getorcreateproveedor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_facturaduplicadaerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_fetchunreadmessages_marcarcomoleido",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
-      "source": "backend_src_services_emailconnectionservice",
-      "target": "backend_src_services_emailconnectionservice_buildimapconfig"
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_extraeradjuntos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_ingestarcorreo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_conciliacionqueue",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7385,9 +9702,31 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_workers_index",
-      "target": "backend_src_workers_index_env"
+      "target": "backend_src_workers_index_env",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_index_conciliacionworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_index_worker",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7396,20 +9735,64 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_workers_index",
-      "target": "backend_src_workers_index_connection"
+      "target": "backend_src_workers_index_connection",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/workers/index.js",
-      "source_location": "L5",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "backend_src_workers_index",
-      "target": "backend_src_workers_index_worker"
+      "target": "backend_src_workers_index_emailworker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_index_registrarschedulerescaneo_email_queue_name_email_scan_pattern",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_index_bootstrap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_index_shutdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/workers/index.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_workers_index",
+      "target": "backend_src_workers_index_procesarescaneo",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8589,6 +10972,39 @@
       "target": "readme_proyect_ggt_home"
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_documentonofacturaerror",
+      "target": "backend_src_parsers_ublinvoiceparser_documentonofacturaerror_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_parsers_ublinvoiceparser_ublparseerror",
+      "target": "backend_src_parsers_ublinvoiceparser_ublparseerror_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_services_invoiceingestservice_facturaduplicadaerror",
+      "target": "backend_src_services_invoiceingestservice_facturaduplicadaerror_constructor",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "mysql-init/01_schema.sql",
@@ -9256,9 +11672,9 @@
       "source_location": "L82",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 0.5,
       "source": "backend_src_adapters_siesa_siesaconsultasservice_parseresultado",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_omitattrs",
-      "confidence_score": 0.5
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_omitattrs"
     },
     {
       "relation": "indirect_call",
@@ -9280,9 +11696,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
+      "confidence_score": 0.5,
       "source": "backend_src_adapters_siesa_siesaconsultasservice",
-      "target": "backend_src_adapters_siesa_siesaconsultasservice_ejecutarconsulta",
-      "confidence_score": 0.5
+      "target": "backend_src_adapters_siesa_siesaconsultasservice_ejecutarconsulta"
     },
     {
       "relation": "indirect_call",
@@ -9340,9 +11756,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
+      "confidence_score": 0.5,
       "source": "backend_src_api_config_config_controller",
-      "target": "backend_src_api_config_config_controller_countemails",
-      "confidence_score": 0.5
+      "target": "backend_src_api_config_config_controller_countemails"
     },
     {
       "relation": "indirect_call",
@@ -9352,9 +11768,9 @@
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
+      "confidence_score": 0.5,
       "source": "backend_src_api_config_config_controller",
-      "target": "backend_src_api_config_config_controller_testemailconnection",
-      "confidence_score": 0.5
+      "target": "backend_src_api_config_config_controller_testemailconnection"
     },
     {
       "relation": "indirect_call",
@@ -9407,6 +11823,42 @@
     {
       "relation": "indirect_call",
       "confidence": "INFERRED",
+      "source_file": "backend/src/parsers/ublInvoiceParser.js",
+      "source_location": "L304",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_parsers_ublinvoiceparser",
+      "target": "backend_src_parsers_ublinvoiceparser_parseublinvoice",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/queues/emailQueue.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_queues_emailqueue",
+      "target": "backend_src_queues_emailqueue_registrarschedulerescaneo",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/attachmentExtractor.js",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_attachmentextractor",
+      "target": "backend_src_services_attachmentextractor_extraeradjuntos",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
       "source_file": "backend/src/services/authService.js",
       "source_location": "L115",
       "weight": 1.0,
@@ -9432,13 +11884,109 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "backend/src/services/emailConnectionService.js",
-      "source_location": "L55",
+      "source_location": "L226",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
-      "confidence_score": 0.5,
       "source": "backend_src_services_emailconnectionservice",
-      "target": "backend_src_services_emailconnectionservice_testconnection"
+      "target": "backend_src_services_emailconnectionservice_testconnection",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L227",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_emailconnectionservice",
+      "target": "backend_src_services_emailconnectionservice_countmessages",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L228",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_emailconnectionservice",
+      "target": "backend_src_services_emailconnectionservice_fetchunreadmessages",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/emailConnectionService.js",
+      "source_location": "L229",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_emailconnectionservice",
+      "target": "backend_src_services_emailconnectionservice_marcarcomoleido",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L292",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_ingestarcorreo",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L293",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_persistirfactura",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/services/invoiceIngestService.js",
+      "source_location": "L294",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_services_invoiceingestservice",
+      "target": "backend_src_services_invoiceingestservice_registrarcorreo",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_procesarescaneo",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "indirect_call",
+      "confidence": "INFERRED",
+      "source_file": "backend/src/workers/emailScanProcessor.js",
+      "source_location": "L133",
+      "weight": 1.0,
+      "_origin": "ast",
+      "context": "collection",
+      "source": "backend_src_workers_emailscanprocessor",
+      "target": "backend_src_workers_emailscanprocessor_resolverbuzon",
+      "confidence_score": 0.5
     },
     {
       "relation": "conceptually_related_to",
@@ -10779,5 +13327,5 @@
       "source_file": "backend/CLAUDE.md"
     }
   ],
-  "built_at_commit": "370ce2823881ee4a42f6e469eb1a7275f51ac5c2"
+  "built_at_commit": "d0d3b76d45f9e03c5fad82f9443824f04d20d0ee"
 }

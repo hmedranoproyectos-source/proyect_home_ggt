@@ -1,4 +1,5 @@
 const { parseStringPromise } = require('xml2js');
+const { normalizarNit } = require('../utils/nit');
 
 // Parser UBL 2.1 para facturas electronicas DIAN (RI-01 / RA-01).
 //
@@ -128,9 +129,7 @@ function extractParty(party) {
     textAt(party, 'Party', 'PartyName', 'Name');
 
   return {
-    // El NIT colombiano se guarda sin digito de verificacion ni separadores
-    // para que el cruce contra SIESA sea estable.
-    nit: nit ? String(nit).trim().split('-')[0].replace(/\./g, '') : undefined,
+    nit: normalizarNit(nit),
     nombre: nombre ? String(nombre).trim() : undefined,
   };
 }
