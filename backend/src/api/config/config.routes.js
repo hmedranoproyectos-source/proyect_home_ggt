@@ -11,4 +11,11 @@ router.post(
   configController.testEmailConnection
 );
 
+router.get(
+  '/email/count',
+  requireAuth,
+  requirePermission('gestionar_config_email'),
+  configController.countEmails
+);
+
 module.exports = router;
