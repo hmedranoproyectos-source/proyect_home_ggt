@@ -1,0 +1,36 @@
+Asunto: Habilitar acceso IMAP para feinvduquin@gigantedelhogar.com.co (integración backend)
+
+Hola,
+
+Estamos conectando el buzón feinvduquin@gigantedelhogar.com.co al aplicativo
+de conciliación de facturas electrónicas (backend automatizado que lee
+correos vía IMAP). La cuenta tiene verificación en 2 pasos activa, así que
+necesitamos que se habilite una de estas dos opciones a nivel de Workspace
+para esa cuenta:
+
+Opción 1 (más simple) — Contraseñas de aplicación
+Actualmente, al intentar generar una contraseña de aplicación en
+myaccount.google.com/apppasswords, la cuenta muestra el mensaje "La opción
+de configuración que buscas no está disponible para tu cuenta". Esto se
+controla desde la Admin Console:
+  Admin Console > Seguridad > Autenticación > Verificación en 2 pasos
+  > habilitar "Permitir a los usuarios generar contraseñas de aplicación"
+  (para el usuario o la unidad organizativa correspondiente).
+
+Una vez habilitado, generamos una contraseña de aplicación de 16 caracteres
+desde esa misma cuenta y la usamos solo para la conexión IMAP del backend
+(no reemplaza ni afecta la contraseña normal de la cuenta).
+
+Opción 2 (alternativa) — OAuth2 para Gmail
+Si la política de la organización no permite contraseñas de aplicación,
+podemos integrar vía OAuth2 (XOAUTH2), que requiere:
+  - Crear/usar un proyecto en Google Cloud Console con la API de Gmail
+    habilitada y credenciales OAuth (client_id/client_secret).
+  - Autorizar esa app para el dominio gigantedelhogar.com.co (Admin Console
+    > Seguridad > Control de acceso a las API), o aprobar el consentimiento
+    la primera vez que se autorice con la cuenta feinvduquin@...
+
+Cualquiera de las dos opciones nos permite continuar. Quedamos atentos a
+cuál es más viable de su lado.
+
+Gracias.

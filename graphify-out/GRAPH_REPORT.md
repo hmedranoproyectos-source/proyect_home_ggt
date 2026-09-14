@@ -1,16 +1,16 @@
 # Graph Report - proyect_home_ggt  (2026-09-12)
 
 ## Corpus Check
-- 61 files · ~31,160 words
+- 62 files · ~31,515 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 490 nodes · 655 edges · 44 communities (33 shown, 11 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 43 edges (avg confidence: 0.64)
+- 494 nodes · 664 edges · 38 communities (27 shown, 11 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.64)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d0d3b76d`
+- Built from commit: `9cd2fb7e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -41,14 +41,8 @@
 - frontend/CLAUDE.md (frontend conventions)
 - docker-compose.yml orchestration
 - ESPECIFICACIONES.md (functional spec)
-- PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)
-- RC - Requisitos de Control y Validación
 - ublInvoiceParser.js
-- workers/index.js
-- redis.js
 - env.js
-- seedPipeline.js
-- emailQueue.js
 - adjuntos_correos
 - buzones
 - config_buzon_fe
@@ -89,15 +83,15 @@
 - **Docker Compose orchestrated services** — docker_compose_yml_mysql_service, docker_compose_yml_redis_service, docker_compose_yml_phpmyadmin_service, docker_compose_yml_backend_service, docker_compose_yml_worker_service, docker_compose_yml_frontend_service, docker_compose_yml_nginx_service [EXTRACTED 1.00]
 - **Multiempresa auth flow (login, roles, session, id_cia filtering)** — backend_claude_md_login_multiempresa_flow, backend_claude_md_auth_service_js, backend_claude_md_auth_middleware_js, frontend_claude_md_nextauth_session, especificaciones_md_usuarios_roles, claude_md_multiempresa_id_cia [INFERRED 0.85]
 
-## Communities (44 total, 11 thin omitted)
+## Communities (38 total, 11 thin omitted)
 
 ### Community 0 - "Recibo_FE_Create.sql (esquema oficial - DDL)"
 Cohesion: 0.19
 Nodes (16): conciliacion.js service (validateInvoice), RC-06 tabla de auditoría (pendiente de diseño), config_buzon_fe table, detalles_facturas table, detalles_ordenes_compras table, entradas_almacen table, equivalencias_proveedores table, estados_documentos table (chained state machine) (+8 more)
 
 ### Community 1 - "src/index.js"
-Cohesion: 0.12
-Nodes (14): app, authRoutes, configRoutes, cors, db, env, express, http (+6 more)
+Cohesion: 0.08
+Nodes (19): emailConnectionService, configController, express, { requireAuth, requirePermission }, router, app, authRoutes, configRoutes (+11 more)
 
 ### Community 2 - "devDependencies"
 Cohesion: 0.07
@@ -124,8 +118,8 @@ Cohesion: 0.21
 Nodes (22): adjuntos_correos, buzones, companias, config_buzon_fe, correos, detalles_entrada_almacen, detalles_facturas, detalles_ordenes_compras (+14 more)
 
 ### Community 8 - "auth.routes.js"
-Cohesion: 0.08
-Nodes (17): authService, authController, express, loginLimiter, rateLimit, { requireAuth, requirePreSession }, router, emailConnectionService (+9 more)
+Cohesion: 0.13
+Nodes (12): authService, authController, express, loginLimiter, rateLimit, { requireAuth, requirePreSession }, router, env (+4 more)
 
 ### Community 9 - "backend/package.json"
 Cohesion: 0.11
@@ -144,8 +138,8 @@ Cohesion: 0.26
 Nodes (12): bcrypt, db, env, findUserByUsername(), getCompaniasForUser(), getRolesAndPermisos(), jwt, login() (+4 more)
 
 ### Community 13 - "seedAuth.js"
-Cohesion: 0.29
-Nodes (11): bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol(), getOrCreateCompania(), getOrCreatePermisoVerFacturas(), getOrCreateRolAdministrador() (+3 more)
+Cohesion: 0.13
+Nodes (20): env, mysql, pool, bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol() (+12 more)
 
 ### Community 14 - "siesaConsultasService.js"
 Cohesion: 0.07
@@ -164,63 +158,35 @@ Cohesion: 0.12
 Nodes (22): AdmZip, expandirZip(), extension(), EXTENSIONES_INTERES, extraerAdjuntos(), path, buildImapConfig(), countMessages() (+14 more)
 
 ### Community 24 - "adapters/siesa/ (SOAP WSDL adapter)"
-Cohesion: 0.29
-Nodes (7): adapters/siesa/ (SOAP WSDL adapter), Causación contable, Dashboard en tiempo real (Socket.io), Entrada de Almacén (estado 0 - Elaboración), Adaptador SIESA (SOAP WS), siesa-soap-adapter skill (proposed), Dashboard / Listado de facturas screen (RR-01, RR-04)
+Cohesion: 0.22
+Nodes (9): adapters/siesa/ (SOAP WSDL adapter), Causación contable, Worker de conciliación (BullMQ), Dashboard en tiempo real (Socket.io), Email Worker (node-imap + mailparser), Entrada de Almacén (estado 0 - Elaboración), Adaptador SIESA (SOAP WS), siesa-soap-adapter skill (proposed) (+1 more)
 
 ### Community 25 - "frontend/CLAUDE.md (frontend conventions)"
-Cohesion: 0.22
-Nodes (9): Multiempresa / id_cia convention, companias table, RR-05 línea de tiempo de factura, RR - Requisitos de Reportes, Next.js 16 agent rules warning (breaking changes), Detalle de factura screen (RR-05 timeline), frontend/CLAUDE.md (frontend conventions), frontend-design skill usage (+1 more)
+Cohesion: 0.20
+Nodes (10): Multiempresa / id_cia convention, PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA), Recibo_FE_Create.sql (esquema oficial), companias table, RC-02 alertas rojo/amarillo, Next.js 16 agent rules warning (breaking changes), Vista de conciliación screen (RC-01/RC-02/RC-03), frontend/CLAUDE.md (frontend conventions) (+2 more)
 
 ### Community 26 - "docker-compose.yml orchestration"
 Cohesion: 0.44
 Nodes (9): backend service (conciliacion_backend), docker-compose.yml orchestration, frontend service (conciliacion_frontend), mysql service (conciliacion_mysql), nginx service (reverse proxy), phpmyadmin service (dev only), redis service (conciliacion_redis), worker service (conciliacion_worker, src/workers/index.js) (+1 more)
 
 ### Community 27 - "ESPECIFICACIONES.md (functional spec)"
-Cohesion: 0.25
-Nodes (8): ublParser.js (UBL 2.1 tag extraction), ubl-invoice-parsing skill (proposed), BullMQ queue architecture (Scheduler/Worker/retry), ESPECIFICACIONES.md (functional spec), Estado 'En Elaboración' (SIESA Estado 0) business rule, RA - Requisitos de Automatización, RI - Requisitos de Información (UBL 2.1 extraction), RP - Requisitos del Proceso
-
-### Community 28 - "PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)"
-Cohesion: 0.50
-Nodes (4): Worker de conciliación (BullMQ), Email Worker (node-imap + mailparser), PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA), Recibo_FE_Create.sql (esquema oficial)
-
-### Community 29 - "RC - Requisitos de Control y Validación"
-Cohesion: 0.50
-Nodes (4): RC-02 alertas rojo/amarillo, RC-04 duplicidad (UNIQUE id_cia, id_proveedor, prefijo_fe, consecutivo_fe), RC - Requisitos de Control y Validación, Vista de conciliación screen (RC-01/RC-02/RC-03)
+Cohesion: 0.15
+Nodes (13): ublParser.js (UBL 2.1 tag extraction), ubl-invoice-parsing skill (proposed), BullMQ queue architecture (Scheduler/Worker/retry), ESPECIFICACIONES.md (functional spec), Estado 'En Elaboración' (SIESA Estado 0) business rule, RA - Requisitos de Automatización, RC-04 duplicidad (UNIQUE id_cia, id_proveedor, prefijo_fe, consecutivo_fe), RC - Requisitos de Control y Validación (+5 more)
 
 ### Community 30 - "ublInvoiceParser.js"
-Cohesion: 0.11
-Nodes (27): ESTADOS, CODIGOS_IMPUESTO, DocumentoNoFacturaError, DOCUMENTOS_NO_FACTURA, extractLines(), extractParty(), extractTaxes(), first() (+19 more)
+Cohesion: 0.10
+Nodes (30): ESTADOS, CODIGOS_IMPUESTO, DocumentoNoFacturaError, DOCUMENTOS_NO_FACTURA, extractLines(), extractParty(), extractTaxes(), first() (+22 more)
 
-### Community 31 - "workers/index.js"
-Cohesion: 0.20
-Nodes (9): registrarSchedulerEscaneo(), bootstrap(), conciliacionWorker, connection, emailWorker, env, { procesarEscaneo }, {
-  registrarSchedulerEscaneo,
-  EMAIL_QUEUE_NAME,
-  EMAIL_SCAN_PATTERN,
-} (+1 more)
-
-### Community 32 - "redis.js"
-Cohesion: 0.22
-Nodes (7): connection, env, IORedis, conciliacionQueue, connection, env, { Queue }
-
-### Community 33 - "env.js"
-Cohesion: 0.29
-Nodes (5): env, mysql, pool, missing, REQUIRED_VARS
-
-### Community 34 - "seedPipeline.js"
-Cohesion: 0.38
-Nodes (6): db, env, ESTADOS, main(), seedBuzon(), seedEstados()
-
-### Community 35 - "emailQueue.js"
-Cohesion: 0.40
-Nodes (4): connection, emailQueue, env, { Queue }
+### Community 31 - "env.js"
+Cohesion: 0.09
+Nodes (22): missing, REQUIRED_VARS, connection, env, IORedis, conciliacionQueue, connection, env (+14 more)
 
 ## Ambiguous Edges - Review These
 - `facturas table` → `facturas_dian table`  [AMBIGUOUS]
   ESPECIFICACIONES.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **215 isolated node(s):** `name`, `version`, `description`, `main`, `start` (+210 more)
+- **217 isolated node(s):** `{ parseStringPromise }`, `{ normalizarNit }`, `DOCUMENTOS_NO_FACTURA`, `XML_OPTIONS`, `CODIGOS_IMPUESTO` (+212 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -229,15 +195,15 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `facturas table` and `facturas_dian table`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `backend/CLAUDE.md (backend conventions)` connect `backend/CLAUDE.md (backend conventions)` to `Recibo_FE_Create.sql (esquema oficial - DDL)`, `adapters/siesa/ (SOAP WSDL adapter)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`, `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)`?**
+- **Why does `backend/CLAUDE.md (backend conventions)` connect `backend/CLAUDE.md (backend conventions)` to `Recibo_FE_Create.sql (esquema oficial - DDL)`, `adapters/siesa/ (SOAP WSDL adapter)`, `frontend/CLAUDE.md (frontend conventions)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`?**
   _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **Why does `Recibo_FE_Create.sql (esquema oficial - DDL)` connect `Recibo_FE_Create.sql (esquema oficial - DDL)` to `backend/CLAUDE.md (backend conventions)`, `graphify Skill`, `frontend/CLAUDE.md (frontend conventions)`, `ESPECIFICACIONES.md (functional spec)`, `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)`?**
-  _High betweenness centrality (0.011) - this node is a cross-community bridge._
-- **Why does `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)` connect `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)` to `frontend/CLAUDE.md (frontend conventions)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
+- **Why does `Recibo_FE_Create.sql (esquema oficial - DDL)` connect `Recibo_FE_Create.sql (esquema oficial - DDL)` to `frontend/CLAUDE.md (frontend conventions)`, `graphify Skill`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
-- **What connects `name`, `version`, `description` to the rest of the system?**
-  _215 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)` connect `frontend/CLAUDE.md (frontend conventions)` to `adapters/siesa/ (SOAP WSDL adapter)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **What connects `{ parseStringPromise }`, `{ normalizarNit }`, `DOCUMENTOS_NO_FACTURA` to the rest of the system?**
+  _217 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `src/index.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.11764705882352941 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._
 - **Should `devDependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
