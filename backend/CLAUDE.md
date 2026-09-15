@@ -65,10 +65,18 @@ con sus IDs RP/RI/RC/RA/RR):
   reprocesar.
 - **RC-06 (auditoría)**: cada acción (creación, modificación, validación,
   contabilización) registra usuario, fecha/hora, tipo de operación,
-  IP y `data_before`/`data_after` (JSON). ⚠️ **La tabla de auditoría no
-  existe en `Recibo_FE_Create.sql`** — hay que diseñarla y agregarla a
-  `mysql-init/` antes de implementar el middleware (ver propuesta en
-  `ESPECIFICACIONES.md` §7.6).
+  IP y `data_before`/`data_after` (JSON). La tabla `auditoria_acciones`
+  no existe en `Recibo_FE_Create.sql` — se agregó por migración aparte
+  en `mysql-init/03_auditoria_acciones.sql` (mismo patrón que
+  `02_autoincrement_pipeline.sql`: no toca el esquema oficial). Ver
+  `src/services/auditoriaService.js` (acceso a datos) y el helper
+  `auditar()` en `src/middleware/auth.js` (requiere `requireAuth` previo,
+  usa `req.user`/`req.ip`). Endpoint de lectura (RR-05, línea de tiempo):
+  `GET /api/auditoria/:entidad/:idEntidad`. **Pendiente:** los
+  controladores de negocio que aún no existen (facturas, entradas de
+  almacén, validación manual) deben llamar `auditar()` en cada mutación
+  sensible — el registro no es automático, cada handler decide qué
+  `entidad`/`accion`/`dataBefore`/`dataAfter` le corresponde.
 - **RA-04 (causación)**: solo se dispara tras "Entrada de Almacén" exitosa
   en SIESA — no antes.
 - **Estado `Estado: '0'` en SIESA** = "En Elaboración", obligatorio para

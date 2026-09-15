@@ -10,8 +10,15 @@ const redis = require('./config/redis');
 const authRoutes = require('./api/auth/auth.routes');
 const siesaRoutes = require('./api/siesa/siesa.routes');
 const configRoutes = require('./api/config/config.routes');
+const auditoriaRoutes = require('./api/auditoria/auditoria.routes');
 
 const app = express();
+
+// El backend siempre corre detras de nginx (ver nginx/nginx.conf, que
+// reenvia X-Forwarded-For/X-Real-IP). Sin esto, req.ip devuelve la IP
+// interna del contenedor nginx en vez de la del cliente real -- RC-06
+// exige la IP real en cada registro de auditoria.
+app.set('trust proxy', true);
 
 app.use(cors());
 app.use(express.json());
@@ -66,6 +73,7 @@ app.get('/api/companias', async (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/siesa', siesaRoutes);
 app.use('/api/config', configRoutes);
+app.use('/api/auditoria', auditoriaRoutes);
 
 app.use((err, req, res, next) => {
   console.error('[api] error no controlado:', err.stack);

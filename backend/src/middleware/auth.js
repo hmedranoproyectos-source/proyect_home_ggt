@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const env = require('../config/env');
+const auditoriaService = require('../services/auditoriaService');
 
 function extractToken(req) {
   const header = req.headers.authorization || '';
@@ -65,4 +66,27 @@ function requirePermission(nombrePermiso) {
   };
 }
 
-module.exports = { requireAuth, requirePreSession, requirePermission };
+// RC-06: helper para que los controladores de negocio registren una accion
+// sensible (creacion/modificacion/validacion/contabilizacion) sin repetir
+// el mapeo de id_cia/id_usuario/ip en cada uno. Requiere requireAuth previo
+// (usa req.user e req.ip). No intercepta la respuesta ni bloquea el
+// request: una falla al auditar no debe tumbar la operacion de negocio,
+// pero tampoco debe tragarse en silencio -- queda logueada.
+function auditar(req, { entidad, idEntidad, accion, dataBefore = null, dataAfter = null }) {
+  return auditoriaService
+    .registrarAccion({
+      idCia: req.user.id_cia,
+      idUsuario: req.user.id_usuario,
+      entidad,
+      idEntidad,
+      accion,
+      ipAddress: req.ip,
+      dataBefore,
+      dataAfter,
+    })
+    .catch((err) => {
+      console.error('[auditoria] fallo al registrar accion', { entidad, idEntidad, accion }, err);
+    });
+}
+
+module.exports = { requireAuth, requirePreSession, requirePermission, auditar };
