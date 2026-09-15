@@ -66,8 +66,34 @@ async function selectCompany(req, res, next) {
   }
 }
 
+async function switchCompany(req, res, next) {
+  try {
+    const { id_cia } = req.body;
+    if (!id_cia) {
+      return res.status(400).json({ error: 'id_cia es requerido' });
+    }
+
+    const result = await authService.switchCompany(req.user.id_usuario, id_cia);
+
+    if (result.status === 'forbidden') {
+      return res
+        .status(403)
+        .json({ error: 'El usuario no tiene acceso a esa compañía' });
+    }
+
+    return res.status(200).json({
+      token: result.token,
+      id_cia: result.id_cia,
+      roles: result.roles,
+      permisos: result.permisos,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
 function me(req, res) {
   res.json(req.user);
 }
 
-module.exports = { login, selectCompany, me };
+module.exports = { login, selectCompany, switchCompany, me };

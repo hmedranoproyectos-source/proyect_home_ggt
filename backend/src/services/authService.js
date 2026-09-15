@@ -112,4 +112,19 @@ async function selectCompany(idUsuario, idCia) {
   return { status: 'ok', token, id_cia: idCia, roles, permisos };
 }
 
-module.exports = { login, selectCompany };
+// Cambia la compania activa de una sesion YA logueada (a diferencia de
+// selectCompany, que solo aplica al pre-token del primer paso del login
+// multiempresa). Reemite un token final completo con roles/permisos
+// recalculados para la nueva compania.
+async function switchCompany(idUsuario, idCia) {
+  const tieneAcceso = await userHasAccessToCompania(idUsuario, idCia);
+  if (!tieneAcceso) {
+    return { status: 'forbidden' };
+  }
+
+  const { roles, permisos } = await getRolesAndPermisos(idUsuario, idCia);
+  const token = signFinalToken(idUsuario, idCia, roles, permisos);
+  return { status: 'ok', token, id_cia: idCia, roles, permisos };
+}
+
+module.exports = { login, selectCompany, switchCompany };

@@ -17,6 +17,7 @@ const loginLimiter = rateLimit({
 
 router.post('/login', loginLimiter, authController.login);
 router.post('/select-company', requirePreSession, authController.selectCompany);
+router.post('/switch-company', requireAuth, authController.switchCompany);
 router.get('/me', requireAuth, authController.me);
 
 module.exports = router;

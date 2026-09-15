@@ -1,119 +1,88 @@
 'use client'
 
+import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox'
-import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogTitle from '@mui/material/DialogTitle'
 import Paper from '@mui/material/Paper'
-import Snackbar from '@mui/material/Snackbar'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import TextField from '@mui/material/TextField'
+import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import { useEffect, useMemo, useState } from 'react'
-import { CampoFiltro } from '@/componentes/campo-filtro'
-import {
-	PERMISOS_CATALOGO,
-	ROLES_PERMISOS,
-	rolesDeCia,
-} from '@/lib/datos-mock'
-import {
-	sxBotonAzul,
-	sxBotonVerde,
-	sxEncabezadoTabla,
-} from '@/lib/estilos-ui'
+import { listarPermisos } from '@/lib/servicios/permisosApi'
+import { listarRoles, permisosDeRol } from '@/lib/servicios/rolesApi'
+import { sxBotonAzul, sxBotonVerde, sxEncabezadoTabla } from '@/lib/estilos-ui'
 import { useSesion } from '@/lib/sesion-contexto'
 import { colores, RADIO_CARD } from '@/lib/tema'
-import type { RolApp, RolPermisoApp } from '@/lib/tipos'
+import type { PermisoCatalogo, RolApp } from '@/lib/tipos'
 
 export function TabRoles() {
 	const { sesion } = useSesion()
-	const idCia = sesion?.idCia ?? 1
-	const [roles, setRoles] = useState(() => rolesDeCia(idCia))
-	const [asignaciones, setAsignaciones] = useState<
-		RolPermisoApp[]
-	>(ROLES_PERMISOS)
+	const idCia = sesion?.idCia
+	const [roles, setRoles] = useState<RolApp[]>([])
+	const [catalogoPermisos, setCatalogoPermisos] = useState<
+		PermisoCatalogo[]
+	>([])
 	const [rolActivo, setRolActivo] = useState<RolApp | null>(null)
-	const [creando, setCreando] = useState(false)
-	const [nombreRol, setNombreRol] = useState('')
-	const [aviso, setAviso] = useState('')
+	const [permisosDelRol, setPermisosDelRol] = useState<Set<number>>(
+		new Set(),
+	)
+	const [error, setError] = useState('')
 
 	useEffect(() => {
-		const deCia = rolesDeCia(idCia)
-		setRoles(deCia)
-		setRolActivo(deCia[0] ?? null)
+		if (!idCia) {
+			return
+		}
+		let cancelado = false
+		setError('')
+		Promise.all([listarRoles(), listarPermisos()])
+			.then(([rolesApi, permisosApi]) => {
+				if (cancelado) return
+				setRoles(rolesApi)
+				setCatalogoPermisos(permisosApi)
+				setRolActivo(rolesApi[0] ?? null)
+			})
+			.catch(() => {
+				if (!cancelado) {
+					setError('No se pudieron cargar los roles.')
+				}
+			})
+		return () => {
+			cancelado = true
+		}
 	}, [idCia])
 
-	const idsActivos = useMemo(() => {
+	useEffect(() => {
 		if (!rolActivo) {
-			return new Set<number>()
-		}
-		return new Set(
-			asignaciones
-				.filter(
-					(item) =>
-						item.idRol === rolActivo.id &&
-						item.idCia === idCia,
-				)
-				.map((item) => item.idPermiso),
-		)
-	}, [asignaciones, rolActivo, idCia])
-
-	function handleCrear() {
-		const descripcion = nombreRol.trim()
-		if (!descripcion) {
+			setPermisosDelRol(new Set())
 			return
 		}
-		const nuevo: RolApp = {
-			id: Date.now(),
-			idCia,
-			descripcion,
+		let cancelado = false
+		permisosDeRol(rolActivo.id)
+			.then((permisos) => {
+				if (!cancelado) {
+					setPermisosDelRol(new Set(permisos.map((p) => p.id)))
+				}
+			})
+			.catch(() => {
+				if (!cancelado) {
+					setError('No se pudieron cargar los permisos del rol.')
+				}
+			})
+		return () => {
+			cancelado = true
 		}
-		setRoles((actual) => [...actual, nuevo])
-		setRolActivo(nuevo)
-		setNombreRol('')
-		setCreando(false)
-		setAviso('Rol creado para esta compañía.')
-	}
+	}, [rolActivo])
 
-	function handleToggle(idPermiso: number) {
-		if (!rolActivo) {
-			return
-		}
-		setAsignaciones((actual) => {
-			const existe = actual.some(
-				(item) =>
-					item.idRol === rolActivo.id &&
-					item.idPermiso === idPermiso &&
-					item.idCia === idCia,
-			)
-			if (existe) {
-				return actual.filter(
-					(item) =>
-						!(
-							item.idRol === rolActivo.id &&
-							item.idPermiso === idPermiso &&
-							item.idCia === idCia
-						),
-				)
-			}
-			return [
-				...actual,
-				{
-					idRol: rolActivo.id,
-					idPermiso,
-					idCia,
-				},
-			]
-		})
-	}
+	const totalPermisos = useMemo(
+		() => catalogoPermisos.length,
+		[catalogoPermisos],
+	)
 
 	return (
 		<Box>
@@ -130,14 +99,20 @@ export function TabRoles() {
 					del catálogo global; lo que cambia por compañía
 					es qué rol los tiene.
 				</Typography>
-				<Button
-					variant="contained"
-					onClick={() => setCreando(true)}
-					sx={sxBotonVerde}
-				>
-					CREAR
-				</Button>
+				<Tooltip title="Disponible próximamente">
+					<span>
+						<Button variant="contained" disabled sx={sxBotonVerde}>
+							CREAR
+						</Button>
+					</span>
+				</Tooltip>
 			</Stack>
+
+			{error ? (
+				<Alert severity="error" sx={{ mb: 2 }}>
+					{error}
+				</Alert>
+			) : null}
 
 			<Paper
 				sx={{ borderRadius: RADIO_CARD, overflow: 'hidden', mb: 2 }}
@@ -146,39 +121,27 @@ export function TabRoles() {
 					<TableHead sx={sxEncabezadoTabla}>
 						<TableRow>
 							<TableCell>Rol</TableCell>
-							<TableCell>Permisos</TableCell>
 							<TableCell>Acción</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{roles.map((rol) => {
-							const cantidad = asignaciones.filter(
-								(item) =>
-									item.idRol === rol.id &&
-									item.idCia === idCia,
-							).length
-							return (
-								<TableRow
-									key={rol.id}
-									selected={rolActivo?.id === rol.id}
-								>
-									<TableCell>{rol.descripcion}</TableCell>
-									<TableCell>
-										{cantidad} de{' '}
-										{PERMISOS_CATALOGO.length}
-									</TableCell>
-									<TableCell>
-										<Button
-											size="small"
-											variant="outlined"
-											onClick={() => setRolActivo(rol)}
-										>
-											Editar permisos
-										</Button>
-									</TableCell>
-								</TableRow>
-							)
-						})}
+						{roles.map((rolItem) => (
+							<TableRow
+								key={rolItem.id}
+								selected={rolActivo?.id === rolItem.id}
+							>
+								<TableCell>{rolItem.descripcion}</TableCell>
+								<TableCell>
+									<Button
+										size="small"
+										variant="outlined"
+										onClick={() => setRolActivo(rolItem)}
+									>
+										Ver permisos
+									</Button>
+								</TableCell>
+							</TableRow>
+						))}
 					</TableBody>
 				</Table>
 			</Paper>
@@ -186,7 +149,8 @@ export function TabRoles() {
 			{rolActivo ? (
 				<Paper sx={{ p: 3, borderRadius: RADIO_CARD }}>
 					<Typography variant="h3" sx={{ mb: 2 }}>
-						Permisos de {rolActivo.descripcion}
+						Permisos de {rolActivo.descripcion} (
+						{permisosDelRol.size} de {totalPermisos})
 					</Typography>
 					<Table>
 						<TableHead sx={sxEncabezadoTabla}>
@@ -198,19 +162,17 @@ export function TabRoles() {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{PERMISOS_CATALOGO.map((permiso) => (
+							{catalogoPermisos.map((permiso) => (
 								<TableRow key={permiso.id}>
 									<TableCell>
 										{permiso.descripcion}
 									</TableCell>
 									<TableCell align="center">
 										<Checkbox
-											checked={idsActivos.has(
+											checked={permisosDelRol.has(
 												permiso.id,
 											)}
-											onChange={() =>
-												handleToggle(permiso.id)
-											}
+											disabled
 											sx={{
 												color: colores.okFg,
 												'&.Mui-checked': {
@@ -223,75 +185,15 @@ export function TabRoles() {
 							))}
 						</TableBody>
 					</Table>
-					<Box
-						sx={{
-							display: 'flex',
-							justifyContent: 'flex-end',
-							mt: 2,
-						}}
+					<Typography
+						variant="body2"
+						sx={{ mt: 2, color: colores.textoSecundario }}
 					>
-						<Button
-							variant="contained"
-							onClick={() =>
-								setAviso(
-									'Permisos guardados para este rol (mock).',
-								)
-							}
-							sx={sxBotonAzul}
-						>
-							GUARDAR
-						</Button>
-					</Box>
+						La edición de permisos estará disponible
+						próximamente.
+					</Typography>
 				</Paper>
 			) : null}
-
-			<Dialog
-				open={creando}
-				onClose={() => setCreando(false)}
-				fullWidth
-				slotProps={{
-					paper: { sx: { borderRadius: RADIO_CARD } },
-				}}
-			>
-				<DialogTitle>Crear rol</DialogTitle>
-				<DialogContent>
-					<Box sx={{ mt: 1 }}>
-						<CampoFiltro etiqueta="Descripción *">
-							<TextField
-								fullWidth
-								size="small"
-								value={nombreRol}
-								onChange={(e) =>
-									setNombreRol(e.target.value)
-								}
-							/>
-						</CampoFiltro>
-					</Box>
-				</DialogContent>
-				<DialogActions sx={{ px: 3, pb: 2 }}>
-					<Button
-						variant="outlined"
-						onClick={() => setCreando(false)}
-						sx={{ borderRadius: RADIO_CARD }}
-					>
-						Cancelar
-					</Button>
-					<Button
-						variant="contained"
-						disabled={!nombreRol.trim()}
-						onClick={handleCrear}
-						sx={sxBotonVerde}
-					>
-						Crear
-					</Button>
-				</DialogActions>
-			</Dialog>
-			<Snackbar
-				open={Boolean(aviso)}
-				autoHideDuration={3000}
-				onClose={() => setAviso('')}
-				message={aviso}
-			/>
 		</Box>
 	)
 }

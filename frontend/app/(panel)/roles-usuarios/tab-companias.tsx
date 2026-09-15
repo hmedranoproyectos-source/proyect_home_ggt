@@ -2,58 +2,22 @@
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogTitle from '@mui/material/DialogTitle'
 import Paper from '@mui/material/Paper'
-import Snackbar from '@mui/material/Snackbar'
 import Stack from '@mui/material/Stack'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import TextField from '@mui/material/TextField'
+import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
-import { useState } from 'react'
-import { CampoFiltro } from '@/componentes/campo-filtro'
-import { COMPANIAS } from '@/lib/datos-mock'
-import {
-	sxBotonVerde,
-	sxEncabezadoTabla,
-} from '@/lib/estilos-ui'
+import { sxBotonVerde, sxEncabezadoTabla } from '@/lib/estilos-ui'
 import { useSesion } from '@/lib/sesion-contexto'
 import { colores, RADIO_CARD } from '@/lib/tema'
-import type { CompaniaApp } from '@/lib/tipos'
 
 export function TabCompanias() {
-	const { sesion, seleccionarCia, agregarCompania } = useSesion()
-	const lista = sesion?.companias ?? COMPANIAS
-	const [creando, setCreando] = useState(false)
-	const [razonSocial, setRazonSocial] = useState('')
-	const [codErp, setCodErp] = useState('')
-	const [aviso, setAviso] = useState('')
-
-	function handleCrear() {
-		const razon = razonSocial.trim()
-		const codigo = codErp.trim().toUpperCase()
-		if (!razon || codigo.length !== 3) {
-			return
-		}
-		const nueva: CompaniaApp = {
-			id: Date.now(),
-			razonSocial: razon,
-			codErp: codigo,
-		}
-		agregarCompania(nueva)
-		setRazonSocial('')
-		setCodErp('')
-		setCreando(false)
-		setAviso(
-			'Compañía creada. Asigna usuarios desde la pestaña Usuarios.',
-		)
-	}
+	const { sesion, seleccionarCia } = useSesion()
+	const lista = sesion?.companias ?? []
 
 	return (
 		<Box>
@@ -64,13 +28,13 @@ export function TabCompanias() {
 					justifyContent: 'flex-end',
 				}}
 			>
-				<Button
-					variant="contained"
-					onClick={() => setCreando(true)}
-					sx={sxBotonVerde}
-				>
-					CREAR
-				</Button>
+				<Tooltip title="Disponible próximamente">
+					<span>
+						<Button variant="contained" disabled sx={sxBotonVerde}>
+							CREAR
+						</Button>
+					</span>
+				</Tooltip>
 			</Stack>
 			<Paper sx={{ borderRadius: RADIO_CARD, overflow: 'hidden' }}>
 				<Table>
@@ -94,9 +58,7 @@ export function TabCompanias() {
 										size="small"
 										variant="outlined"
 										disabled={sesion?.idCia === cia.id}
-										onClick={() =>
-											seleccionarCia(cia.id)
-										}
+										onClick={() => seleccionarCia(cia.id)}
 									>
 										Activar
 									</Button>
@@ -117,78 +79,11 @@ export function TabCompanias() {
 						(3 caracteres).
 					</Typography>
 					<Typography variant="body2">
-						Crear compañía no crea usuarios. El acceso se
-						asigna después en Usuarios, con un rol de esa
-						compañía.
+						Compañías a las que tienes acceso. La creación de
+						compañías estará disponible próximamente.
 					</Typography>
 				</Box>
 			</Paper>
-
-			<Dialog
-				open={creando}
-				onClose={() => setCreando(false)}
-				fullWidth
-				slotProps={{
-					paper: { sx: { borderRadius: RADIO_CARD } },
-				}}
-			>
-				<DialogTitle>Crear compañía</DialogTitle>
-				<DialogContent>
-					<Stack spacing={2} sx={{ mt: 1 }}>
-						<CampoFiltro etiqueta="Razón social *">
-							<TextField
-								fullWidth
-								size="small"
-								value={razonSocial}
-								onChange={(e) =>
-									setRazonSocial(e.target.value)
-								}
-							/>
-						</CampoFiltro>
-						<CampoFiltro etiqueta="Código ERP *">
-							<TextField
-								fullWidth
-								size="small"
-								value={codErp}
-								onChange={(e) =>
-									setCodErp(
-										e.target.value
-											.slice(0, 3)
-											.toUpperCase(),
-									)
-								}
-								helperText="3 caracteres, igual al cod_erp de SIESA"
-							/>
-						</CampoFiltro>
-					</Stack>
-				</DialogContent>
-				<DialogActions sx={{ px: 3, pb: 2 }}>
-					<Button
-						variant="outlined"
-						onClick={() => setCreando(false)}
-						sx={{ borderRadius: RADIO_CARD }}
-					>
-						Cancelar
-					</Button>
-					<Button
-						variant="contained"
-						disabled={
-							!razonSocial.trim() ||
-							codErp.trim().length !== 3
-						}
-						onClick={handleCrear}
-						sx={sxBotonVerde}
-					>
-						Crear
-					</Button>
-				</DialogActions>
-			</Dialog>
-			<Snackbar
-				open={Boolean(aviso)}
-				autoHideDuration={3500}
-				onClose={() => setAviso('')}
-				message={aviso}
-			/>
 		</Box>
 	)
 }

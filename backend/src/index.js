@@ -11,6 +11,10 @@ const authRoutes = require('./api/auth/auth.routes');
 const siesaRoutes = require('./api/siesa/siesa.routes');
 const configRoutes = require('./api/config/config.routes');
 const auditoriaRoutes = require('./api/auditoria/auditoria.routes');
+const usuariosRoutes = require('./api/usuarios/usuarios.routes');
+const rolesRoutes = require('./api/roles/roles.routes');
+const permisosRoutes = require('./api/permisos/permisos.routes');
+const companiasRoutes = require('./api/companias/companias.routes');
 
 const app = express();
 
@@ -58,22 +62,14 @@ app.get('/api/health', async (req, res) => {
   });
 });
 
-app.get('/api/companias', async (req, res) => {
-  try {
-    const [rows] = await db.query(
-      'SELECT id, razon_social, cod_erp FROM companias'
-    );
-    res.json(rows);
-  } catch (err) {
-    console.error('[api] error consultando companias:', err.message);
-    res.status(500).json({ error: 'No se pudo consultar companias' });
-  }
-});
-
 app.use('/api/auth', authRoutes);
 app.use('/api/siesa', siesaRoutes);
 app.use('/api/config', configRoutes);
 app.use('/api/auditoria', auditoriaRoutes);
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/roles', rolesRoutes);
+app.use('/api/permisos', permisosRoutes);
+app.use('/api/companias', companiasRoutes);
 
 app.use((err, req, res, next) => {
   console.error('[api] error no controlado:', err.stack);

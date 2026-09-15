@@ -8,22 +8,22 @@ import {
 	useState,
 } from 'react'
 import {
-	agregarCompaniaASesion,
+	cerrarSesion as cerrarSesionStorage,
 	leerSesion,
 	seleccionarCiaEnSesion,
 } from '@/lib/sesion'
-import type { CompaniaApp, SesionUsuario } from '@/lib/tipos'
+import type { SesionUsuario } from '@/lib/tipos'
 
 interface ValorSesion {
 	sesion: SesionUsuario | null
-	seleccionarCia: (idCia: number) => void
-	agregarCompania: (cia: CompaniaApp) => void
+	seleccionarCia: (idCia: number) => Promise<void>
+	cerrarSesion: () => void
 }
 
 const SesionContexto = createContext<ValorSesion>({
 	sesion: null,
-	seleccionarCia: () => undefined,
-	agregarCompania: () => undefined,
+	seleccionarCia: async () => undefined,
+	cerrarSesion: () => undefined,
 })
 
 export function SesionProveedor({
@@ -40,11 +40,13 @@ export function SesionProveedor({
 	const valor = useMemo<ValorSesion>(
 		() => ({
 			sesion,
-			seleccionarCia: (idCia: number) => {
-				setSesion(seleccionarCiaEnSesion(idCia))
+			seleccionarCia: async (idCia: number) => {
+				const siguiente = await seleccionarCiaEnSesion(idCia)
+				setSesion(siguiente)
 			},
-			agregarCompania: (cia: CompaniaApp) => {
-				setSesion(agregarCompaniaASesion(cia))
+			cerrarSesion: () => {
+				cerrarSesionStorage()
+				setSesion(null)
 			},
 		}),
 		[sesion],

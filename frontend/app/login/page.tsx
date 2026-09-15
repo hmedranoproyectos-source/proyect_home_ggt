@@ -4,15 +4,23 @@ import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Link from '@mui/material/Link'
+import MenuItem from '@mui/material/MenuItem'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { colores } from '@/lib/tema'
-import { guardarSesion, sesionDesdeUsuario } from '@/lib/sesion'
+import { guardarSesion, sesionDesdeLoginOk } from '@/lib/sesion'
+import { login, selectCompany } from '@/lib/servicios/authApi'
 
 const RADIO_CUADRO = '20px'
+
+interface CompaniaPreSesion {
+	id: number
+	razon_social: string
+}
 
 export default function LoginPage() {
 	const router = useRouter()
@@ -21,6 +29,14 @@ export default function LoginPage() {
 	const [error, setError] = useState('')
 	const [aviso, setAviso] = useState('')
 	const [montado, setMontado] = useState(false)
+	const [enviando, setEnviando] = useState(false)
+	const [paso, setPaso] = useState<'credenciales' | 'seleccion-cia'>(
+		'credenciales',
+	)
+	const [preToken, setPreToken] = useState('')
+	const [companiasPre, setCompaniasPre] = useState<CompaniaPreSesion[]>(
+		[],
+	)
 
 	useEffect(() => {
 		setMontado(true)
@@ -30,7 +46,9 @@ export default function LoginPage() {
 		return null
 	}
 
-	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(
+		event: React.FormEvent<HTMLFormElement>,
+	) {
 		event.preventDefault()
 		const datos = new FormData(event.currentTarget)
 		const usuarioForm = String(
@@ -41,8 +59,137 @@ export default function LoginPage() {
 			setError('Usuario y contraseña son requeridos')
 			return
 		}
-		guardarSesion(sesionDesdeUsuario(usuarioForm))
-		router.replace('/dashboard')
+		setError('')
+		setEnviando(true)
+		let resultado: Awaited<ReturnType<typeof login>> | null = null
+		try {
+			resultado = await login(usuarioForm, claveForm)
+		} catch (err) {
+			if (axios.isAxiosError(err) && err.response?.status === 403) {
+				setError('Usuario sin compañías asignadas')
+			} else {
+				setError('Credenciales inválidas')
+			}
+			setEnviando(false)
+			return
+		}
+
+		if (resultado.requiereSeleccionCompania) {
+			setUsuario(usuarioForm)
+			setPreToken(resultado.token)
+			setCompaniasPre(resultado.companias)
+			setPaso('seleccion-cia')
+			setEnviando(false)
+			return
+		}
+
+		try {
+			const sesion = await sesionDesdeLoginOk({
+				usuario: usuarioForm,
+				token: resultado.token,
+				id_cia: resultado.id_cia,
+				roles: resultado.roles,
+				permisos: resultado.permisos,
+			})
+			guardarSesion(sesion)
+			router.replace('/dashboard')
+		} catch {
+			setError(
+				'Ingresaste correctamente, pero no se pudo cargar tu información de compañía. Intenta de nuevo.',
+			)
+		} finally {
+			setEnviando(false)
+		}
+	}
+
+	async function handleSeleccionCia(idCia: number) {
+		setError('')
+		setEnviando(true)
+		let resultado: Awaited<ReturnType<typeof selectCompany>> | null =
+			null
+		try {
+			resultado = await selectCompany(idCia, preToken)
+		} catch {
+			setError('No se pudo seleccionar la compañía')
+			setEnviando(false)
+			return
+		}
+
+		try {
+			const sesion = await sesionDesdeLoginOk({
+				usuario,
+				token: resultado.token,
+				id_cia: resultado.id_cia,
+				roles: resultado.roles,
+				permisos: resultado.permisos,
+			})
+			guardarSesion(sesion)
+			router.replace('/dashboard')
+		} catch {
+			setError(
+				'Se seleccionó la compañía, pero no se pudo cargar tu sesión. Intenta de nuevo.',
+			)
+		} finally {
+			setEnviando(false)
+		}
+	}
+
+	if (paso === 'seleccion-cia') {
+		return (
+			<Box
+				sx={{
+					minHeight: '100vh',
+					display: 'grid',
+					placeItems: 'center',
+					backgroundColor: '#fff',
+					px: { xs: 2, md: 3 },
+				}}
+			>
+				<Box sx={{ width: 'min(420px, 100%)' }}>
+					<Typography
+						sx={{
+							fontSize: 24,
+							fontWeight: 700,
+							color: colores.navy,
+							mb: 1,
+						}}
+					>
+						Elige una compañía
+					</Typography>
+					<Typography
+						sx={{
+							fontSize: 13,
+							color: colores.textoSecundario,
+							mb: 3,
+						}}
+					>
+						Tu usuario tiene acceso a varias compañías.
+					</Typography>
+					{error ? (
+						<Alert severity="error" sx={{ mb: 2 }}>
+							{error}
+						</Alert>
+					) : null}
+					<Stack spacing={1.5}>
+						{companiasPre.map((cia) => (
+							<Button
+								key={cia.id}
+								variant="outlined"
+								disabled={enviando}
+								onClick={() => handleSeleccionCia(cia.id)}
+								sx={{
+									justifyContent: 'flex-start',
+									borderRadius: '8px',
+									py: 1.2,
+								}}
+							>
+								{cia.razon_social}
+							</Button>
+						))}
+					</Stack>
+				</Box>
+			</Box>
+		)
 	}
 
 	return (
@@ -219,6 +366,7 @@ export default function LoginPage() {
 							type="submit"
 							variant="contained"
 							fullWidth
+							disabled={enviando}
 							sx={{
 								py: 1.2,
 								fontSize: 14,
@@ -230,7 +378,7 @@ export default function LoginPage() {
 								},
 							}}
 						>
-							INICIAR SESIÓN
+							{enviando ? 'INGRESANDO...' : 'INICIAR SESIÓN'}
 						</Button>
 						<Link
 							component="button"

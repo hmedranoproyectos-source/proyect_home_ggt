@@ -51,7 +51,6 @@ export interface CompaniaApp {
 
 export interface RolApp {
 	id: number
-	idCia: number
 	descripcion: string
 }
 
@@ -60,18 +59,10 @@ export interface PermisoCatalogo {
 	descripcion: string
 }
 
-export interface RolPermisoApp {
-	idRol: number
-	idPermiso: number
-	idCia: number
-}
-
 export interface UsuarioApp {
+	id: number
 	usuario: string
-	nombre: string
-	rol: string
-	estado: 'Activo' | 'Inactivo'
-	ultimoAcceso: string
+	roles: { id: number; descripcion: string }[]
 }
 
 export interface SesionUsuario {
@@ -82,6 +73,8 @@ export interface SesionUsuario {
 	idCia: number
 	razonSocial: string
 	companias: CompaniaApp[]
+	token: string
+	permisos: string[]
 }
 
 export interface FilaComparativo {
@@ -95,10 +88,3 @@ export interface FilaComparativo {
 	resultado: 'Falta ERP' | 'Falta buzón' | 'Valor' | 'Coincide'
 }
 
-export interface PermisoRol {
-	modulo: string
-	administrador: boolean
-	recibidor: boolean
-	costos: boolean
-	contabilidad: boolean
-}

@@ -12,6 +12,19 @@ const ROL_DEFAULT_DESCRIPCION = 'Administrador';
 const PERMISO_DEFAULT_DESCRIPCION = 'ver_facturas';
 const BCRYPT_SALT_ROUNDS = 10;
 
+// Catalogo de permisos "de negocio" que la UI de roles-usuarios espera
+// (antes vivian hardcodeados en frontend/lib/datos-mock.ts). Se siembran
+// aqui ademas de ver_facturas para que GET /api/permisos no devuelva un
+// catalogo casi vacio.
+const PERMISOS_NEGOCIO = [
+  'Dashboard',
+  'Bandeja de facturas',
+  'Ingresar factura',
+  'Informes',
+  'Roles y usuarios',
+  'Compañías',
+];
+
 async function nextId(table, pkColumn = 'id') {
   const [rows] = await db.query(
     `SELECT COALESCE(MAX(${pkColumn}), 0) + 1 AS next FROM ${table}`
@@ -111,6 +124,23 @@ async function getOrCreatePermisoVerFacturas() {
   return result.insertId;
 }
 
+async function getOrCreatePermiso(descripcion) {
+  const [existentes] = await db.query(
+    'SELECT id FROM permisos WHERE descripcion = ? LIMIT 1',
+    [descripcion]
+  );
+  if (existentes.length > 0) {
+    return existentes[0].id;
+  }
+
+  const [result] = await db.query(
+    'INSERT INTO permisos (descripcion) VALUES (?)',
+    [descripcion]
+  );
+  console.log(`[seed] Permiso '${descripcion}' creado (id=${result.insertId})`);
+  return result.insertId;
+}
+
 async function ensureRolPermiso(idRol, idPermiso, idCia) {
   const [existentes] = await db.query(
     'SELECT 1 FROM roles_permisos WHERE id_rol = ? AND id_permiso = ? AND id_cia = ? LIMIT 1',
@@ -152,6 +182,11 @@ async function main() {
   const idPermiso = await getOrCreatePermisoVerFacturas();
   await ensureRolPermiso(idRol, idPermiso, idCia);
   await ensureUsuarioRol(idUsuario, idRol, idCia);
+
+  for (const descripcion of PERMISOS_NEGOCIO) {
+    const idPermisoNegocio = await getOrCreatePermiso(descripcion);
+    await ensureRolPermiso(idRol, idPermisoNegocio, idCia);
+  }
 
   console.log('[seed] Seed de autenticación completado.');
   process.exit(0);
