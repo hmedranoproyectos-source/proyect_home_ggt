@@ -1,16 +1,16 @@
 # Graph Report - proyect_home_ggt  (2026-09-14)
 
 ## Corpus Check
-- 82 files · ~38,607 words
+- 92 files · ~41,488 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 609 nodes · 908 edges · 37 communities (26 shown, 11 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 44 edges (avg confidence: 0.64)
+- 628 nodes · 930 edges · 38 communities (27 shown, 11 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 48 edges (avg confidence: 0.62)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `74a23161`
+- Built from commit: `e51effda`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -23,7 +23,7 @@
 - dependencies
 - 01_schema.sql
 - Recibo FE Create.sql
-- auth.routes.js
+- auth.js
 - backend/package.json
 - graphify Skill
 - Find Skills
@@ -32,6 +32,7 @@
 - siesaConsultasService.js
 - validate-infra.js
 - tema.ts
+- auditoria_acciones
 - eslint.config.mjs
 - next.config.ts
 - README.md
@@ -83,15 +84,15 @@
 - **Docker Compose orchestrated services** — docker_compose_yml_mysql_service, docker_compose_yml_redis_service, docker_compose_yml_phpmyadmin_service, docker_compose_yml_backend_service, docker_compose_yml_worker_service, docker_compose_yml_frontend_service, docker_compose_yml_nginx_service [EXTRACTED 1.00]
 - **Multiempresa auth flow (login, roles, session, id_cia filtering)** — backend_claude_md_login_multiempresa_flow, backend_claude_md_auth_service_js, backend_claude_md_auth_middleware_js, frontend_claude_md_nextauth_session, especificaciones_md_usuarios_roles, claude_md_multiempresa_id_cia [INFERRED 0.85]
 
-## Communities (37 total, 11 thin omitted)
+## Communities (38 total, 11 thin omitted)
 
 ### Community 0 - "Recibo_FE_Create.sql (esquema oficial - DDL)"
 Cohesion: 0.19
 Nodes (16): conciliacion.js service (validateInvoice), RC-06 tabla de auditoría (pendiente de diseño), config_buzon_fe table, detalles_facturas table, detalles_ordenes_compras table, entradas_almacen table, equivalencias_proveedores table, estados_documentos table (chained state machine) (+8 more)
 
 ### Community 1 - "datos-mock.ts"
-Cohesion: 0.06
-Nodes (52): BandejaPage(), handleExportar(), DashboardPage(), KPI, FacturaPage(), FilaResumen(), TabComparativo(), handleExportar() (+44 more)
+Cohesion: 0.05
+Nodes (54): BandejaPage(), handleExportar(), DashboardPage(), KPI, FacturaPage(), FilaResumen(), TabComparativo(), handleExportar() (+46 more)
 
 ### Community 2 - "dependencies"
 Cohesion: 0.05
@@ -117,9 +118,9 @@ Nodes (22): adjuntos_correos, buzones, companias, config_buzon_fe, correos, deta
 Cohesion: 0.21
 Nodes (22): adjuntos_correos, buzones, companias, config_buzon_fe, correos, detalles_entrada_almacen, detalles_facturas, detalles_ordenes_compras (+14 more)
 
-### Community 8 - "auth.routes.js"
-Cohesion: 0.08
-Nodes (17): authService, authController, express, loginLimiter, rateLimit, { requireAuth, requirePreSession }, router, emailConnectionService (+9 more)
+### Community 8 - "auth.js"
+Cohesion: 0.06
+Nodes (23): auditoriaService, auditoriaController, express, { requireAuth }, router, authController, express, loginLimiter (+15 more)
 
 ### Community 9 - "backend/package.json"
 Cohesion: 0.11
@@ -134,12 +135,12 @@ Cohesion: 0.14
 Nodes (13): Common Skill Categories, Find Skills, How to Help Users Find Skills, Step 1: Understand What They Need, Step 2: Check the Leaderboard First, Step 3: Search for Skills, Step 4: Verify Quality Before Recommending, Step 5: Present Options to the User (+5 more)
 
 ### Community 12 - "authService.js"
-Cohesion: 0.12
-Nodes (21): env, mysql, pool, db, env, ESTADOS, main(), seedBuzon() (+13 more)
+Cohesion: 0.16
+Nodes (13): authService, bcrypt, db, env, findUserByUsername(), getCompaniasForUser(), getRolesAndPermisos(), jwt (+5 more)
 
 ### Community 13 - "seedAuth.js"
-Cohesion: 0.29
-Nodes (11): bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol(), getOrCreateCompania(), getOrCreatePermisoVerFacturas(), getOrCreateRolAdministrador() (+3 more)
+Cohesion: 0.13
+Nodes (20): env, mysql, pool, bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol() (+12 more)
 
 ### Community 14 - "siesaConsultasService.js"
 Cohesion: 0.07
@@ -150,8 +151,12 @@ Cohesion: 0.33
 Nodes (5): base, { execSync }, fs, input, path
 
 ### Community 16 - "tema.ts"
-Cohesion: 0.10
-Nodes (23): inter, metadata, LoginPage(), handleSubmit(), HomePage(), activo(), BarraLateral(), handleCerrar() (+15 more)
+Cohesion: 0.11
+Nodes (21): inter, metadata, LoginPage(), handleSubmit(), HomePage(), activo(), BarraLateral(), handleCerrar() (+13 more)
+
+### Community 17 - "auditoria_acciones"
+Cohesion: 0.50
+Nodes (3): companias, auditoria_acciones, usuarios
 
 ### Community 23 - "emailScanProcessor.js"
 Cohesion: 0.12
@@ -179,14 +184,14 @@ Nodes (30): ESTADOS, CODIGOS_IMPUESTO, DocumentoNoFacturaError, DOCUMENTOS_NO_FA
 
 ### Community 31 - "src/index.js"
 Cohesion: 0.05
-Nodes (36): missing, REQUIRED_VARS, connection, env, IORedis, app, authRoutes, configRoutes (+28 more)
+Nodes (37): missing, REQUIRED_VARS, connection, env, IORedis, app, auditoriaRoutes, authRoutes (+29 more)
 
 ## Ambiguous Edges - Review These
 - `facturas table` → `facturas_dian table`  [AMBIGUOUS]
   ESPECIFICACIONES.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **235 isolated node(s):** `KPI`, `ROLES`, `inter`, `metadata`, `ITEMS` (+230 more)
+- **243 isolated node(s):** `auditoriaService`, `express`, `auditoriaController`, `{ requireAuth }`, `router` (+238 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -198,12 +203,12 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `backend/CLAUDE.md (backend conventions)` connect `backend/CLAUDE.md (backend conventions)` to `Recibo_FE_Create.sql (esquema oficial - DDL)`, `adapters/siesa/ (SOAP WSDL adapter)`, `frontend/CLAUDE.md (frontend conventions)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Why does `Recibo_FE_Create.sql (esquema oficial - DDL)` connect `Recibo_FE_Create.sql (esquema oficial - DDL)` to `frontend/CLAUDE.md (frontend conventions)`, `graphify Skill`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)` connect `frontend/CLAUDE.md (frontend conventions)` to `adapters/siesa/ (SOAP WSDL adapter)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
-- **What connects `KPI`, `ROLES`, `inter` to the rest of the system?**
-  _235 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **What connects `auditoriaService`, `express`, `auditoriaController` to the rest of the system?**
+  _243 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `datos-mock.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05543859649122807 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05258033106134372 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._

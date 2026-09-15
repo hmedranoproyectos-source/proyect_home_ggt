@@ -14,7 +14,8 @@ import {
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { colores } from '@/lib/tema'
-import { cerrarSesion, leerSesion } from '@/lib/sesion'
+import { cerrarSesion } from '@/lib/sesion'
+import { useSesion } from '@/lib/sesion-contexto'
 
 const ITEMS = [
 	{
@@ -50,7 +51,7 @@ function activo(pathname: string, href: string): boolean {
 export function BarraLateral() {
 	const pathname = usePathname()
 	const router = useRouter()
-	const sesion = leerSesion()
+	const { sesion } = useSesion()
 
 	function handleCerrar() {
 		cerrarSesion()
@@ -138,7 +139,16 @@ export function BarraLateral() {
 			<Box sx={{ px: 1.5, pb: 1 }}>
 				<Typography sx={{ fontSize: 13, fontWeight: 700 }}>
 					{sesion?.iniciales ?? 'CP'}{' '}
-					{sesion?.rol ?? 'Coordinador de procesos'}
+					{sesion?.rol ?? 'Administrador'}
+				</Typography>
+				<Typography
+					sx={{
+						fontSize: 11,
+						color: 'rgba(255,255,255,0.65)',
+						mt: 0.25,
+					}}
+				>
+					{sesion?.razonSocial ?? 'Inversiones Duquin'}
 				</Typography>
 				<Button
 					onClick={handleCerrar}

@@ -1,10 +1,14 @@
 import type {
+	CompaniaApp,
 	EstadoFactura,
 	EventoTrazabilidad,
 	Factura,
 	FilaComparativo,
 	LineaFactura,
+	PermisoCatalogo,
 	PermisoRol,
+	RolApp,
+	RolPermisoApp,
 	UsuarioApp,
 } from './tipos'
 
@@ -174,6 +178,71 @@ export const REGISTRO_SIESA = {
 	entradaPendiente: 14,
 	causacionPendiente: 21,
 	registroCompleto: 84,
+}
+
+export const COMPANIAS: CompaniaApp[] = [
+	{
+		id: 1,
+		razonSocial: 'Inversiones Duquin',
+		codErp: '001',
+	},
+	{
+		id: 2,
+		razonSocial: 'El Gigante del Hogar',
+		codErp: '002',
+	},
+]
+
+const ROLES_BASE = [
+	'Administrador',
+	'Recibidor',
+	'Costos',
+	'Contabilidad',
+] as const
+
+export const ROLES_APP: RolApp[] = COMPANIAS.flatMap((cia, i) =>
+	ROLES_BASE.map((descripcion, j) => ({
+		id: i * ROLES_BASE.length + j + 1,
+		idCia: cia.id,
+		descripcion,
+	})),
+)
+
+export const PERMISOS_CATALOGO: PermisoCatalogo[] = [
+	{ id: 1, descripcion: 'Dashboard' },
+	{ id: 2, descripcion: 'Bandeja de facturas' },
+	{ id: 3, descripcion: 'Ingresar factura' },
+	{ id: 4, descripcion: 'Informes' },
+	{ id: 5, descripcion: 'Roles y usuarios' },
+	{ id: 6, descripcion: 'Compañías' },
+]
+
+function permisosIniciales(
+	descripcion: string,
+): number[] {
+	if (descripcion === 'Administrador') {
+		return PERMISOS_CATALOGO.map((p) => p.id)
+	}
+	if (descripcion === 'Recibidor') {
+		return [1, 2, 3]
+	}
+	if (descripcion === 'Costos') {
+		return [1, 2, 4]
+	}
+	return [1, 2, 4]
+}
+
+export const ROLES_PERMISOS: RolPermisoApp[] = ROLES_APP.flatMap(
+	(rol) =>
+		permisosIniciales(rol.descripcion).map((idPermiso) => ({
+			idRol: rol.id,
+			idPermiso,
+			idCia: rol.idCia,
+		})),
+)
+
+export function rolesDeCia(idCia: number): RolApp[] {
+	return ROLES_APP.filter((rol) => rol.idCia === idCia)
 }
 
 export const USUARIOS: UsuarioApp[] = [

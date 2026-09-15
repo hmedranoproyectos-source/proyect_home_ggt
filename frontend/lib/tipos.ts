@@ -43,6 +43,29 @@ export interface EventoTrazabilidad {
 	actor: string
 }
 
+export interface CompaniaApp {
+	id: number
+	razonSocial: string
+	codErp: string
+}
+
+export interface RolApp {
+	id: number
+	idCia: number
+	descripcion: string
+}
+
+export interface PermisoCatalogo {
+	id: number
+	descripcion: string
+}
+
+export interface RolPermisoApp {
+	idRol: number
+	idPermiso: number
+	idCia: number
+}
+
 export interface UsuarioApp {
 	usuario: string
 	nombre: string
@@ -56,6 +79,9 @@ export interface SesionUsuario {
 	nombre: string
 	rol: string
 	iniciales: string
+	idCia: number
+	razonSocial: string
+	companias: CompaniaApp[]
 }
 
 export interface FilaComparativo {
