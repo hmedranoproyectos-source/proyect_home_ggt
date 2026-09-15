@@ -1,16 +1,16 @@
 # Graph Report - proyect_home_ggt  (2026-09-14)
 
 ## Corpus Check
-- 92 files · ~41,488 words
+- 110 files · ~42,067 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 659 nodes · 1047 edges · 54 communities (41 shown, 13 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 48 edges (avg confidence: 0.62)
+- 720 nodes · 1129 edges · 60 communities (43 shown, 17 thin omitted)
+- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 60 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a45eca32`
+- Built from commit: `fb1a5d88`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,14 +42,14 @@
 - frontend/CLAUDE.md (frontend conventions)
 - docker-compose.yml orchestration
 - ESPECIFICACIONES.md (functional spec)
-- tab-usuarios.tsx
-- datos-mock.ts
+- tema.ts
+- roles.controller.js
 - ublInvoiceParser.js
 - src/index.js
 - env.js
 - workers/index.js
-- dashboard/page.tsx
-- chip-estado.tsx
+- seedPipeline.js
+- companias.controller.js
 - adjuntos_correos
 - buzones
 - config_buzon_fe
@@ -59,7 +59,7 @@
 - facturas_dian
 - emailScanProcessor.js
 - app/layout.tsx
-- [id]/page.tsx
+- permisos.controller.js
 - auditoriaService.js
 - auth.routes.js
 - attachmentExtractor.js
@@ -67,6 +67,12 @@
 - config.routes.js
 - conciliacionQueue.js
 - config.controller.js
+- usuarios.controller.js
+- companias.routes.js
+- permisos.routes.js
+- roles.routes.js
+- usuarios.routes.js
+- db.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `colores` - 17 edges
@@ -76,9 +82,9 @@
 5. `backend/CLAUDE.md (backend conventions)` - 13 edges
 6. `useSesion()` - 11 edges
 7. `parseUblInvoice()` - 11 edges
-8. `leerSesion()` - 10 edges
+8. `companias` - 10 edges
 9. `companias` - 10 edges
-10. `companias` - 10 edges
+10. `leerSesion()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Recibo_FE_Create.sql (esquema oficial)` --references--> `Recibo_FE_Create.sql (esquema oficial - DDL)`  [INFERRED]
@@ -93,26 +99,27 @@
   backend/CLAUDE.md → CLAUDE.md
 
 ## Import Cycles
-- None detected.
+- 3-file cycle: `frontend/lib/api.ts -> frontend/lib/sesion.ts -> frontend/lib/servicios/companiasApi.ts -> frontend/lib/api.ts`
+- 3-file cycle: `frontend/lib/api.ts -> frontend/lib/sesion.ts -> frontend/lib/servicios/authApi.ts -> frontend/lib/api.ts`
 
 ## Hyperedges (group relationships)
 - **End-to-end conciliación pipeline (Email -> Parse -> SIESA -> Dashboard)** — claude_md_email_worker, claude_md_conciliacion_worker, claude_md_siesa_soap_adapter, claude_md_entrada_almacen, claude_md_causacion_contable, claude_md_dashboard_socketio [EXTRACTED 1.00]
 - **Docker Compose orchestrated services** — docker_compose_yml_mysql_service, docker_compose_yml_redis_service, docker_compose_yml_phpmyadmin_service, docker_compose_yml_backend_service, docker_compose_yml_worker_service, docker_compose_yml_frontend_service, docker_compose_yml_nginx_service [EXTRACTED 1.00]
 - **Multiempresa auth flow (login, roles, session, id_cia filtering)** — backend_claude_md_login_multiempresa_flow, backend_claude_md_auth_service_js, backend_claude_md_auth_middleware_js, frontend_claude_md_nextauth_session, especificaciones_md_usuarios_roles, claude_md_multiempresa_id_cia [INFERRED 0.85]
 
-## Communities (54 total, 13 thin omitted)
+## Communities (60 total, 17 thin omitted)
 
 ### Community 0 - "Recibo_FE_Create.sql (esquema oficial - DDL)"
 Cohesion: 0.19
 Nodes (16): conciliacion.js service (validateInvoice), RC-06 tabla de auditoría (pendiente de diseño), config_buzon_fe table, detalles_facturas table, detalles_ordenes_compras table, entradas_almacen table, equivalencias_proveedores table, estados_documentos table (chained state machine) (+8 more)
 
 ### Community 1 - "informes/page.tsx"
-Cohesion: 0.16
-Nodes (12): BandejaPage(), handleExportar(), TabComparativo(), handleExportar(), TabPorEstado(), COMPARATIVO, ESTADOS, FACTURAS (+4 more)
+Cohesion: 0.07
+Nodes (42): BandejaPage(), handleExportar(), DashboardPage(), KPI, FacturaPage(), FilaResumen(), TabComparativo(), handleExportar() (+34 more)
 
 ### Community 2 - "dependencies"
 Cohesion: 0.05
-Nodes (38): @emotion/react, @emotion/styled, eslint, eslint-config-next, dependencies, @emotion/react, @emotion/styled, lucide-react (+30 more)
+Nodes (40): axios, @emotion/react, @emotion/styled, eslint, eslint-config-next, dependencies, axios, @emotion/react (+32 more)
 
 ### Community 3 - "compilerOptions"
 Cohesion: 0.07
@@ -152,11 +159,11 @@ Nodes (13): Common Skill Categories, Find Skills, How to Help Users Find Skills,
 
 ### Community 12 - "authService.js"
 Cohesion: 0.16
-Nodes (13): authService, bcrypt, db, env, findUserByUsername(), getCompaniasForUser(), getRolesAndPermisos(), jwt (+5 more)
+Nodes (14): authService, bcrypt, db, env, findUserByUsername(), getCompaniasForUser(), getRolesAndPermisos(), jwt (+6 more)
 
 ### Community 13 - "seedAuth.js"
-Cohesion: 0.13
-Nodes (20): env, mysql, pool, bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol() (+12 more)
+Cohesion: 0.24
+Nodes (13): bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol(), getOrCreateCompania(), getOrCreatePermiso(), getOrCreatePermisoVerFacturas() (+5 more)
 
 ### Community 14 - "siesaConsultasService.js"
 Cohesion: 0.07
@@ -167,8 +174,8 @@ Cohesion: 0.33
 Nodes (5): base, { execSync }, fs, input, path
 
 ### Community 16 - "sesion.ts"
-Cohesion: 0.14
-Nodes (22): LoginPage(), handleSubmit(), HomePage(), activo(), BarraLateral(), handleCerrar(), ITEMS, GuardarRuta() (+14 more)
+Cohesion: 0.13
+Nodes (21): CompaniaPreSesion, LoginPage(), handleSeleccionCia(), handleSubmit(), HomePage(), GuardarRuta(), Props, login() (+13 more)
 
 ### Community 17 - "auditoria_acciones"
 Cohesion: 0.50
@@ -194,21 +201,17 @@ Nodes (9): backend service (conciliacion_backend), docker-compose.yml orchestrat
 Cohesion: 0.15
 Nodes (13): ublParser.js (UBL 2.1 tag extraction), ubl-invoice-parsing skill (proposed), BullMQ queue architecture (Scheduler/Worker/retry), ESPECIFICACIONES.md (functional spec), Estado 'En Elaboración' (SIESA Estado 0) business rule, RA - Requisitos de Automatización, RC-04 duplicidad (UNIQUE id_cia, id_proveedor, prefijo_fe, consecutivo_fe), RC - Requisitos de Control y Validación (+5 more)
 
-### Community 28 - "tab-usuarios.tsx"
-Cohesion: 0.20
-Nodes (14): TabCompanias(), TabRoles(), TabUsuarios(), CampoFiltro(), EncabezadoPagina(), Props, rolesDeCia(), sxBotonAzul (+6 more)
-
-### Community 29 - "datos-mock.ts"
-Cohesion: 0.12
-Nodes (22): colorEvento(), ModalTrazabilidad(), Props, COMPANIAS, LINEAS_BASE, PERMISOS, PERMISOS_CATALOGO, permisosIniciales() (+14 more)
+### Community 28 - "tema.ts"
+Cohesion: 0.10
+Nodes (33): TabCompanias(), TabRoles(), TabUsuarios(), activo(), BarraLateral(), handleCerrar(), ITEMS, CampoFiltro() (+25 more)
 
 ### Community 30 - "ublInvoiceParser.js"
 Cohesion: 0.10
 Nodes (30): ESTADOS, CODIGOS_IMPUESTO, DocumentoNoFacturaError, DOCUMENTOS_NO_FACTURA, extractLines(), extractParty(), extractTaxes(), first() (+22 more)
 
 ### Community 31 - "src/index.js"
-Cohesion: 0.11
-Nodes (15): app, auditoriaRoutes, authRoutes, configRoutes, cors, db, env, express (+7 more)
+Cohesion: 0.09
+Nodes (19): app, auditoriaRoutes, authRoutes, companiasRoutes, configRoutes, cors, db, env (+11 more)
 
 ### Community 32 - "env.js"
 Cohesion: 0.18
@@ -222,13 +225,9 @@ Nodes (9): registrarSchedulerEscaneo(), bootstrap(), conciliacionWorker, connect
   EMAIL_SCAN_PATTERN,
 } (+1 more)
 
-### Community 34 - "dashboard/page.tsx"
-Cohesion: 0.22
-Nodes (8): DashboardPage(), KPI, GraficoBarras(), Props, ATENCION_IDS, kpisFacturas(), RECIBIDAS_7_DIAS, REGISTRO_SIESA
-
-### Community 35 - "chip-estado.tsx"
-Cohesion: 0.22
-Nodes (10): ChipEstado(), ChipEstadoProps, ChipSiesa(), ChipSiesaProps, ChipUsuario(), ChipUsuarioProps, ESTILO_ESTADO, PADDING_CHIP (+2 more)
+### Community 34 - "seedPipeline.js"
+Cohesion: 0.38
+Nodes (6): db, env, ESTADOS, main(), seedBuzon(), seedEstados()
 
 ### Community 44 - "emailScanProcessor.js"
 Cohesion: 0.29
@@ -240,10 +239,6 @@ Nodes (7): conciliacionQueue, db, { extraerAdjuntos }, {
 ### Community 45 - "app/layout.tsx"
 Cohesion: 0.29
 Nodes (5): inter, metadata, Props, ProveedoresApp(), tema
-
-### Community 46 - "[id]/page.tsx"
-Cohesion: 0.39
-Nodes (6): FacturaPage(), FilaResumen(), ModalOrdenCompra(), Props, buscarFactura(), formatoMoneda()
 
 ### Community 48 - "auth.routes.js"
 Cohesion: 0.29
@@ -265,14 +260,34 @@ Nodes (4): configController, express, { requireAuth, requirePermission }, router
 Cohesion: 0.40
 Nodes (4): conciliacionQueue, connection, env, { Queue }
 
+### Community 55 - "companias.routes.js"
+Cohesion: 0.40
+Nodes (4): companiasController, express, { requireAuth }, router
+
+### Community 56 - "permisos.routes.js"
+Cohesion: 0.40
+Nodes (4): express, permisosController, { requireAuth }, router
+
+### Community 57 - "roles.routes.js"
+Cohesion: 0.40
+Nodes (4): express, { requireAuth }, rolesController, router
+
+### Community 58 - "usuarios.routes.js"
+Cohesion: 0.40
+Nodes (4): express, { requireAuth }, router, usuariosController
+
+### Community 59 - "db.js"
+Cohesion: 0.50
+Nodes (3): env, mysql, pool
+
 ## Ambiguous Edges - Review These
 - `facturas table` → `facturas_dian table`  [AMBIGUOUS]
   ESPECIFICACIONES.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **246 isolated node(s):** `ITEMS`, `Props`, `LINEAS_BASE`, `ROLES_BASE`, `ROLES_APP` (+241 more)
+- **279 isolated node(s):** `authService`, `express`, `rateLimit`, `authController`, `{ requireAuth, requirePreSession }` (+274 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **17 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -280,14 +295,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **What is the exact relationship between `facturas table` and `facturas_dian table`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **Why does `backend/CLAUDE.md (backend conventions)` connect `backend/CLAUDE.md (backend conventions)` to `Recibo_FE_Create.sql (esquema oficial - DDL)`, `adapters/siesa/ (SOAP WSDL adapter)`, `frontend/CLAUDE.md (frontend conventions)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`?**
-  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `Recibo_FE_Create.sql (esquema oficial - DDL)` connect `Recibo_FE_Create.sql (esquema oficial - DDL)` to `frontend/CLAUDE.md (frontend conventions)`, `graphify Skill`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **Why does `PROYECT-GGT (Aplicativo de Conciliación DIAN-SIESA)` connect `frontend/CLAUDE.md (frontend conventions)` to `adapters/siesa/ (SOAP WSDL adapter)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`, `backend/CLAUDE.md (backend conventions)`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **What connects `ITEMS`, `Props`, `LINEAS_BASE` to the rest of the system?**
-  _246 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **What connects `authService`, `express`, `rateLimit` to the rest of the system?**
+  _279 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `informes/page.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.06721215663354763 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
-- **Should `compilerOptions` be split into smaller, more focused modules?**
-  _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
