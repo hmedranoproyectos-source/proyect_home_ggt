@@ -9,4 +9,14 @@ async function testEmailConnection(req, res) {
   }
 }
 
-module.exports = { testEmailConnection };
+async function countEmails(req, res) {
+  try {
+    const mailbox = req.query.mailbox || 'INBOX';
+    const result = await emailConnectionService.countMessages(mailbox);
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(502).json({ ok: false, error: err.message });
+  }
+}
+
+module.exports = { testEmailConnection, countEmails };

@@ -1,0 +1,310 @@
+{
+  "info": {
+    "name": "GGT-HOME — API Conciliación DIAN-SIESA",
+    "description": "Colección para probar autenticación multiempresa y el catálogo de consultas UnoEE/SIESA (EjecutarConsultaXML) expuesto en /api/siesa.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3001", "type": "string" },
+    { "key": "usuario", "value": "admin", "type": "string" },
+    { "key": "clave", "value": "", "type": "string" },
+    { "key": "pre_token", "value": "", "type": "string" },
+    { "key": "token", "value": "", "type": "string" },
+    { "key": "id_cia", "value": "1", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const data = pm.response.json();",
+                  "if (data.requiereSeleccionCompania) {",
+                  "    pm.collectionVariables.set('pre_token', data.token);",
+                  "    console.log('Usuario con varias companias. Companias disponibles:', data.companias);",
+                  "    console.log('Ejecuta \"Select Company\" con el id_cia deseado.');",
+                  "} else if (data.token) {",
+                  "    pm.collectionVariables.set('token', data.token);",
+                  "    pm.collectionVariables.set('id_cia', String(data.id_cia));",
+                  "    console.log('Login OK, token final guardado.');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuario\": \"{{usuario}}\",\n  \"clave\": \"{{clave}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Si el usuario tiene 1 sola compania devuelve token final directo. Si tiene varias, devuelve requiereSeleccionCompania=true + un pre_token (5 min) -> usar 'Select Company'."
+          }
+        },
+        {
+          "name": "Select Company",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const data = pm.response.json();",
+                  "if (data.token) {",
+                  "    pm.collectionVariables.set('token', data.token);",
+                  "    pm.collectionVariables.set('id_cia', String(data.id_cia));",
+                  "    console.log('Compania seleccionada, token final guardado.');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{pre_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id_cia\": \"{{id_cia}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/select-company",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "select-company"]
+            },
+            "description": "Solo necesario si Login devolvio requiereSeleccionCompania=true. Usa el pre_token guardado por Login."
+          }
+        },
+        {
+          "name": "Me (verificar token)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "SIESA - Consultas UnoEE",
+      "auth": {
+        "type": "bearer",
+        "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+      },
+      "item": [
+        {
+          "name": "1. Centros de Costos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/centros-costos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "centros-costos"]
+            }
+          }
+        },
+        {
+          "name": "2. Unidades de Negocios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/unidades-negocios",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "unidades-negocios"]
+            }
+          }
+        },
+        {
+          "name": "3. Motivos por Concepto",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/motivos-por-concepto?id_concepto=401",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "motivos-por-concepto"],
+              "query": [
+                { "key": "id_concepto", "value": "401", "description": "Codigo del concepto a filtrar" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "4. Monedas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/monedas",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "monedas"]
+            }
+          }
+        },
+        {
+          "name": "5. Compradores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/compradores",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "compradores"]
+            }
+          }
+        },
+        {
+          "name": "6. Bodegas por Centro de Operacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/bodegas-por-co?id_co=01",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "bodegas-por-co"],
+              "query": [
+                { "key": "id_co", "value": "01", "description": "Codigo del Centro de Operacion" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "7. Tipo de Documento por Clase",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/tipo-documento-por-clase?id_clase_docto=COM",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "tipo-documento-por-clase"],
+              "query": [
+                { "key": "id_clase_docto", "value": "COM", "description": "PENDIENTE: el WS espera smallint, no varchar. 'COM' devuelve error de conversion. Confirmar codigo numerico real de clase de documento con el admin del ERP UnoEE antes de probar." }
+              ]
+            },
+            "description": "PENDIENTE de confirmar id_clase_docto real (numerico) con el administrador del ERP. 'COM' (Tipo_Documento de SIESA) no aplica aqui, el WS lo rechaza con: \"Error de conversion al convertir el valor varchar 'COM' al tipo de datos smallint.\""
+          }
+        },
+        {
+          "name": "8. Centros de Operacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/centros-operacion",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "centros-operacion"]
+            }
+          }
+        },
+        {
+          "name": "9. Ordenes de Compra",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/ordenes-compras?fecha_desde=20260101&fecha_hasta=20260831",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "ordenes-compras"],
+              "query": [
+                { "key": "fecha_desde", "value": "20260101", "description": "Formato a confirmar con admin ERP: YYYYMMDD o YYYY-MM-DD" },
+                { "key": "fecha_hasta", "value": "20260831" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "10. Facturas de Compras a Proveedores",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/facturas-compras-proveedores?fecha_desde=20260101&fecha_hasta=20260831",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "facturas-compras-proveedores"],
+              "query": [
+                { "key": "fecha_desde", "value": "20260101", "description": "Formato a confirmar con admin ERP: YYYYMMDD o YYYY-MM-DD" },
+                { "key": "fecha_hasta", "value": "20260831" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "11. Entrada de Compra por Referencia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/entrada-compra-por-referencia?documento_referencia=FE12345",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "entrada-compra-por-referencia"],
+              "query": [
+                { "key": "documento_referencia", "value": "FE12345", "description": "Numero de documento externo (remision/factura proveedor)" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Config - Email",
+      "auth": {
+        "type": "bearer",
+        "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+      },
+      "item": [
+        {
+          "name": "Test Connection",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/config/email/test-connection",
+              "host": ["{{base_url}}"],
+              "path": ["api", "config", "email", "test-connection"]
+            }
+          }
+        },
+        {
+          "name": "Contar Correos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/config/email/count?mailbox=INBOX",
+              "host": ["{{base_url}}"],
+              "path": ["api", "config", "email", "count"],
+              "query": [
+                { "key": "mailbox", "value": "INBOX", "description": "Nombre del buzon/carpeta IMAP a consultar (default INBOX)" }
+              ]
+            },
+            "description": "Devuelve { mailbox, total, noLeidos } del buzon configurado por IMAP_HOST/IMAP_USER/IMAP_PASSWORD."
+          }
+        }
+      ]
+    }
+  ]
+}
