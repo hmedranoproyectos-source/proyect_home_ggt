@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react'
 import { colores } from '@/lib/tema'
 import { guardarSesion, sesionDesdeLoginOk } from '@/lib/sesion'
 import { login, selectCompany } from '@/lib/servicios/authApi'
+import { primeraRutaPermitida } from '@/lib/permisos-rutas'
 
 const RADIO_CUADRO = '20px'
 
@@ -92,7 +93,7 @@ export default function LoginPage() {
 				permisos: resultado.permisos,
 			})
 			guardarSesion(sesion)
-			router.replace('/dashboard')
+			router.replace(primeraRutaPermitida(sesion.permisos) ?? '/dashboard')
 		} catch {
 			setError(
 				'Ingresaste correctamente, pero no se pudo cargar tu información de compañía. Intenta de nuevo.',
@@ -124,7 +125,7 @@ export default function LoginPage() {
 				permisos: resultado.permisos,
 			})
 			guardarSesion(sesion)
-			router.replace('/dashboard')
+			router.replace(primeraRutaPermitida(sesion.permisos) ?? '/dashboard')
 		} catch {
 			setError(
 				'Se seleccionó la compañía, pero no se pudo cargar tu sesión. Intenta de nuevo.',

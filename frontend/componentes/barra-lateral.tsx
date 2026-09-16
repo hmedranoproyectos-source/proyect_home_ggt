@@ -16,25 +16,14 @@ import { usePathname, useRouter } from 'next/navigation'
 import { colores } from '@/lib/tema'
 import { cerrarSesion } from '@/lib/sesion'
 import { useSesion } from '@/lib/sesion-contexto'
+import { ITEMS_MENU, tienePermiso } from '@/lib/permisos-rutas'
 
-const ITEMS = [
-	{
-		href: '/dashboard',
-		label: 'Dashboard',
-		icono: LayoutDashboard,
-	},
-	{
-		href: '/bandeja',
-		label: 'Bandeja de facturas',
-		icono: FileSpreadsheet,
-	},
-	{ href: '/informes', label: 'Informes', icono: BarChart3 },
-	{
-		href: '/roles-usuarios',
-		label: 'Roles y usuarios',
-		icono: Users,
-	},
-]
+const ICONOS = {
+	'/dashboard': LayoutDashboard,
+	'/bandeja': FileSpreadsheet,
+	'/informes': BarChart3,
+	'/roles-usuarios': Users,
+} as const
 
 function activo(pathname: string, href: string): boolean {
 	if (href === '/dashboard') {
@@ -52,6 +41,10 @@ export function BarraLateral() {
 	const pathname = usePathname()
 	const router = useRouter()
 	const { sesion } = useSesion()
+	const permisos = sesion?.permisos ?? []
+	const itemsVisibles = ITEMS_MENU.filter((item) =>
+		tienePermiso(permisos, item.permiso),
+	)
 
 	function handleCerrar() {
 		cerrarSesion()
@@ -89,8 +82,8 @@ export function BarraLateral() {
 			</Box>
 
 			<Stack spacing={0.75} sx={{ flex: 1 }}>
-				{ITEMS.map((item) => {
-					const Icono = item.icono
+				{itemsVisibles.map((item) => {
+					const Icono = ICONOS[item.href]
 					const estaActivo = activo(pathname, item.href)
 					return (
 						<Button

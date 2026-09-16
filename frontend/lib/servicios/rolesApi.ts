@@ -14,3 +14,28 @@ export async function permisosDeRol(
 	)
 	return data
 }
+
+export interface NuevoRol {
+	descripcion: string
+	permisos: number[]
+}
+
+export async function crearRol(payload: NuevoRol): Promise<RolApp> {
+	const { data } = await api.post<RolApp>('/roles', payload)
+	return data
+}
+
+export async function actualizarPermisosDeRol(
+	idRol: number,
+	permisos: number[],
+): Promise<RolApp & { permisos: PermisoCatalogo[] }> {
+	const { data } = await api.put<RolApp & { permisos: PermisoCatalogo[] }>(
+		`/roles/${idRol}/permisos`,
+		{ permisos },
+	)
+	return data
+}
+
+export async function eliminarRol(idRol: number): Promise<void> {
+	await api.delete(`/roles/${idRol}`)
+}

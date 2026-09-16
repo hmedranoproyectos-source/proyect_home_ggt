@@ -7,17 +7,22 @@ const PRE_SESSION_EXPIRES_IN = '5m';
 
 async function findUserByUsername(usuario) {
   const [rows] = await db.query(
-    'SELECT id, usuario, clave FROM usuarios WHERE usuario = ? LIMIT 1',
+    'SELECT id, usuario, clave FROM usuarios WHERE usuario = ? AND activo = 1 LIMIT 1',
     [usuario]
   );
   return rows[0] || null;
 }
 
+// activo=1 en companias, roles Y usuarios_roles->roles: un usuario
+// desactivado, un rol desactivado, o una compania desactivada no deben
+// seguir dando acceso, ni aparecer como opcion en el selector de compania
+// del login multiempresa.
 async function getCompaniasForUser(idUsuario) {
   const [rows] = await db.query(
     `SELECT DISTINCT c.id, c.razon_social
      FROM usuarios_roles ur
-     JOIN companias c ON c.id = ur.id_cia
+     JOIN companias c ON c.id = ur.id_cia AND c.activo = 1
+     JOIN roles r ON r.id = ur.id_rol AND r.id_cia = ur.id_cia AND r.activo = 1
      WHERE ur.id_usuario = ?`,
     [idUsuario]
   );
@@ -26,7 +31,11 @@ async function getCompaniasForUser(idUsuario) {
 
 async function userHasAccessToCompania(idUsuario, idCia) {
   const [rows] = await db.query(
-    'SELECT 1 FROM usuarios_roles WHERE id_usuario = ? AND id_cia = ? LIMIT 1',
+    `SELECT 1 FROM usuarios_roles ur
+     JOIN companias c ON c.id = ur.id_cia AND c.activo = 1
+     JOIN roles r ON r.id = ur.id_rol AND r.id_cia = ur.id_cia AND r.activo = 1
+     WHERE ur.id_usuario = ? AND ur.id_cia = ?
+     LIMIT 1`,
     [idUsuario, idCia]
   );
   return rows.length > 0;
@@ -37,13 +46,14 @@ async function getRolesAndPermisos(idUsuario, idCia) {
     `SELECT r.id AS id_rol, r.descripcion
      FROM usuarios_roles ur
      JOIN roles r ON r.id = ur.id_rol AND r.id_cia = ur.id_cia
-     WHERE ur.id_usuario = ? AND ur.id_cia = ?`,
+     WHERE ur.id_usuario = ? AND ur.id_cia = ? AND r.activo = 1`,
     [idUsuario, idCia]
   );
 
   const [permisoRows] = await db.query(
     `SELECT DISTINCT p.descripcion
      FROM usuarios_roles ur
+     JOIN roles r ON r.id = ur.id_rol AND r.id_cia = ur.id_cia AND r.activo = 1
      JOIN roles_permisos rp ON rp.id_rol = ur.id_rol AND rp.id_cia = ur.id_cia
      JOIN permisos p ON p.id = rp.id_permiso
      WHERE ur.id_usuario = ? AND ur.id_cia = ?`,

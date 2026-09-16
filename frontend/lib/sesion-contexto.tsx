@@ -9,21 +9,26 @@ import {
 } from 'react'
 import {
 	cerrarSesion as cerrarSesionStorage,
+	guardarSesion,
 	leerSesion,
 	seleccionarCiaEnSesion,
 } from '@/lib/sesion'
-import type { SesionUsuario } from '@/lib/tipos'
+import type { CompaniaApp, SesionUsuario } from '@/lib/tipos'
 
 interface ValorSesion {
 	sesion: SesionUsuario | null
 	seleccionarCia: (idCia: number) => Promise<void>
 	cerrarSesion: () => void
+	agregarCompaniaCreada: (cia: CompaniaApp) => void
+	quitarCompaniaEliminada: (idCia: number) => void
 }
 
 const SesionContexto = createContext<ValorSesion>({
 	sesion: null,
 	seleccionarCia: async () => undefined,
 	cerrarSesion: () => undefined,
+	agregarCompaniaCreada: () => undefined,
+	quitarCompaniaEliminada: () => undefined,
 })
 
 export function SesionProveedor({
@@ -47,6 +52,28 @@ export function SesionProveedor({
 			cerrarSesion: () => {
 				cerrarSesionStorage()
 				setSesion(null)
+			},
+			agregarCompaniaCreada: (cia: CompaniaApp) => {
+				setSesion((prev) => {
+					if (!prev) return prev
+					const siguiente = {
+						...prev,
+						companias: [...prev.companias, cia],
+					}
+					guardarSesion(siguiente)
+					return siguiente
+				})
+			},
+			quitarCompaniaEliminada: (idCia: number) => {
+				setSesion((prev) => {
+					if (!prev) return prev
+					const siguiente = {
+						...prev,
+						companias: prev.companias.filter((c) => c.id !== idCia),
+					}
+					guardarSesion(siguiente)
+					return siguiente
+				})
 			},
 		}),
 		[sesion],

@@ -24,3 +24,19 @@ export async function listarCompanias(
 		codErp: item.cod_erp,
 	}))
 }
+
+export interface NuevaCompania {
+	razonSocial: string
+	codErp: string
+}
+
+export async function crearCompania(
+	payload: NuevaCompania,
+): Promise<CompaniaApp> {
+	const { data } = await api.post<CompaniaApp>('/companias', payload)
+	return data
+}
+
+export async function eliminarCompania(id: number): Promise<void> {
+	await api.delete(`/companias/${id}`)
+}
