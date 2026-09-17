@@ -46,6 +46,7 @@ export function tienePermiso(permisos: string[], permiso: string): boolean {
 export const PERMISO_GESTIONAR_USUARIOS = 'gestionar_usuarios'
 export const PERMISO_GESTIONAR_ROLES = 'gestionar_roles'
 export const PERMISO_GESTIONAR_COMPANIAS = 'gestionar_companias'
+export const PERMISO_GESTIONAR_CONFIG_EMAIL = 'gestionar_config_email'
 
 export function primeraRutaPermitida(permisos: string[]): string | null {
 	const item = ITEMS_MENU.find((i) => tienePermiso(permisos, i.permiso))

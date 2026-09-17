@@ -65,6 +65,19 @@ export interface UsuarioApp {
 	roles: { id: number; descripcion: string }[]
 }
 
+export interface ConfigBuzonApp {
+	id: number | null
+	idCia: number
+	descripcion: string
+	protocolo: string
+	servidor: string
+	puerto: number
+	cifrado: string
+	usuario: string
+	tieneClave: boolean
+	carpeta: string
+}
+
 export interface SesionUsuario {
 	usuario: string
 	nombre: string

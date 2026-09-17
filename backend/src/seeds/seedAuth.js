@@ -26,6 +26,7 @@ const PERMISOS_NEGOCIO = [
   'gestionar_usuarios',
   'gestionar_roles',
   'gestionar_companias',
+  'gestionar_config_email',
 ];
 
 async function nextId(table, pkColumn = 'id') {

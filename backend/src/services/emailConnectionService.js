@@ -1,34 +1,48 @@
 const Imap = require('imap');
 const { simpleParser } = require('mailparser');
-const env = require('../config/env');
+const configBuzonService = require('./configBuzonService');
 
 const CONNECT_TIMEOUT_MS = 10000;
 
-function buildImapConfig() {
-  if (!env.IMAP_HOST || !env.IMAP_USER) {
-    throw new Error('Configuración IMAP incompleta (IMAP_HOST/IMAP_USER)');
+function buildImapConfig({ servidor, puerto, usuario, clave, cifrado }) {
+  if (!servidor || !usuario) {
+    throw new Error('Configuración IMAP incompleta (servidor/usuario)');
+  }
+  if (!clave) {
+    throw new Error('Configuración IMAP incompleta (clave)');
   }
 
-  const base = {
-    user: env.IMAP_USER,
-    host: env.IMAP_HOST,
-    port: env.IMAP_PORT,
-    tls: true,
+  const tls = String(cifrado || 'TLS').toUpperCase() !== 'NONE';
+
+  return {
+    user: usuario,
+    password: clave,
+    host: servidor,
+    port: Number(puerto) || 993,
+    tls,
     // node-imap conecta pasando un socket propio a tls.connect() pero no fija
     // `servername`, así que sin esto el SNI queda vacío y el handshake TLS
     // contra Gmail cae con DEPTH_ZERO_SELF_SIGNED_CERT (ver Connection.js:~118).
-    tlsOptions: { servername: env.IMAP_HOST },
+    tlsOptions: { servername: servidor },
     connTimeout: CONNECT_TIMEOUT_MS,
   };
-
-  if (!env.IMAP_PASSWORD) {
-    throw new Error('Configuración IMAP incompleta (IMAP_PASSWORD)');
-  }
-  return { ...base, password: env.IMAP_PASSWORD };
 }
 
-async function testConnection() {
-  const config = buildImapConfig();
+async function resolverImapConfig(idCia) {
+  const credenciales = await configBuzonService.obtenerCredenciales(idCia);
+  return buildImapConfig(credenciales);
+}
+
+async function testConnection(idCia, override = {}) {
+  const guardadas = await configBuzonService.obtenerCredenciales(idCia);
+  const credenciales = {
+    servidor: override.servidor || guardadas.servidor,
+    puerto: override.puerto || guardadas.puerto,
+    usuario: override.usuario || guardadas.usuario,
+    cifrado: override.cifrado || guardadas.cifrado,
+    clave: override.clave || guardadas.clave,
+  };
+  const config = buildImapConfig(credenciales);
 
   return new Promise((resolve, reject) => {
     const imap = new Imap(config);
@@ -58,8 +72,8 @@ async function testConnection() {
 // node-imap al abrir el buzón, sin necesidad de un SEARCH aparte para el
 // total. `noReadOnce` (UNSEEN) sí requiere SEARCH porque `box.messages.new`
 // cuenta solo "recent", no exactamente los no leídos.
-async function countMessages(mailbox = 'INBOX') {
-  const config = buildImapConfig();
+async function countMessages(idCia, mailbox = 'INBOX') {
+  const config = await resolverImapConfig(idCia);
 
   return new Promise((resolve, reject) => {
     const imap = new Imap(config);
@@ -103,8 +117,8 @@ async function countMessages(mailbox = 'INBOX') {
 // para poder marcar \Seen: esa marca es la que evita reprocesar el mismo
 // correo en el siguiente escaneo, asi que solo se aplica cuando el llamador
 // confirma que el correo quedo persistido (ver `marcarComoLeido`).
-async function fetchUnreadMessages(mailbox = 'INBOX', { limit = 25 } = {}) {
-  const config = buildImapConfig();
+async function fetchUnreadMessages(mailbox = 'INBOX', { limit = 25, idCia } = {}) {
+  const config = await resolverImapConfig(idCia);
 
   return new Promise((resolve, reject) => {
     const imap = new Imap(config);
@@ -186,9 +200,9 @@ async function fetchUnreadMessages(mailbox = 'INBOX', { limit = 25 } = {}) {
 // Marca como leidos los uids indicados. Se invoca despues de persistir, para
 // que un fallo de BD deje el correo sin marcar y se reintente en el siguiente
 // ciclo en vez de perderse.
-async function marcarComoLeido(uids, mailbox = 'INBOX') {
+async function marcarComoLeido(uids, mailbox = 'INBOX', { idCia } = {}) {
   if (!uids || uids.length === 0) return;
-  const config = buildImapConfig();
+  const config = await resolverImapConfig(idCia);
 
   return new Promise((resolve, reject) => {
     const imap = new Imap(config);

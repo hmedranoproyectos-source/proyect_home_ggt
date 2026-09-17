@@ -44,7 +44,7 @@ async function procesarEscaneo(job) {
   const mailbox = job.data?.mailbox || 'INBOX';
   const { id_buzon: idBuzon, id_cia: idCia } = await resolverBuzon(mailbox);
 
-  const mensajes = await fetchUnreadMessages(mailbox);
+  const mensajes = await fetchUnreadMessages(mailbox, { idCia });
   if (mensajes.length === 0) {
     return { correos: 0, facturas: 0, errores: 0, ignorados: 0 };
   }
@@ -124,7 +124,7 @@ async function procesarEscaneo(job) {
   }
 
   if (uidsProcesados.length > 0) {
-    await marcarComoLeido(uidsProcesados, mailbox);
+    await marcarComoLeido(uidsProcesados, mailbox, { idCia });
   }
 
   return resumen;

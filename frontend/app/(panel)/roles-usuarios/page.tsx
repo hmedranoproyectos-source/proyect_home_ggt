@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import { useState } from 'react'
 import { EncabezadoPagina } from '@/componentes/encabezado-pagina'
+import { TabBuzon } from './tab-buzon'
 import { TabCompanias } from './tab-companias'
 import { TabRoles } from './tab-roles'
 import { TabUsuarios } from './tab-usuarios'
@@ -24,13 +25,16 @@ export default function RolesUsuariosPage() {
 				<Tab label="Usuarios" />
 				<Tab label="Roles y permisos" />
 				<Tab label="Compañías" />
+				<Tab label="Buzón" />
 			</Tabs>
 			{tab === 0 ? (
 				<TabUsuarios />
 			) : tab === 1 ? (
 				<TabRoles />
-			) : (
+			) : tab === 2 ? (
 				<TabCompanias />
+			) : (
+				<TabBuzon />
 			)}
 		</Box>
 	)
