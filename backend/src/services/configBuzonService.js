@@ -1,3 +1,4 @@
+const path = require('path');
 const db = require('../config/db');
 const env = require('../config/env');
 
@@ -5,6 +6,20 @@ const CARPETA_DEFAULT = 'INBOX';
 const PROTOCOLO_DEFAULT = 'IMAP';
 const CIFRADO_DEFAULT = 'TLS';
 const PUERTO_DEFAULT = 993;
+// Raiz del bind-mount host<->contenedor (docker-compose.yml: backend/worker
+// -> C:/Documentos/DescargasFacturas). `ruta_descargas` en config_buzon_fe es
+// siempre una SUBCARPETA relativa a esta raiz, nunca una ruta absoluta del
+// host: el contenedor no tiene visibilidad de otras rutas de Windows.
+const DOWNLOADS_BASE_PATH = '/app/descargas-facturas';
+// Carpetas destino del clasificador de correos (ver emailScanProcessor.js).
+// Ya se crearon manualmente en el buzon real vs imap.gmail.com; el worker
+// las referencia por nombre, no las crea (node-imap addBox es idempotente
+// pero crear carpetas no es responsabilidad del escaneo periodico).
+const CARPETA_PROCESADOS = 'PROCESADOS';
+const CARPETA_DUPLICADOS = 'DUPLICADOS';
+const CARPETA_ERROR_FORMATO = 'ERROR_FORMATO';
+const CARPETA_NOTA_CREDITO = 'NOTA CREDITO';
+const CARPETA_NOTA_DEBITO = 'NOTA DEBITO';
 
 function mapearPublico(row, carpeta) {
   if (!row) return null;
@@ -19,6 +34,7 @@ function mapearPublico(row, carpeta) {
     usuario: row.usuario,
     tieneClave: Boolean(row.clave),
     carpeta: carpeta || CARPETA_DEFAULT,
+    rutaDescargas: row.ruta_descargas || '',
   };
 }
 
@@ -34,13 +50,14 @@ function defaults(idCia) {
     usuario: '',
     tieneClave: false,
     carpeta: CARPETA_DEFAULT,
+    rutaDescargas: '',
   };
 }
 
 async function obtenerPorCia(idCia) {
   const [rows] = await db.query(
     `SELECT id, id_cia, descripcion, protocolo, servidor, puerto,
-            cifrado, usuario, clave
+            cifrado, usuario, clave, ruta_descargas
        FROM config_buzon_fe
       WHERE id_cia = ?
       ORDER BY id
@@ -60,6 +77,34 @@ async function obtenerPorCia(idCia) {
   );
 
   return mapearPublico(rows[0], buzones[0]?.carpeta);
+}
+
+// Sanitiza la subcarpeta configurada por el usuario: quita separadores de
+// Windows/Unix iniciales, ".." y unidades ("C:") para que path.join no pueda
+// escapar de DOWNLOADS_BASE_PATH (el campo del frontend es texto libre).
+function sanitizarSubcarpeta(valor) {
+  if (!valor) return '';
+  return String(valor)
+    .replace(/^[a-zA-Z]:/, '')
+    .split(/[\\/]+/)
+    .filter((seg) => seg && seg !== '.' && seg !== '..')
+    .join('/');
+}
+
+// Ruta de descargas efectiva para un correo entrante (RP-01): subcarpeta
+// configurada por compania en config_buzon_fe (relativa a
+// DOWNLOADS_BASE_PATH), o el fallback de entorno DOWNLOADS_PATH si la
+// compania no la definio todavia.
+async function obtenerRutaDescargas(idCia) {
+  const [rows] = await db.query(
+    'SELECT ruta_descargas FROM config_buzon_fe WHERE id_cia = ? ORDER BY id LIMIT 1',
+    [idCia]
+  );
+  const fila = rows[0];
+  const subcarpeta = sanitizarSubcarpeta(
+    (fila && fila.ruta_descargas) || env.DOWNLOADS_PATH
+  );
+  return subcarpeta ? path.join(DOWNLOADS_BASE_PATH, subcarpeta) : DOWNLOADS_BASE_PATH;
 }
 
 // Credenciales para conectar IMAP. Prioridad: fila de la cia con clave;
@@ -113,6 +158,7 @@ async function guardar({
   usuario,
   clave,
   carpeta,
+  rutaDescargas,
 }) {
   const conn = await db.getConnection();
   try {
@@ -138,7 +184,7 @@ async function guardar({
       await conn.query(
         `UPDATE config_buzon_fe
             SET descripcion = ?, protocolo = ?, servidor = ?, puerto = ?,
-                cifrado = ?, usuario = ?, clave = ?
+                cifrado = ?, usuario = ?, clave = ?, ruta_descargas = ?
           WHERE id = ? AND id_cia = ?`,
         [
           descripcion,
@@ -148,6 +194,7 @@ async function guardar({
           cifrado,
           usuario,
           claveFinal,
+          rutaDescargas || null,
           idConfig,
           idCia,
         ]
@@ -155,8 +202,8 @@ async function guardar({
     } else {
       const [result] = await conn.query(
         `INSERT INTO config_buzon_fe
-           (id_cia, descripcion, protocolo, servidor, puerto, cifrado, usuario, clave)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+           (id_cia, descripcion, protocolo, servidor, puerto, cifrado, usuario, clave, ruta_descargas)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           idCia,
           descripcion,
@@ -166,6 +213,7 @@ async function guardar({
           cifrado,
           usuario,
           claveFinal,
+          rutaDescargas || null,
         ]
       );
       idConfig = result.insertId;
@@ -188,7 +236,14 @@ module.exports = {
   PROTOCOLO_DEFAULT,
   CIFRADO_DEFAULT,
   PUERTO_DEFAULT,
+  CARPETA_PROCESADOS,
+  CARPETA_DUPLICADOS,
+  CARPETA_ERROR_FORMATO,
+  CARPETA_NOTA_CREDITO,
+  CARPETA_NOTA_DEBITO,
+  DOWNLOADS_BASE_PATH,
   obtenerPorCia,
   obtenerCredenciales,
+  obtenerRutaDescargas,
   guardar,
 };

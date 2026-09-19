@@ -40,4 +40,7 @@ module.exports = {
   IMAP_PORT: Number(process.env.IMAP_PORT) || 993,
   IMAP_USER: process.env.IMAP_USER,
   IMAP_PASSWORD: process.env.IMAP_PASSWORD,
+  // Subcarpeta relativa por defecto (ver configBuzonService.obtenerRutaDescargas)
+  // si la compañía no configuró ruta_descargas en config_buzon_fe (tab Buzón).
+  DOWNLOADS_PATH: process.env.DOWNLOADS_PATH || '',
 };

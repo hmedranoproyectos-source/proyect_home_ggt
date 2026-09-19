@@ -6,6 +6,8 @@ const {
   UblParseError,
   DocumentoNoFacturaError,
 } = require('../parsers/ublInvoiceParser');
+const { guardarAdjunto } = require('./attachmentStorage');
+const configBuzonService = require('./configBuzonService');
 
 // Persistencia del pipeline de ingesta (RI-01, RI-02, RC-04).
 //
@@ -38,10 +40,13 @@ function joinAddresses(value) {
 }
 
 /**
- * Registra el correo recibido y sus adjuntos.
+ * Registra el correo recibido y sus adjuntos. Cada adjunto (xml/pdf) se
+ * escribe primero a disco en la ruta configurada por compania (tab Buzon)
+ * y `adjuntos_correos.ruta` guarda esa ruta real, no el identificador
+ * logico dentro del zip.
  * Devuelve el id del correo creado.
  */
-async function registrarCorreo(conn, { idBuzon, mail, adjuntos }) {
+async function registrarCorreo(conn, { idCia, idBuzon, uidCorreo, mail, adjuntos }) {
   const [result] = await conn.query(
     `INSERT INTO correos (id_buzon, remitentes, destinatarios, asunto, mensaje)
      VALUES (?, ?, ?, ?, ?)`,
@@ -55,7 +60,27 @@ async function registrarCorreo(conn, { idBuzon, mail, adjuntos }) {
   );
   const idCorreo = result.insertId;
 
+  const rutaBase = await configBuzonService.obtenerRutaDescargas(idCia);
+
   for (const adjunto of adjuntos) {
+    // Un adjunto que no se pudo escribir a disco (permisos, disco lleno) no
+    // debe perder el correo completo: se deja constancia con la ruta logica
+    // original y se sigue -- el XML ya esta en memoria y se parsea igual.
+    let rutaFinal = adjunto.ruta;
+    try {
+      rutaFinal = await guardarAdjunto({
+        rutaBase,
+        idCia,
+        uidCorreo,
+        nombre: adjunto.nombre,
+        contenido: adjunto.contenido,
+      });
+    } catch (err) {
+      console.error(
+        `[invoice-ingest] no se pudo guardar a disco "${adjunto.nombre}": ${err.message}`
+      );
+    }
+
     await conn.query(
       `INSERT INTO adjuntos_correos (id_correo, nombre_archivo, extension, tipo, ruta)
        VALUES (?, ?, ?, ?, ?)`,
@@ -64,7 +89,7 @@ async function registrarCorreo(conn, { idBuzon, mail, adjuntos }) {
         truncate(adjunto.nombre),
         truncate(adjunto.extension, 10),
         truncate(adjunto.tipo, 30),
-        truncate(adjunto.ruta),
+        truncate(rutaFinal),
       ]
     );
   }
@@ -233,14 +258,20 @@ async function persistirFactura(conn, { idCia, idCorreo, factura }) {
  *
  * @returns {Promise<object>} resumen { idCorreo, facturas[], errores[] }
  */
-async function ingestarCorreo({ idCia, idBuzon, mail, adjuntos }) {
+async function ingestarCorreo({ idCia, idBuzon, uidCorreo, mail, adjuntos }) {
   const conn = await db.getConnection();
   const resumen = { idCorreo: null, facturas: [], errores: [], omitidos: [] };
 
   try {
     await conn.beginTransaction();
 
-    resumen.idCorreo = await registrarCorreo(conn, { idBuzon, mail, adjuntos });
+    resumen.idCorreo = await registrarCorreo(conn, {
+      idCia,
+      idBuzon,
+      uidCorreo,
+      mail,
+      adjuntos,
+    });
 
     const xmls = adjuntos.filter((a) => a.extension === 'xml');
 

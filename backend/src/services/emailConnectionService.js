@@ -236,9 +236,53 @@ async function marcarComoLeido(uids, mailbox = 'INBOX', { idCia } = {}) {
   });
 }
 
+// Mueve los uids indicados a otra carpeta IMAP (PROCESADOS/DUPLICADOS/
+// ERROR_FORMATO, ver configBuzonService). Se usa imap.move en vez de
+// copy+addFlags('\Deleted')+expunge: node-imap ya implementa el comando
+// MOVE (RFC 6851) donde el servidor lo soporta, y hace el equivalente
+// copy+delete+expunge internamente donde no. El mensaje recibe un UID nuevo
+// en el destino, lo cual no afecta al llamador (uids ya no se usan despues
+// del move).
+async function moveMessage(uids, mailboxOrigen, mailboxDestino, { idCia } = {}) {
+  if (!uids || uids.length === 0) return;
+  const config = await resolverImapConfig(idCia);
+
+  return new Promise((resolve, reject) => {
+    const imap = new Imap(config);
+
+    let settled = false;
+
+    function finish(fn, value) {
+      if (settled) return;
+      settled = true;
+      try {
+        imap.end();
+      } catch (_) {
+        // conexión ya cerrada o nunca abierta, ignorar
+      }
+      fn(value);
+    }
+
+    imap.once('ready', () => {
+      imap.openBox(mailboxOrigen, false, (err) => {
+        if (err) return finish(reject, err);
+        imap.move(uids, mailboxDestino, (moveErr) => {
+          if (moveErr) return finish(reject, moveErr);
+          finish(resolve, uids.length);
+        });
+      });
+    });
+
+    imap.once('error', (err) => finish(reject, err));
+
+    imap.connect();
+  });
+}
+
 module.exports = {
   testConnection,
   countMessages,
   fetchUnreadMessages,
   marcarComoLeido,
+  moveMessage,
 };

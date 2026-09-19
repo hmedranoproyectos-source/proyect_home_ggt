@@ -15,6 +15,7 @@ export interface GuardarConfigBuzon {
 	usuario: string
 	clave?: string
 	carpeta: string
+	rutaDescargas: string
 }
 
 export async function guardarConfigBuzon(

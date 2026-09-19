@@ -66,6 +66,7 @@ export function TabBuzon() {
 	const [usuario, setUsuario] = useState('')
 	const [clave, setClave] = useState('')
 	const [carpeta, setCarpeta] = useState('INBOX')
+	const [rutaDescargas, setRutaDescargas] = useState('')
 	const [tieneClave, setTieneClave] = useState(false)
 	const [cargando, setCargando] = useState(false)
 	const [guardando, setGuardando] = useState(false)
@@ -98,6 +99,7 @@ export function TabBuzon() {
 				setCifrado(config.cifrado)
 				setUsuario(config.usuario)
 				setCarpeta(config.carpeta)
+				setRutaDescargas(config.rutaDescargas || '')
 				setTieneClave(config.tieneClave)
 			})
 			.catch((err: any) => {
@@ -131,6 +133,7 @@ export function TabBuzon() {
 				usuario: usuario.trim(),
 				clave: clave.trim() || undefined,
 				carpeta: carpeta.trim() || 'INBOX',
+				rutaDescargas: rutaDescargas.trim(),
 			})
 			setTieneClave(guardada.tieneClave)
 			setClave('')
@@ -308,6 +311,22 @@ export function TabBuzon() {
 							onChange={(e) => setCarpeta(e.target.value)}
 							disabled={ocupado || !puedeGestionar}
 							helperText="Carpeta que escanea el worker (INBOX por defecto)."
+						/>
+					</CampoFiltro>
+
+					<CampoFiltro etiqueta="Ruta de descargas">
+						<TextField
+							fullWidth
+							size="small"
+							value={rutaDescargas}
+							onChange={(e) => setRutaDescargas(e.target.value)}
+							disabled={ocupado || !puedeGestionar}
+							placeholder="duquin"
+							helperText={
+								'Subcarpeta dentro de C:\\Documentos\\DescargasFacturas ' +
+								'(la carpeta base del servidor) donde se guardan los ' +
+								'adjuntos de cada correo. Vacío = raíz de esa carpeta.'
+							}
 						/>
 					</CampoFiltro>
 

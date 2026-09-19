@@ -74,6 +74,13 @@ services:
         condition: service_healthy
     ports:
       - "${BACKEND_PORT:-3001}:3001"
+    volumes:
+      # Bind-mount real al host (no volumen Docker anonimo) para que los
+      # adjuntos descargados sean visibles/editables desde el explorador de
+      # Windows, tal como lo pidio el usuario. La ruta configurable del
+      # frontend (tab Buzon -> ruta_descargas) es una subcarpeta RELATIVA a
+      # esta base, nunca una ruta arbitraria del host.
+      - C:/Documentos/DescargasFacturas:/app/descargas-facturas
     networks:
       - conciliacion_net
 
@@ -92,6 +99,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    volumes:
+      - C:/Documentos/DescargasFacturas:/app/descargas-facturas
     networks:
       - conciliacion_net
 

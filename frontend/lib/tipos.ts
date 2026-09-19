@@ -76,6 +76,7 @@ export interface ConfigBuzonApp {
 	usuario: string
 	tieneClave: boolean
 	carpeta: string
+	rutaDescargas: string
 }
 
 export interface SesionUsuario {

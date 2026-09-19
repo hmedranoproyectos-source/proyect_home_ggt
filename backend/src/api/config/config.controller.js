@@ -37,6 +37,8 @@ async function guardarBuzon(req, res, next) {
       typeof body.carpeta === 'string' && body.carpeta.trim()
         ? body.carpeta.trim()
         : configBuzonService.CARPETA_DEFAULT;
+    const rutaDescargas =
+      typeof body.rutaDescargas === 'string' ? body.rutaDescargas.trim() : '';
 
     if (!descripcion) {
       return res.status(400).json({ error: 'La descripción es obligatoria' });
@@ -68,6 +70,7 @@ async function guardarBuzon(req, res, next) {
       usuario,
       clave,
       carpeta,
+      rutaDescargas,
     });
 
     auditar(req, {
@@ -83,6 +86,7 @@ async function guardarBuzon(req, res, next) {
         cifrado: guardada.cifrado,
         usuario: guardada.usuario,
         carpeta: guardada.carpeta,
+        rutaDescargas: guardada.rutaDescargas,
         claveActualizada: clave.length > 0,
       },
     });
