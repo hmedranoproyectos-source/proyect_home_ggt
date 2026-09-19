@@ -279,9 +279,61 @@ async function moveMessage(uids, mailboxOrigen, mailboxDestino, { idCia } = {}) 
   });
 }
 
+// Cuenta mensajes de varias carpetas del clasificador (PROCESADOS/
+// DUPLICADOS/ERROR_FORMATO, ver configBuzonService) en UNA sola conexion
+// IMAP, para que la tab Buzon pueda pintar las tres sin abrir/cerrar sesion
+// por cada una. Una carpeta que aun no existe en el servidor (el usuario
+// nunca corrio el escaneo, o las creo con otro nombre) no aborta las demas:
+// se reporta con `error` en vez de tumbar toda la consulta.
+async function countMailboxes(idCia, mailboxes = []) {
+  const config = await resolverImapConfig(idCia);
+
+  return new Promise((resolve, reject) => {
+    const imap = new Imap(config);
+
+    let settled = false;
+    function finish(fn, value) {
+      if (settled) return;
+      settled = true;
+      try {
+        imap.end();
+      } catch (_) {
+        // conexión ya cerrada o nunca abierta, ignorar
+      }
+      fn(value);
+    }
+
+    imap.once('ready', () => {
+      const resultados = {};
+      let idx = 0;
+
+      function siguiente() {
+        if (idx >= mailboxes.length) {
+          finish(resolve, resultados);
+          return;
+        }
+        const mailbox = mailboxes[idx++];
+        imap.openBox(mailbox, true, (err, box) => {
+          resultados[mailbox] = err
+            ? { total: null, error: err.message }
+            : { total: box.messages.total, error: null };
+          siguiente();
+        });
+      }
+
+      siguiente();
+    });
+
+    imap.once('error', (err) => finish(reject, err));
+
+    imap.connect();
+  });
+}
+
 module.exports = {
   testConnection,
   countMessages,
+  countMailboxes,
   fetchUnreadMessages,
   marcarComoLeido,
   moveMessage,

@@ -13,8 +13,11 @@ import { CampoFiltro } from '@/componentes/campo-filtro'
 import {
 	contarCorreosBuzon,
 	guardarConfigBuzon,
+	obtenerCarpetasClasificador,
 	obtenerConfigBuzon,
+	obtenerRutasDescarga,
 	probarConexionBuzon,
+	type CarpetaClasificador,
 } from '@/lib/servicios/configBuzonApi'
 import { sxBotonAzul, sxBotonVerde } from '@/lib/estilos-ui'
 import { useSesion } from '@/lib/sesion-contexto'
@@ -25,6 +28,14 @@ import {
 } from '@/lib/permisos-rutas'
 
 const CIFRADOS = ['TLS', 'SSL', 'NONE'] as const
+const OPCION_RAIZ = ''
+const OPCION_NUEVA = '__nueva__'
+
+const ETIQUETAS_CARPETAS: Record<string, string> = {
+	PROCESADOS: 'Procesados',
+	DUPLICADOS: 'Duplicados',
+	ERROR_FORMATO: 'Error de formato',
+}
 
 function mensajeErrorBuzon(crudo: unknown, respaldo: string): string {
 	const texto = String(crudo || '').toLowerCase()
@@ -67,6 +78,9 @@ export function TabBuzon() {
 	const [clave, setClave] = useState('')
 	const [carpeta, setCarpeta] = useState('INBOX')
 	const [rutaDescargas, setRutaDescargas] = useState('')
+	const [subcarpetasDescarga, setSubcarpetasDescarga] = useState<string[]>([])
+	const [rutaSeleccion, setRutaSeleccion] = useState<string>(OPCION_RAIZ)
+	const [rutaNueva, setRutaNueva] = useState('')
 	const [tieneClave, setTieneClave] = useState(false)
 	const [cargando, setCargando] = useState(false)
 	const [guardando, setGuardando] = useState(false)
@@ -79,6 +93,11 @@ export function TabBuzon() {
 		noLeidos: number
 		mailbox: string
 	} | null>(null)
+	const [carpetasClasificador, setCarpetasClasificador] = useState<
+		CarpetaClasificador[]
+	>([])
+	const [cargandoCarpetas, setCargandoCarpetas] = useState(false)
+	const [errorCarpetas, setErrorCarpetas] = useState('')
 
 	useEffect(() => {
 		if (!idCia) {
@@ -90,8 +109,8 @@ export function TabBuzon() {
 		setOk('')
 		setConteo(null)
 		setClave('')
-		obtenerConfigBuzon()
-			.then((config) => {
+		Promise.all([obtenerConfigBuzon(), obtenerRutasDescarga()])
+			.then(([config, rutas]) => {
 				if (cancelado) return
 				setDescripcion(config.descripcion)
 				setServidor(config.servidor)
@@ -101,6 +120,13 @@ export function TabBuzon() {
 				setCarpeta(config.carpeta)
 				setRutaDescargas(config.rutaDescargas || '')
 				setTieneClave(config.tieneClave)
+
+				const guardada = config.rutaDescargas || ''
+				const subcarpetas = guardada && !rutas.subcarpetas.includes(guardada)
+					? [...rutas.subcarpetas, guardada].sort((a, b) => a.localeCompare(b))
+					: rutas.subcarpetas
+				setSubcarpetasDescarga(subcarpetas)
+				setRutaSeleccion(guardada || OPCION_RAIZ)
 			})
 			.catch((err: any) => {
 				if (cancelado) return
@@ -119,11 +145,46 @@ export function TabBuzon() {
 		}
 	}, [idCia])
 
+	async function cargarCarpetasClasificador() {
+		setCargandoCarpetas(true)
+		setErrorCarpetas('')
+		try {
+			const { carpetas } = await obtenerCarpetasClasificador()
+			setCarpetasClasificador(carpetas)
+		} catch (err: any) {
+			setErrorCarpetas(
+				mensajeErrorBuzon(
+					err?.response?.data?.error,
+					'No se pudieron consultar las carpetas del buzón.',
+				),
+			)
+		} finally {
+			setCargandoCarpetas(false)
+		}
+	}
+
+	useEffect(() => {
+		if (!idCia) return
+		cargarCarpetasClasificador()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [idCia])
+
+	function handleCambiarRuta(valor: string) {
+		setRutaSeleccion(valor)
+		if (valor === OPCION_NUEVA) {
+			setRutaNueva('')
+			return
+		}
+		setRutaDescargas(valor)
+	}
+
 	async function handleGuardar() {
 		setGuardando(true)
 		setError('')
 		setOk('')
 		try {
+			const rutaFinal =
+				rutaSeleccion === OPCION_NUEVA ? rutaNueva.trim() : rutaDescargas.trim()
 			const guardada = await guardarConfigBuzon({
 				descripcion: descripcion.trim(),
 				protocolo: 'IMAP',
@@ -133,10 +194,17 @@ export function TabBuzon() {
 				usuario: usuario.trim(),
 				clave: clave.trim() || undefined,
 				carpeta: carpeta.trim() || 'INBOX',
-				rutaDescargas: rutaDescargas.trim(),
+				rutaDescargas: rutaFinal,
 			})
 			setTieneClave(guardada.tieneClave)
 			setClave('')
+			setRutaDescargas(rutaFinal)
+			if (rutaFinal && !subcarpetasDescarga.includes(rutaFinal)) {
+				setSubcarpetasDescarga(
+					[...subcarpetasDescarga, rutaFinal].sort((a, b) => a.localeCompare(b)),
+				)
+			}
+			setRutaSeleccion(rutaFinal || OPCION_RAIZ)
 			setOk('Configuración del buzón guardada.')
 		} catch (err: any) {
 			setError(
@@ -314,21 +382,56 @@ export function TabBuzon() {
 						/>
 					</CampoFiltro>
 
-					<CampoFiltro etiqueta="Ruta de descargas">
-						<TextField
-							fullWidth
-							size="small"
-							value={rutaDescargas}
-							onChange={(e) => setRutaDescargas(e.target.value)}
-							disabled={ocupado || !puedeGestionar}
-							placeholder="duquin"
-							helperText={
-								'Subcarpeta dentro de C:\\Documentos\\DescargasFacturas ' +
-								'(la carpeta base del servidor) donde se guardan los ' +
-								'adjuntos de cada correo. Vacío = raíz de esa carpeta.'
-							}
-						/>
-					</CampoFiltro>
+					<Stack
+						direction={{ xs: 'column', md: 'row' }}
+						spacing={2}
+						sx={{ alignItems: { md: 'flex-start' } }}
+					>
+						<CampoFiltro
+							etiqueta="Ruta de descargas"
+							sx={{ flex: 1 }}
+						>
+							<TextField
+								select
+								fullWidth
+								size="small"
+								value={rutaSeleccion}
+								onChange={(e) => handleCambiarRuta(e.target.value)}
+								disabled={ocupado || !puedeGestionar}
+								helperText={
+									'Subcarpeta dentro de C:\\Documentos\\DescargasFacturas ' +
+									'(la carpeta base del servidor) donde se guardan los xml/pdf ' +
+									'extraídos de cada correo.'
+								}
+							>
+								<MenuItem value={OPCION_RAIZ}>
+									Raíz de DescargasFacturas
+								</MenuItem>
+								{subcarpetasDescarga.map((item) => (
+									<MenuItem key={item} value={item}>
+										{item}
+									</MenuItem>
+								))}
+								<MenuItem value={OPCION_NUEVA}>+ Nueva carpeta…</MenuItem>
+							</TextField>
+						</CampoFiltro>
+						{rutaSeleccion === OPCION_NUEVA ? (
+							<CampoFiltro
+								etiqueta="Nombre de la nueva carpeta"
+								sx={{ flex: 1 }}
+							>
+								<TextField
+									fullWidth
+									size="small"
+									value={rutaNueva}
+									onChange={(e) => setRutaNueva(e.target.value)}
+									disabled={ocupado || !puedeGestionar}
+									placeholder="duquin"
+									helperText="Se crea al guardar, dentro de DescargasFacturas."
+								/>
+							</CampoFiltro>
+						) : null}
+					</Stack>
 
 					<Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', rowGap: 1 }}>
 						<Button
@@ -379,6 +482,77 @@ export function TabBuzon() {
 						: ''}
 				</Typography>
 			</Box>
+
+			<Paper sx={{ mt: 2, p: 3, borderRadius: RADIO_CARD }}>
+				<Stack
+					direction="row"
+					sx={{
+						mb: 1.5,
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
+				>
+					<Typography sx={{ fontWeight: 700 }}>
+						Carpetas del buzón
+					</Typography>
+					<Button
+						variant="outlined"
+						size="small"
+						onClick={cargarCarpetasClasificador}
+						disabled={cargandoCarpetas || !idCia}
+					>
+						ACTUALIZAR
+					</Button>
+				</Stack>
+
+				{errorCarpetas ? (
+					<Alert severity="error" sx={{ mb: 1.5 }}>
+						{errorCarpetas}
+					</Alert>
+				) : null}
+
+				<Stack
+					direction={{ xs: 'column', sm: 'row' }}
+					spacing={1.5}
+				>
+					{carpetasClasificador.map((item) => (
+						<Box
+							key={item.nombre}
+							sx={{
+								flex: 1,
+								px: 2.5,
+								py: 1.5,
+								borderRadius: RADIO_CARD,
+								backgroundColor: colores.azulSuave,
+							}}
+						>
+							<Typography variant="body2" sx={{ fontWeight: 600 }}>
+								{ETIQUETAS_CARPETAS[item.nombre] || item.nombre}
+							</Typography>
+							<Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.4 }}>
+								{item.error
+									? '—'
+									: `${item.total ?? 0} ${
+											item.total === 1 ? 'correo' : 'correos'
+										}`}
+							</Typography>
+							{item.error ? (
+								<Typography
+									variant="caption"
+									sx={{ color: colores.texto }}
+								>
+									No disponible: {item.error}
+								</Typography>
+							) : null}
+						</Box>
+					))}
+					{!cargandoCarpetas && carpetasClasificador.length === 0 && !errorCarpetas ? (
+						<Typography variant="body2">
+							Sin datos todavía. Pulsa Actualizar.
+						</Typography>
+					) : null}
+				</Stack>
+			</Paper>
 		</Box>
 	)
 }

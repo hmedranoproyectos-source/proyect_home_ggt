@@ -45,3 +45,27 @@ export async function contarCorreosBuzon(): Promise<ConteoBuzon> {
 	const { data } = await api.get<ConteoBuzon>('/config/email/count')
 	return data
 }
+
+export interface CarpetaClasificador {
+	nombre: string
+	total: number | null
+	error: string | null
+}
+
+export async function obtenerCarpetasClasificador(): Promise<{
+	carpetas: CarpetaClasificador[]
+}> {
+	const { data } = await api.get<{ carpetas: CarpetaClasificador[] }>(
+		'/config/email/carpetas',
+	)
+	return data
+}
+
+export async function obtenerRutasDescarga(): Promise<{
+	subcarpetas: string[]
+}> {
+	const { data } = await api.get<{ subcarpetas: string[] }>(
+		'/config/email/rutas-descarga',
+	)
+	return data
+}

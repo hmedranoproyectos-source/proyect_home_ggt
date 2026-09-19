@@ -135,9 +135,46 @@ async function countEmails(req, res) {
   }
 }
 
+// Carpetas del clasificador de correos (ver emailScanProcessor.js): permite
+// a la tab Buzon mostrar cuantos correos hay en cada una sin exponer un
+// endpoint IMAP generico. Orden fijo (no el de getBoxes) para que la UI
+// siempre las liste igual.
+const CARPETAS_CLASIFICADOR = [
+  configBuzonService.CARPETA_PROCESADOS,
+  configBuzonService.CARPETA_DUPLICADOS,
+  configBuzonService.CARPETA_ERROR_FORMATO,
+];
+
+async function contarCarpetasClasificador(req, res) {
+  try {
+    const resultados = await emailConnectionService.countMailboxes(
+      req.user.id_cia,
+      CARPETAS_CLASIFICADOR,
+    );
+    const carpetas = CARPETAS_CLASIFICADOR.map((nombre) => ({
+      nombre,
+      ...resultados[nombre],
+    }));
+    return res.status(200).json({ carpetas });
+  } catch (err) {
+    return res.status(502).json({ error: err.message });
+  }
+}
+
+async function listarRutasDescarga(req, res, next) {
+  try {
+    const subcarpetas = await configBuzonService.listarSubcarpetasDescargas();
+    return res.status(200).json({ subcarpetas });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = {
   obtenerBuzon,
   guardarBuzon,
   testEmailConnection,
   countEmails,
+  contarCarpetasClasificador,
+  listarRutasDescarga,
 };

@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs/promises');
 const db = require('../config/db');
 const env = require('../config/env');
 
@@ -89,6 +90,24 @@ function sanitizarSubcarpeta(valor) {
     .split(/[\\/]+/)
     .filter((seg) => seg && seg !== '.' && seg !== '..')
     .join('/');
+}
+
+// Subcarpetas de primer nivel ya existentes bajo DOWNLOADS_BASE_PATH (ej.
+// "1", "duquin"), para que la tab Buzon ofrezca un selector en vez de texto
+// libre y evite que un typo cree una carpeta nueva por accidente. La raiz
+// puede no existir todavia (bind-mount recien creado, ningun correo
+// procesado aun): en ese caso se devuelve lista vacia, no error.
+async function listarSubcarpetasDescargas() {
+  try {
+    const entradas = await fs.readdir(DOWNLOADS_BASE_PATH, { withFileTypes: true });
+    return entradas
+      .filter((entrada) => entrada.isDirectory())
+      .map((entrada) => entrada.name)
+      .sort((a, b) => a.localeCompare(b));
+  } catch (err) {
+    if (err.code === 'ENOENT') return [];
+    throw err;
+  }
 }
 
 // Ruta de descargas efectiva para un correo entrante (RP-01): subcarpeta
@@ -245,5 +264,6 @@ module.exports = {
   obtenerPorCia,
   obtenerCredenciales,
   obtenerRutaDescargas,
+  listarSubcarpetasDescargas,
   guardar,
 };

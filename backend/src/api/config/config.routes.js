@@ -27,4 +27,18 @@ router.get(
   configController.countEmails
 );
 
+router.get(
+  '/email/carpetas',
+  requireAuth,
+  requirePermission('gestionar_config_email'),
+  configController.contarCarpetasClasificador
+);
+
+router.get(
+  '/email/rutas-descarga',
+  requireAuth,
+  requirePermission('gestionar_config_email'),
+  configController.listarRutasDescarga
+);
+
 module.exports = router;
