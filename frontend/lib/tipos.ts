@@ -1,10 +1,34 @@
+// Descripciones reales de estados_documentos (ver backend
+// src/constants/estados.js) -- 5 estados fijos, sin ENUM de texto libre.
 export type EstadoFactura =
-	| 'Por ingresar'
-	| 'Con novedad'
-	| 'Conciliada'
-	| 'En ERP'
+	| 'NUEVA'
+	| 'EN_VALIDACION'
+	| 'ALERTA'
+	| 'REGISTRADA_ERP'
+	| 'CONTABILIZADA'
 
 export type MarcaSiesa = string | 'Pendiente' | 'Periodo cerrado'
+
+// Factura tal como la devuelve GET /api/facturas (facturasService.listarParaCia).
+export interface FacturaApp {
+	id: number
+	numeroFactura: string
+	proveedor: string
+	nit: string
+	oc: string | null
+	idEstado: number
+	estado: EstadoFactura
+	entradaSiesa: MarcaSiesa
+	causacionSiesa: MarcaSiesa
+	fechaEmision: string
+	fechaVencimiento: string | null
+	vlrBruto: number
+	vlrDescuentos: number
+	vlrImpuestos: number
+	vlrNeto: number
+	vlrRetenciones: number
+	vlrTotal: number
+}
 
 export interface LineaFactura {
 	item: string
@@ -14,6 +38,28 @@ export interface LineaFactura {
 	subtotal: number
 	impuesto: string
 	valorImpuesto: number
+}
+
+// Linea tal como la devuelve GET /api/facturas/:id (detalles_facturas).
+// porcImpuesto puede venir null (porc_impuesto es nullable en el esquema
+// oficial); subtotal se calcula en el backend (cantidad * valorUnitario),
+// no existe como columna propia.
+export interface LineaFacturaApp {
+	id: number
+	item: string
+	descripcion: string
+	cantidad: number
+	valorUnitario: number
+	subtotal: number
+	porcImpuesto: number | null
+	valorImpuesto: number
+	notas: string | null
+}
+
+// Detalle de factura tal como lo devuelve GET /api/facturas/:id
+// (facturasService.obtenerDetalle): misma cabecera que FacturaApp + lineas.
+export interface FacturaDetalleApp extends FacturaApp {
+	lineas: LineaFacturaApp[]
 }
 
 export interface Factura {

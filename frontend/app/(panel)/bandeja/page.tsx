@@ -1,7 +1,9 @@
 'use client'
 
+import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import CircularProgress from '@mui/material/CircularProgress'
 import MenuItem from '@mui/material/MenuItem'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
@@ -12,21 +14,29 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ChipEstado, ChipSiesa } from '@/componentes/chip-estado'
 import { EncabezadoPagina } from '@/componentes/encabezado-pagina'
-import {
-	ESTADOS,
-	FACTURAS,
-	PROVEEDORES,
-} from '@/lib/datos-mock'
+import { obtenerFacturas } from '@/lib/servicios/facturasApi'
 import { descargarCsv } from '@/lib/formato'
 import { colores, RADIO_CARD } from '@/lib/tema'
-import type { EstadoFactura } from '@/lib/tipos'
+import type { FacturaApp } from '@/lib/tipos'
+
+const ESTADOS: FacturaApp['estado'][] = [
+	'NUEVA',
+	'EN_VALIDACION',
+	'ALERTA',
+	'REGISTRADA_ERP',
+	'CONTABILIZADA',
+]
 
 export default function BandejaPage() {
 	const router = useRouter()
+	const [facturas, setFacturas] = useState<FacturaApp[]>([])
+	const [cargando, setCargando] = useState(true)
+	const [error, setError] = useState('')
+
 	const [proveedor, setProveedor] = useState('Todos')
 	const [estado, setEstado] = useState('Todos')
 	const [busqueda, setBusqueda] = useState('')
@@ -37,8 +47,37 @@ export default function BandejaPage() {
 		busqueda: '',
 	})
 
+	useEffect(() => {
+		let cancelado = false
+		setCargando(true)
+		setError('')
+		obtenerFacturas()
+			.then((data) => {
+				if (cancelado) return
+				setFacturas(data)
+			})
+			.catch((err) => {
+				if (cancelado) return
+				setError(
+					err?.response?.data?.error ||
+						'No se pudieron cargar las facturas.',
+				)
+			})
+			.finally(() => {
+				if (!cancelado) setCargando(false)
+			})
+		return () => {
+			cancelado = true
+		}
+	}, [])
+
+	const proveedores = useMemo(
+		() => [...new Set(facturas.map((f) => f.proveedor))],
+		[facturas],
+	)
+
 	const filtradas = useMemo(() => {
-		return FACTURAS.filter((factura) => {
+		return facturas.filter((factura) => {
 			if (
 				aplicado.proveedor !== 'Todos' &&
 				factura.proveedor !== aplicado.proveedor
@@ -56,12 +95,12 @@ export default function BandejaPage() {
 			}
 			const q = aplicado.busqueda.toLowerCase()
 			return (
-				factura.id.toLowerCase().includes(q) ||
+				factura.numeroFactura.toLowerCase().includes(q) ||
 				factura.nit.toLowerCase().includes(q) ||
 				(factura.oc ?? '').toLowerCase().includes(q)
 			)
 		})
-	}, [aplicado])
+	}, [facturas, aplicado])
 
 	function handleExportar() {
 		descargarCsv(
@@ -75,7 +114,7 @@ export default function BandejaPage() {
 				'Causación Siesa',
 			],
 			filtradas.map((f) => [
-				f.id,
+				f.numeroFactura,
 				f.proveedor,
 				f.oc ?? 'Sin OC',
 				f.estado,
@@ -102,7 +141,7 @@ export default function BandejaPage() {
 						onChange={(e) => setProveedor(e.target.value)}
 					>
 						<MenuItem value="Todos">Seleccionar</MenuItem>
-						{PROVEEDORES.map((nombre) => (
+						{proveedores.map((nombre) => (
 							<MenuItem key={nombre} value={nombre}>
 								{nombre}
 							</MenuItem>
@@ -177,74 +216,97 @@ export default function BandejaPage() {
 				</Button>
 			</Stack>
 
+			{error ? (
+				<Alert severity="error" sx={{ mb: 2 }}>
+					{error}
+				</Alert>
+			) : null}
+
 			<Paper sx={{ borderRadius: RADIO_CARD, overflow: 'hidden' }}>
-				<Table
-					sx={{
-						'& tbody .MuiTableCell-root': {
-							py: 0.75,
-						},
-					}}
-				>
-					<TableHead
+				{cargando ? (
+					<Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+						<CircularProgress size={28} />
+					</Box>
+				) : (
+					<Table
 						sx={{
-							'& .MuiTableCell-root': {
-								fontWeight: 800,
-								fontSize: 12,
+							'& tbody .MuiTableCell-root': {
+								py: 0.75,
 							},
 						}}
 					>
-						<TableRow>
-							<TableCell>Factura</TableCell>
-							<TableCell>Proveedor</TableCell>
-							<TableCell>OC</TableCell>
-							<TableCell align="center">Estado</TableCell>
-							<TableCell align="center">
-								Entrada Siesa
-							</TableCell>
-							<TableCell align="center">
-								Causación Siesa
-							</TableCell>
-							<TableCell align="center">Acción</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{filtradas.map((factura) => (
-							<TableRow key={factura.id}>
-								<TableCell>{factura.id}</TableCell>
-								<TableCell>{factura.proveedor}</TableCell>
-								<TableCell>
-									{factura.oc ?? 'Sin OC'}
+						<TableHead
+							sx={{
+								'& .MuiTableCell-root': {
+									fontWeight: 800,
+									fontSize: 12,
+								},
+							}}
+						>
+							<TableRow>
+								<TableCell>Factura</TableCell>
+								<TableCell>Proveedor</TableCell>
+								<TableCell>OC</TableCell>
+								<TableCell align="center">Estado</TableCell>
+								<TableCell align="center">
+									Entrada Siesa
 								</TableCell>
 								<TableCell align="center">
-									<ChipEstado
-										estado={factura.estado as EstadoFactura}
-									/>
+									Causación Siesa
 								</TableCell>
-								<TableCell align="center">
-									<ChipSiesa valor={factura.entradaSiesa} />
-								</TableCell>
-								<TableCell align="center">
-									<ChipSiesa
-										valor={factura.causacionSiesa}
-									/>
-								</TableCell>
-								<TableCell align="center">
-									<Button
-										size="small"
-										variant="outlined"
-										onClick={() =>
-											router.push(
-												`/facturas/${factura.id}`,
-											)
-										}
-									>
-										Ver factura
-									</Button>
-								</TableCell>
+								<TableCell align="center">Acción</TableCell>
 							</TableRow>
-						))}
-					</TableBody>
-				</Table>
+						</TableHead>
+						<TableBody>
+							{filtradas.map((factura) => (
+								<TableRow key={factura.id}>
+									<TableCell>{factura.numeroFactura}</TableCell>
+									<TableCell>{factura.proveedor}</TableCell>
+									<TableCell>
+										{factura.oc ?? 'Sin OC'}
+									</TableCell>
+									<TableCell align="center">
+										<ChipEstado estado={factura.estado} />
+									</TableCell>
+									<TableCell align="center">
+										<ChipSiesa valor={factura.entradaSiesa} />
+									</TableCell>
+									<TableCell align="center">
+										<ChipSiesa
+											valor={factura.causacionSiesa}
+										/>
+									</TableCell>
+									<TableCell align="center">
+										<Button
+											size="small"
+											variant="outlined"
+											onClick={() =>
+												router.push(
+													`/facturas/${factura.id}`,
+												)
+											}
+										>
+											Ver factura
+										</Button>
+									</TableCell>
+								</TableRow>
+							))}
+							{!cargando && filtradas.length === 0 ? (
+								<TableRow>
+									<TableCell colSpan={7} align="center">
+										<Typography
+											variant="body2"
+											sx={{ py: 3 }}
+										>
+											No hay facturas que coincidan con
+											los filtros.
+										</Typography>
+									</TableCell>
+								</TableRow>
+							) : null}
+						</TableBody>
+					</Table>
+				)}
 				<Box
 					sx={{
 						px: 3,

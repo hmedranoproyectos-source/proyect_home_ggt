@@ -4,20 +4,28 @@ import Chip from '@mui/material/Chip'
 import { colores } from '@/lib/tema'
 import type { EstadoFactura, MarcaSiesa } from '@/lib/tipos'
 
+// Un color por cada uno de los 5 estados reales (estados_documentos). El
+// significado de cada color se conserva del diseño original: ambar =
+// pendiente de iniciar, gris = en proceso, rojo = requiere atención, azul =
+// ya en el ERP, verde = ciclo completo.
 const ESTILO_ESTADO: Record<
 	EstadoFactura,
 	{ bg: string; fg: string }
 > = {
-	'Por ingresar': {
+	NUEVA: {
 		bg: colores.ingresarBg,
 		fg: colores.ingresarFg,
 	},
-	'Con novedad': {
+	EN_VALIDACION: {
+		bg: colores.pendienteBg,
+		fg: colores.pendienteFg,
+	},
+	ALERTA: {
 		bg: colores.novedadBg,
 		fg: colores.novedadFg,
 	},
-	Conciliada: { bg: colores.okBg, fg: colores.okFg },
-	'En ERP': { bg: colores.erpBg, fg: colores.erpFg },
+	REGISTRADA_ERP: { bg: colores.erpBg, fg: colores.erpFg },
+	CONTABILIZADA: { bg: colores.okBg, fg: colores.okFg },
 }
 
 const PADDING_CHIP = {

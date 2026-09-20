@@ -15,6 +15,7 @@ const usuariosRoutes = require('./api/usuarios/usuarios.routes');
 const rolesRoutes = require('./api/roles/roles.routes');
 const permisosRoutes = require('./api/permisos/permisos.routes');
 const companiasRoutes = require('./api/companias/companias.routes');
+const facturasRoutes = require('./api/facturas/facturas.routes');
 
 const app = express();
 
@@ -70,6 +71,7 @@ app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/roles', rolesRoutes);
 app.use('/api/permisos', permisosRoutes);
 app.use('/api/companias', companiasRoutes);
+app.use('/api/facturas', facturasRoutes);
 
 app.use((err, req, res, next) => {
   console.error('[api] error no controlado:', err.stack);

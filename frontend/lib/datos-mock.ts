@@ -63,7 +63,7 @@ export const FACTURAS: Factura[] = [
 		proveedor: 'Proveedor Andino',
 		nit: '800.453.126-1',
 		oc: null,
-		estado: 'Por ingresar',
+		estado: 'NUEVA',
 		entradaSiesa: 'Pendiente',
 		causacionSiesa: 'Pendiente',
 		emision: '08/09/2026',
@@ -79,7 +79,7 @@ export const FACTURAS: Factura[] = [
 		proveedor: 'Proveedor Andino',
 		nit: '800.453.126-1',
 		oc: 'OC-45871',
-		estado: 'Con novedad',
+		estado: 'ALERTA',
 		entradaSiesa: 'Pendiente',
 		causacionSiesa: 'Pendiente',
 		emision: '08/09/2026',
@@ -95,7 +95,7 @@ export const FACTURAS: Factura[] = [
 		proveedor: 'Plastihogar SAS',
 		nit: '900.112.334-8',
 		oc: 'OC-45880',
-		estado: 'En ERP',
+		estado: 'REGISTRADA_ERP',
 		entradaSiesa: 'EAM-004591',
 		causacionSiesa: 'Pendiente',
 		emision: '08/09/2026',
@@ -111,7 +111,7 @@ export const FACTURAS: Factura[] = [
 		proveedor: 'Industrias Nova',
 		nit: '800.453.126-1',
 		oc: 'OC-45865',
-		estado: 'Conciliada',
+		estado: 'EN_VALIDACION',
 		entradaSiesa: 'Pendiente',
 		causacionSiesa: 'Pendiente',
 		emision: '08/09/2026',
@@ -127,7 +127,7 @@ export const FACTURAS: Factura[] = [
 		proveedor: 'Electro Caribe',
 		nit: '890.221.009-4',
 		oc: 'OC-45810',
-		estado: 'En ERP',
+		estado: 'CONTABILIZADA',
 		entradaSiesa: 'EAM-004589',
 		causacionSiesa: 'CXP-008721',
 		emision: '07/09/2026',
@@ -143,7 +143,7 @@ export const FACTURAS: Factura[] = [
 		proveedor: 'Comercial Norte',
 		nit: '901.334.556-2',
 		oc: null,
-		estado: 'Con novedad',
+		estado: 'ALERTA',
 		entradaSiesa: 'Pendiente',
 		causacionSiesa: 'Periodo cerrado',
 		emision: '06/09/2026',
@@ -248,10 +248,11 @@ export const TRAZABILIDAD: Record<string, EventoTrazabilidad[]> = {
 }
 
 export const ESTADOS: EstadoFactura[] = [
-	'Por ingresar',
-	'Con novedad',
-	'Conciliada',
-	'En ERP',
+	'NUEVA',
+	'EN_VALIDACION',
+	'ALERTA',
+	'REGISTRADA_ERP',
+	'CONTABILIZADA',
 ]
 
 export const PROVEEDORES = [
@@ -264,9 +265,9 @@ export function buscarFactura(id: string): Factura | undefined {
 
 export function kpisFacturas() {
 	return {
-		porIngresar: FACTURAS.filter((f) => f.estado === 'Por ingresar')
+		porIngresar: FACTURAS.filter((f) => f.estado === 'NUEVA')
 			.length + 17,
-		conNovedad: FACTURAS.filter((f) => f.estado === 'Con novedad')
+		conNovedad: FACTURAS.filter((f) => f.estado === 'ALERTA')
 			.length + 10,
 		conciliadas: 96,
 		enErp: 84,
