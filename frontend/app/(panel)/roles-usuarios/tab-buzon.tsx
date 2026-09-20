@@ -529,7 +529,13 @@ export function TabBuzon() {
 							<Typography variant="body2" sx={{ fontWeight: 600 }}>
 								{ETIQUETAS_CARPETAS[item.nombre] || item.nombre}
 							</Typography>
-							<Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.4 }}>
+							<Typography
+								sx={{
+									fontWeight: 700,
+									lineHeight: 1.4,
+									fontSize: '15px',
+								}}
+							>
 								{item.error
 									? '—'
 									: `${item.total ?? 0} ${
