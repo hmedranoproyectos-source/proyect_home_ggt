@@ -1,22 +1,22 @@
-# Graph Report - proyect_home_ggt  (2026-09-19)
+# Graph Report - proyect_home_ggt  (2026-09-20)
 
 ## Corpus Check
-- 117 files · ~52,006 words
+- 125 files · ~55,677 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 842 nodes · 1367 edges · 76 communities (53 shown, 23 thin omitted)
-- Extraction: 93% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 88 edges (avg confidence: 0.57)
+- 900 nodes · 1455 edges · 82 communities (57 shown, 25 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 98 edges (avg confidence: 0.56)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9ca84e93`
+- Built from commit: `0d40c8c8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - Recibo_FE_Create.sql (esquema oficial - DDL)
-- tipos.ts
+- datos-mock.ts
 - dependencies
 - compilerOptions
 - backend/CLAUDE.md (backend conventions)
@@ -31,7 +31,7 @@
 - db.js
 - siesaConsultasService.js
 - validate-infra.js
-- siesa.routes.js
+- ordenesCompraService.js
 - auditoria_acciones
 - eslint.config.mjs
 - next.config.ts
@@ -42,13 +42,13 @@
 - frontend/CLAUDE.md (frontend conventions)
 - docker-compose.yml orchestration
 - ESPECIFICACIONES.md (functional spec)
-- TabRoles
+- configBuzonApi.ts
 - roles.controller.js
-- invoiceIngestService.js
+- ublInvoiceParser.js
 - src/index.js
 - workers/index.js
 - sesion-contexto.tsx
-- siesaService.js
+- seedPipeline.js
 - companias.controller.js
 - adjuntos_correos
 - buzones
@@ -77,24 +77,30 @@
 - mysql2
 - xml2js
 - roles
-- emailQueue.js
-- tab-buzon.tsx
+- rolesService.js
+- usuariosService.js
 - permisos.routes.js
-- tab-usuarios.tsx
-- configBuzonApi.ts
+- usuarioSistemaService.js
+- tipos.ts
 - permisos-rutas.ts
 - seedAuth.js
-- barra-lateral.tsx
-- TabCompanias
-- companias.routes.js
+- TabUsuarios
+- tab-buzon.tsx
+- [id]/page.tsx
+- facturas.routes.js
+- informes/page.tsx
+- chip-estado.tsx
+- bandeja/page.tsx
+- companiasApi.ts
+- modal-trazabilidad.tsx
 
 ## God Nodes (most connected - your core abstractions)
-1. `colores` - 18 edges
+1. `colores` - 19 edges
 2. `compilerOptions` - 16 edges
 3. `TabRoles()` - 14 edges
 4. `tienePermiso()` - 14 edges
-5. `TabUsuarios()` - 13 edges
-6. `useSesion()` - 13 edges
+5. `useSesion()` - 13 edges
+6. `TabUsuarios()` - 13 edges
 7. `Recibo_FE_Create.sql (esquema oficial - DDL)` - 13 edges
 8. `graphify Skill` - 13 edges
 9. `backend/CLAUDE.md (backend conventions)` - 13 edges
@@ -121,15 +127,15 @@
 - **Docker Compose orchestrated services** — docker_compose_yml_mysql_service, docker_compose_yml_redis_service, docker_compose_yml_phpmyadmin_service, docker_compose_yml_backend_service, docker_compose_yml_worker_service, docker_compose_yml_frontend_service, docker_compose_yml_nginx_service [EXTRACTED 1.00]
 - **Multiempresa auth flow (login, roles, session, id_cia filtering)** — backend_claude_md_login_multiempresa_flow, backend_claude_md_auth_service_js, backend_claude_md_auth_middleware_js, frontend_claude_md_nextauth_session, especificaciones_md_usuarios_roles, claude_md_multiempresa_id_cia [INFERRED 0.85]
 
-## Communities (76 total, 23 thin omitted)
+## Communities (82 total, 25 thin omitted)
 
 ### Community 0 - "Recibo_FE_Create.sql (esquema oficial - DDL)"
 Cohesion: 0.19
 Nodes (16): conciliacion.js service (validateInvoice), RC-06 tabla de auditoría (pendiente de diseño), config_buzon_fe table, detalles_facturas table, detalles_ordenes_compras table, entradas_almacen table, equivalencias_proveedores table, estados_documentos table (chained state machine) (+8 more)
 
-### Community 1 - "tipos.ts"
-Cohesion: 0.06
-Nodes (44): BandejaPage(), handleExportar(), DashboardPage(), KPI, FacturaPage(), FilaResumen(), TabComparativo(), handleExportar() (+36 more)
+### Community 1 - "datos-mock.ts"
+Cohesion: 0.14
+Nodes (15): DashboardPage(), KPI, GraficoBarras(), Props, ATENCION_IDS, FACTURAS, kpisFacturas(), LINEAS_BASE (+7 more)
 
 ### Community 2 - "dependencies"
 Cohesion: 0.05
@@ -176,20 +182,20 @@ Cohesion: 0.16
 Nodes (14): authService, bcrypt, db, env, findUserByUsername(), getCompaniasForUser(), getRolesAndPermisos(), jwt (+6 more)
 
 ### Community 13 - "db.js"
-Cohesion: 0.07
-Nodes (14): permisosService, env, mysql, pool, db, env, ESTADOS, main() (+6 more)
+Cohesion: 0.20
+Nodes (5): permisosService, env, mysql, pool, db
 
 ### Community 14 - "siesaConsultasService.js"
-Cohesion: 0.19
-Nodes (12): env, getClient(), soap, buildPvstrParametros(), CONSULTAS, ejecutarConsulta(), env, { getClient } (+4 more)
+Cohesion: 0.07
+Nodes (26): env, getClient(), soap, buildPvstrParametros(), CONSULTAS, ejecutarConsulta(), env, { getClient } (+18 more)
 
 ### Community 15 - "validate-infra.js"
 Cohesion: 0.33
 Nodes (5): base, { execSync }, fs, input, path
 
-### Community 16 - "siesa.routes.js"
-Cohesion: 0.17
-Nodes (7): siesaService, consultasController, express, { requireAuth, requirePermission }, router, siesaController, siesaConsultasService
+### Community 16 - "ordenesCompraService.js"
+Cohesion: 0.15
+Nodes (15): ESTADOS, actualizarEstadoFactura(), auditoriaService, buscarOrdenCompraEnSiesa(), calcularRangoBusqueda(), conciliarOrdenCompra(), db, ESTADOS (+7 more)
 
 ### Community 17 - "auditoria_acciones"
 Cohesion: 0.50
@@ -215,45 +221,41 @@ Nodes (9): backend service (conciliacion_backend), docker-compose.yml orchestrat
 Cohesion: 0.15
 Nodes (13): ublParser.js (UBL 2.1 tag extraction), ubl-invoice-parsing skill (proposed), BullMQ queue architecture (Scheduler/Worker/retry), ESPECIFICACIONES.md (functional spec), Estado 'En Elaboración' (SIESA Estado 0) business rule, RA - Requisitos de Automatización, RC-04 duplicidad (UNIQUE id_cia, id_proveedor, prefijo_fe, consecutivo_fe), RC - Requisitos de Control y Validación (+5 more)
 
-### Community 28 - "TabRoles"
-Cohesion: 0.12
-Nodes (15): TabRoles(), confirmarEliminarRol(), guardarPermisos(), guardarRol(), api, CompaniaApiDto, NuevaCompania, listarPermisos() (+7 more)
+### Community 28 - "configBuzonApi.ts"
+Cohesion: 0.18
+Nodes (15): mensajeErrorBuzon(), TabBuzon(), cargarCarpetasClasificador(), handleContar(), handleGuardar(), handleProbar(), CarpetaClasificador, contarCorreosBuzon() (+7 more)
 
 ### Community 29 - "roles.controller.js"
-Cohesion: 0.16
-Nodes (11): actualizarPermisos(), { auditar }, crear(), eliminar(), rolesService, actualizar(), { auditar }, crear() (+3 more)
+Cohesion: 0.15
+Nodes (12): guardarBuzon(), actualizarPermisos(), { auditar }, crear(), eliminar(), rolesService, actualizar(), { auditar } (+4 more)
 
-### Community 30 - "invoiceIngestService.js"
+### Community 30 - "ublInvoiceParser.js"
 Cohesion: 0.08
-Nodes (35): ESTADOS, CODIGOS_IMPUESTO, DocumentoNoFacturaError, DOCUMENTOS_NO_FACTURA, extractLines(), extractParty(), extractTaxes(), first() (+27 more)
+Nodes (35): CODIGOS_IMPUESTO, DocumentoNoFacturaError, DOCUMENTOS_NO_FACTURA, extractLines(), extractParty(), extractTaxes(), first(), { normalizarNit } (+27 more)
 
 ### Community 31 - "src/index.js"
 Cohesion: 0.09
-Nodes (19): app, auditoriaRoutes, authRoutes, companiasRoutes, configRoutes, cors, db, env (+11 more)
+Nodes (20): app, auditoriaRoutes, authRoutes, companiasRoutes, configRoutes, cors, db, env (+12 more)
 
 ### Community 32 - "workers/index.js"
-Cohesion: 0.20
-Nodes (9): registrarSchedulerEscaneo(), bootstrap(), conciliacionWorker, connection, emailWorker, env, { procesarEscaneo }, {
-  registrarSchedulerEscaneo,
-  EMAIL_QUEUE_NAME,
-  EMAIL_SCAN_PATTERN,
-} (+1 more)
+Cohesion: 0.13
+Nodes (13): connection, emailQueue, env, { Queue }, registrarSchedulerEscaneo(), bootstrap(), { conciliarOrdenCompra }, connection (+5 more)
 
 ### Community 33 - "sesion-contexto.tsx"
 Cohesion: 0.14
-Nodes (20): CompaniaPreSesion, LoginPage(), handleSeleccionCia(), handleSubmit(), login(), LoginOk, LoginResultado, LoginSeleccionCompania (+12 more)
+Nodes (21): CompaniaPreSesion, LoginPage(), handleSeleccionCia(), handleSubmit(), HomePage(), login(), LoginOk, LoginResultado (+13 more)
 
-### Community 34 - "siesaService.js"
-Cohesion: 0.32
-Nodes (7): buildPvstrDatos(), env, { getClient }, importarXML(), parseErrorDataSet(), xml2js, xmlBuilder
+### Community 34 - "seedPipeline.js"
+Cohesion: 0.23
+Nodes (11): bcrypt, crypto, db, env, ESTADOS, main(), nextId(), seedBuzon() (+3 more)
 
 ### Community 35 - "companias.controller.js"
-Cohesion: 0.18
-Nodes (5): { auditar }, companiasService, crear(), eliminar(), db
+Cohesion: 0.12
+Nodes (9): { auditar }, companiasService, crear(), eliminar(), companiasController, express, { requireAuth, requirePermission }, router (+1 more)
 
 ### Community 44 - "configBuzonService.js"
-Cohesion: 0.09
-Nodes (18): { auditar }, CARPETAS_CLASIFICADOR, CIFRADOS, configBuzonService, emailConnectionService, guardarBuzon(), PROTOCOLOS, asegurarCarpeta() (+10 more)
+Cohesion: 0.06
+Nodes (25): { auditar }, CARPETAS_CLASIFICADOR, CIFRADOS, configBuzonService, emailConnectionService, PROTOCOLOS, { DOWNLOADS_BASE_PATH }, facturasService (+17 more)
 
 ### Community 45 - "app/layout.tsx"
 Cohesion: 0.29
@@ -269,7 +271,7 @@ Nodes (6): authController, express, loginLimiter, rateLimit, { requireAuth, requ
 
 ### Community 49 - "emailScanProcessor.js"
 Cohesion: 0.09
-Nodes (31): AdmZip, expandirZip(), extension(), EXTENSIONES_INTERES, extraerAdjuntos(), path, buildImapConfig(), configBuzonService (+23 more)
+Nodes (30): AdmZip, expandirZip(), extension(), EXTENSIONES_INTERES, extraerAdjuntos(), path, buildImapConfig(), configBuzonService (+22 more)
 
 ### Community 51 - "config.routes.js"
 Cohesion: 0.40
@@ -283,69 +285,85 @@ Nodes (4): express, { requireAuth, requirePermission }, rolesController, router
 Cohesion: 0.40
 Nodes (4): express, { requireAuth, requirePermission }, router, usuariosController
 
-### Community 65 - "emailQueue.js"
-Cohesion: 0.40
-Nodes (4): connection, emailQueue, env, { Queue }
-
-### Community 67 - "tab-buzon.tsx"
-Cohesion: 0.26
-Nodes (11): CIFRADOS, ETIQUETAS_CARPETAS, CampoFiltro(), EncabezadoPagina(), Props, sxBotonAzul, sxBotonVerde, sxEncabezadoTabla (+3 more)
-
 ### Community 68 - "permisos.routes.js"
 Cohesion: 0.40
 Nodes (4): express, permisosController, { requireAuth }, router
 
-### Community 69 - "tab-usuarios.tsx"
-Cohesion: 0.18
-Nodes (12): TabUsuarios(), confirmarEliminar(), guardarEdicion(), guardarUsuario(), listarRoles(), actualizarUsuario(), crearUsuario(), EdicionUsuario (+4 more)
+### Community 69 - "usuarioSistemaService.js"
+Cohesion: 0.40
+Nodes (3): db, getUsuarioSistemaId(), { USUARIO_SISTEMA_NOMBRE }
 
-### Community 70 - "configBuzonApi.ts"
-Cohesion: 0.18
-Nodes (15): mensajeErrorBuzon(), TabBuzon(), cargarCarpetasClasificador(), handleContar(), handleGuardar(), handleProbar(), CarpetaClasificador, contarCorreosBuzon() (+7 more)
+### Community 70 - "tipos.ts"
+Cohesion: 0.16
+Nodes (15): TabRoles(), confirmarEliminarRol(), guardarPermisos(), guardarRol(), api, listarPermisos(), actualizarPermisosDeRol(), crearRol() (+7 more)
 
 ### Community 71 - "permisos-rutas.ts"
-Cohesion: 0.23
-Nodes (13): HomePage(), GuardarRuta(), Props, ITEMS_MENU, PERMISO_GESTIONAR_COMPANIAS, PERMISO_GESTIONAR_CONFIG_EMAIL, PERMISO_GESTIONAR_ROLES, PERMISO_GESTIONAR_USUARIOS (+5 more)
+Cohesion: 0.16
+Nodes (17): activo(), BarraLateral(), handleCerrar(), ICONOS, GuardarRuta(), Props, ITEMS_MENU, PERMISO_GESTIONAR_COMPANIAS (+9 more)
 
 ### Community 72 - "seedAuth.js"
 Cohesion: 0.24
 Nodes (13): bcrypt, COMPANIA_DEFAULT, db, ensureRolPermiso(), ensureUsuarioRol(), getOrCreateCompania(), getOrCreatePermiso(), getOrCreatePermisoVerFacturas() (+5 more)
 
-### Community 73 - "barra-lateral.tsx"
-Cohesion: 0.29
-Nodes (7): activo(), BarraLateral(), handleCerrar(), ICONOS, cerrarSesion(), useSesion(), estilosPanel
+### Community 73 - "TabUsuarios"
+Cohesion: 0.15
+Nodes (11): TabUsuarios(), confirmarEliminar(), guardarEdicion(), guardarUsuario(), actualizarUsuario(), crearUsuario(), EdicionUsuario, eliminarUsuario() (+3 more)
 
-### Community 74 - "TabCompanias"
-Cohesion: 0.33
-Nodes (5): TabCompanias(), confirmarEliminar(), guardarCompania(), crearCompania(), eliminarCompania()
+### Community 74 - "tab-buzon.tsx"
+Cohesion: 0.25
+Nodes (12): CIFRADOS, ETIQUETAS_CARPETAS, TabCompanias(), CampoFiltro(), Props, sxBotonAzul, sxBotonVerde, sxEncabezadoTabla (+4 more)
 
-### Community 75 - "companias.routes.js"
+### Community 75 - "[id]/page.tsx"
+Cohesion: 0.21
+Nodes (10): FacturaPage(), handlePrevisualizarPdf(), FilaResumen(), ModalOrdenCompra(), Props, ModalPreviewPdf(), Props, formatoMoneda() (+2 more)
+
+### Community 76 - "facturas.routes.js"
 Cohesion: 0.40
-Nodes (4): companiasController, express, { requireAuth, requirePermission }, router
+Nodes (4): express, facturasController, { requireAuth }, router
+
+### Community 77 - "informes/page.tsx"
+Cohesion: 0.24
+Nodes (7): TabComparativo(), handleExportar(), TabPorEstado(), COMPARATIVO, ESTADOS, descargarCsv(), siNo()
+
+### Community 78 - "chip-estado.tsx"
+Cohesion: 0.22
+Nodes (9): ChipEstado(), ChipEstadoProps, ChipSiesa(), ChipSiesaProps, ChipUsuarioProps, ESTILO_ESTADO, PADDING_CHIP, EstadoFactura (+1 more)
+
+### Community 79 - "bandeja/page.tsx"
+Cohesion: 0.29
+Nodes (7): BandejaPage(), handleExportar(), ESTADOS, EncabezadoPagina(), obtenerFacturas(), FacturaApp, FacturaDetalleApp
+
+### Community 80 - "companiasApi.ts"
+Cohesion: 0.25
+Nodes (7): confirmarEliminar(), guardarCompania(), CompaniaApiDto, crearCompania(), eliminarCompania(), NuevaCompania, CompaniaApp
+
+### Community 81 - "modal-trazabilidad.tsx"
+Cohesion: 0.38
+Nodes (6): colorEvento(), ModalTrazabilidad(), Props, buscarFactura(), trazabilidadDe(), EventoTrazabilidad
 
 ## Ambiguous Edges - Review These
 - `facturas table` → `facturas_dian table`  [AMBIGUOUS]
   ESPECIFICACIONES.md · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **308 isolated node(s):** `configBuzonService`, `emailConnectionService`, `{ auditar }`, `PROTOCOLOS`, `CIFRADOS` (+303 more)
+- **331 isolated node(s):** `Props`, `ChipUsuarioProps`, `Props`, `Props`, `Props` (+326 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **25 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **What is the exact relationship between `facturas table` and `facturas_dian table`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `colores` connect `tab-buzon.tsx` to `barra-lateral.tsx`, `sesion-contexto.tsx`, `tab-usuarios.tsx`, `tipos.ts`?**
+- **Why does `colores` connect `tab-buzon.tsx` to `sesion-contexto.tsx`, `datos-mock.ts`, `tipos.ts`, `permisos-rutas.ts`, `[id]/page.tsx`, `informes/page.tsx`, `chip-estado.tsx`, `bandeja/page.tsx`, `modal-trazabilidad.tsx`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `backend/CLAUDE.md (backend conventions)` connect `backend/CLAUDE.md (backend conventions)` to `Recibo_FE_Create.sql (esquema oficial - DDL)`, `adapters/siesa/ (SOAP WSDL adapter)`, `frontend/CLAUDE.md (frontend conventions)`, `docker-compose.yml orchestration`, `ESPECIFICACIONES.md (functional spec)`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `TabRoles()` connect `TabRoles` to `barra-lateral.tsx`, `tab-buzon.tsx`, `tab-usuarios.tsx`, `permisos-rutas.ts`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **What connects `configBuzonService`, `emailConnectionService`, `{ auditar }` to the rest of the system?**
-  _308 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `tipos.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06400409626216078 - nodes in this community are weakly interconnected._
+- **Why does `TabRoles()` connect `tipos.ts` to `tab-buzon.tsx`, `permisos-rutas.ts`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **What connects `Props`, `ChipUsuarioProps`, `Props` to the rest of the system?**
+  _331 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `datos-mock.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.1368421052631579 - nodes in this community are weakly interconnected._
 - **Should `dependencies` be split into smaller, more focused modules?**
   _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
