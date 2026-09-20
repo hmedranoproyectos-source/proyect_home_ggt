@@ -4,6 +4,7 @@ import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
+import CircularProgress from '@mui/material/CircularProgress'
 import Paper from '@mui/material/Paper'
 import Snackbar from '@mui/material/Snackbar'
 import Stack from '@mui/material/Stack'
@@ -14,32 +15,119 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import { useParams, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { EncabezadoPagina } from '@/componentes/encabezado-pagina'
 import { ModalOrdenCompra } from '@/componentes/modal-orden-compra'
-import { buscarFactura } from '@/lib/datos-mock'
+import { ModalPreviewPdf } from '@/componentes/modal-preview-pdf'
+import { obtenerFactura, obtenerPdfFactura } from '@/lib/servicios/facturasApi'
 import { formatoMoneda } from '@/lib/formato'
 import { colores, RADIO_CARD } from '@/lib/tema'
+import type { FacturaDetalleApp } from '@/lib/tipos'
 
 export default function FacturaPage() {
 	const router = useRouter()
 	const params = useParams<{ id: string }>()
-	const factura = buscarFactura(decodeURIComponent(params.id))
+	const idFactura = Number(decodeURIComponent(params.id))
+
+	const [factura, setFactura] = useState<FacturaDetalleApp | null>(null)
+	const [cargando, setCargando] = useState(true)
+	const [error, setError] = useState('')
 	const [ocAbierta, setOcAbierta] = useState<string | null>(null)
 	const [aviso, setAviso] = useState('')
+	const [pdfAbierto, setPdfAbierto] = useState(false)
+	const [pdfUrl, setPdfUrl] = useState<string | null>(null)
+	const [cargandoPdf, setCargandoPdf] = useState(false)
 
-	if (!factura) {
+	useEffect(() => {
+		if (!Number.isInteger(idFactura)) {
+			setCargando(false)
+			setError('Id de factura inválido.')
+			return
+		}
+		let cancelado = false
+		setCargando(true)
+		setError('')
+		obtenerFactura(idFactura)
+			.then((data) => {
+				if (cancelado) return
+				setFactura(data)
+			})
+			.catch((err) => {
+				if (cancelado) return
+				setError(
+					err?.response?.status === 404
+						? `No se encontró la factura ${params.id}.`
+						: err?.response?.data?.error ||
+								'No se pudo cargar la factura.',
+				)
+			})
+			.finally(() => {
+				if (!cancelado) setCargando(false)
+			})
+		return () => {
+			cancelado = true
+		}
+	}, [idFactura, params.id])
+
+	if (cargando) {
+		return (
+			<Box>
+				<EncabezadoPagina titulo="Visualización de factura" />
+				<Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+					<CircularProgress size={28} />
+				</Box>
+			</Box>
+		)
+	}
+
+	if (error || !factura) {
 		return (
 			<Box>
 				<EncabezadoPagina titulo="Visualización de factura" />
 				<Alert severity="warning">
-					No se encontró la factura {params.id}.
+					{error || `No se encontró la factura ${params.id}.`}
 				</Alert>
 			</Box>
 		)
 	}
 
 	const conOc = Boolean(factura.oc)
+
+	async function handlePrevisualizarPdf() {
+		setPdfAbierto(true)
+		setPdfUrl(null)
+		setCargandoPdf(true)
+		try {
+			const blob = await obtenerPdfFactura(idFactura)
+			setPdfUrl(URL.createObjectURL(blob))
+		} catch (err: any) {
+			// responseType 'blob' hace que err.response.data tambien llegue
+			// como Blob (no JSON parseado), aunque el backend haya respondido
+			// con un cuerpo de error normal -- hay que leerlo a mano.
+			let mensaje = 'No se pudo abrir el PDF.'
+			const data = err?.response?.data
+			if (data instanceof Blob) {
+				try {
+					const texto = await data.text()
+					mensaje = JSON.parse(texto)?.error || mensaje
+				} catch {
+					// deja el mensaje por defecto si el cuerpo no es JSON
+				}
+			}
+			setPdfAbierto(false)
+			setAviso(mensaje)
+		} finally {
+			setCargandoPdf(false)
+		}
+	}
+
+	function handleCerrarPdf() {
+		setPdfAbierto(false)
+		if (pdfUrl) {
+			URL.revokeObjectURL(pdfUrl)
+			setPdfUrl(null)
+		}
+	}
 
 	return (
 		<Box>
@@ -52,13 +140,13 @@ export default function FacturaPage() {
 				>
 					<Box>
 						<Typography variant="h3">
-							{factura.id} | {factura.proveedor} | NIT{' '}
-							{factura.nit}
+							{factura.numeroFactura} | {factura.proveedor} |
+							NIT {factura.nit}
 						</Typography>
 						<Typography variant="body2" sx={{ mt: 1 }}>
-							Emisión {factura.emision} | Vencimiento{' '}
-							{factura.vencimiento} | Total{' '}
-							{formatoMoneda(factura.total)}
+							Emisión {factura.fechaEmision} | Vencimiento{' '}
+							{factura.fechaVencimiento ?? 'N/A'} | Total{' '}
+							{formatoMoneda(factura.vlrTotal)}
 						</Typography>
 					</Box>
 					<Chip
@@ -100,9 +188,8 @@ export default function FacturaPage() {
 				) : (
 					<Button
 						variant="outlined"
-						onClick={() =>
-							setAviso('Previsualización PDF (mock)')
-						}
+						onClick={handlePrevisualizarPdf}
+						disabled={cargandoPdf}
 						sx={{ borderRadius: RADIO_CARD }}
 					>
 						PREVISUALIZAR PDF
@@ -125,7 +212,7 @@ export default function FacturaPage() {
 					</TableHead>
 					<TableBody>
 						{factura.lineas.map((linea) => (
-							<TableRow key={linea.item}>
+							<TableRow key={linea.id}>
 								<TableCell>{linea.item}</TableCell>
 								<TableCell>{linea.descripcion}</TableCell>
 								<TableCell>{linea.cantidad}</TableCell>
@@ -135,12 +222,29 @@ export default function FacturaPage() {
 								<TableCell>
 									{formatoMoneda(linea.subtotal)}
 								</TableCell>
-								<TableCell>{linea.impuesto}</TableCell>
+								<TableCell>
+									{linea.porcImpuesto === null
+										? 'N/A'
+										: `${linea.porcImpuesto}%`}
+								</TableCell>
 								<TableCell>
 									{formatoMoneda(linea.valorImpuesto)}
 								</TableCell>
 							</TableRow>
 						))}
+						{factura.lineas.length === 0 ? (
+							<TableRow>
+								<TableCell colSpan={7} align="center">
+									<Typography
+										variant="body2"
+										sx={{ py: 3 }}
+									>
+										Esta factura no tiene ítems
+										registrados.
+									</Typography>
+								</TableCell>
+							</TableRow>
+						) : null}
 					</TableBody>
 				</Table>
 			</Paper>
@@ -155,13 +259,10 @@ export default function FacturaPage() {
 						Impuestos y retenciones
 					</Typography>
 					<Typography variant="body2">
-						IVA 19%: {formatoMoneda(factura.iva)}{' '}
-						Retefuente: {formatoMoneda(factura.retefuente)}{' '}
-						ReteIVA: {formatoMoneda(factura.reteIva)}
+						Impuestos: {formatoMoneda(factura.vlrImpuestos)}
 					</Typography>
 					<Typography variant="body2" sx={{ mt: 1 }}>
-						Otros impuestos:{' '}
-						{formatoMoneda(factura.otrosImpuestos)}
+						Retenciones: {formatoMoneda(factura.vlrRetenciones)}
 					</Typography>
 				</Paper>
 				<Paper
@@ -178,15 +279,19 @@ export default function FacturaPage() {
 					<Stack spacing={1}>
 						<FilaResumen
 							label="Subtotal"
-							valor={factura.subtotal}
+							valor={factura.vlrBruto}
+						/>
+						<FilaResumen
+							label="Descuentos"
+							valor={factura.vlrDescuentos}
 						/>
 						<FilaResumen
 							label="Impuestos"
-							valor={factura.impuestos}
+							valor={factura.vlrImpuestos}
 						/>
 						<FilaResumen
 							label="TOTAL FACTURA"
-							valor={factura.total}
+							valor={factura.vlrTotal}
 							negrita
 						/>
 					</Stack>
@@ -207,9 +312,8 @@ export default function FacturaPage() {
 				{conOc ? (
 					<Button
 						variant="contained"
-						onClick={() =>
-							setAviso('Previsualización PDF (mock)')
-						}
+						onClick={handlePrevisualizarPdf}
+						disabled={cargandoPdf}
 						sx={{
 							backgroundColor: colores.azul,
 							borderRadius: RADIO_CARD,
@@ -240,6 +344,13 @@ export default function FacturaPage() {
 			<ModalOrdenCompra
 				oc={ocAbierta}
 				onClose={() => setOcAbierta(null)}
+			/>
+			<ModalPreviewPdf
+				abierto={pdfAbierto}
+				titulo={`PDF - ${factura.numeroFactura}`}
+				url={pdfUrl}
+				cargando={cargandoPdf}
+				onClose={handleCerrarPdf}
 			/>
 			<Snackbar
 				open={Boolean(aviso)}
