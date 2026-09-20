@@ -184,11 +184,12 @@ async function persistirFactura(conn, { idCia, idCorreo, factura }) {
     razonSocial: factura.nombre_emisor,
   });
 
-  // Sin referencia a OC la factura no se puede conciliar automaticamente:
-  // entra como SIN_OC y espera aprobacion manual de un supervisor (DER §6).
-  const idEstado = factura.referencia_oc
-    ? ESTADOS.XML_PARSEADO
-    : ESTADOS.SIN_OC;
+  // Toda factura nueva entra como NUEVA (1), tenga o no referencia_oc. El
+  // worker de conciliacion (ordenesCompraService) es quien decide, tras
+  // consultar SIESA, si avanza a EN_VALIDACION (existe la OC) o a ALERTA
+  // (no existe OC para ese proveedor+referencia) -- ver DER §6: sin OC
+  // requiere aprobacion manual de un supervisor.
+  const idEstado = ESTADOS.NUEVA;
 
   let idFactura;
   try {
@@ -303,17 +304,20 @@ async function ingestarCorreo({ idCia, idBuzon, uidCorreo, mail, adjuntos }) {
             mensaje: err.message,
           });
         } else if (err instanceof UblParseError) {
+          // ERROR_FORMATO/DUPLICADO ya no son filas de estados_documentos
+          // (esquema reducido a 5 estados, ver constants/estados.js): la
+          // factura ni siquiera llega a insertarse en `facturas`, asi que
+          // `tipo` es solo metadata del resumen para clasificar el correo
+          // (ver clasificarCorreo en emailScanProcessor.js), no un id_estado.
           resumen.errores.push({
             archivo: xml.nombre,
             tipo: 'ERROR_FORMATO',
-            estado: ESTADOS.ERROR_FORMATO,
             mensaje: err.message,
           });
         } else if (err instanceof FacturaDuplicadaError) {
           resumen.errores.push({
             archivo: xml.nombre,
             tipo: 'DUPLICADO',
-            estado: ESTADOS.DUPLICADO,
             mensaje: err.message,
           });
         } else {

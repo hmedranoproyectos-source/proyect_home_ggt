@@ -7,17 +7,26 @@ const {
   EMAIL_SCAN_PATTERN,
 } = require('../queues/emailQueue');
 const { procesarEscaneo } = require('./emailScanProcessor');
+const { conciliarOrdenCompra } = require('../services/ordenesCompraService');
 
+// Consume los jobs 'conciliar-factura' encolados por emailScanProcessor.js
+// tras procesar el buzon (una factura a la vez, solo las que traen
+// referencia_oc). Consulta SIESA por id_proveedor + referencia_oc y deja la
+// factura en EN_VALIDACION (existe OC) o ALERTA (no existe) -- ver
+// ordenesCompraService.conciliarOrdenCompra.
 const conciliacionWorker = new Worker(
   'conciliacion',
   async (job) => {
-    console.log(`[worker] job ${job.id} recibido:`, job.data);
+    const { idFactura, idCia } = job.data;
+    return conciliarOrdenCompra({ idFactura, idCia });
   },
   { connection }
 );
 
-conciliacionWorker.on('completed', (job) => {
-  console.log(`[worker] job ${job.id} completado`);
+conciliacionWorker.on('completed', (job, result) => {
+  console.log(
+    `[worker] job ${job.id} completado — factura ${result.idFactura} -> estado ${result.idEstado}`
+  );
 });
 
 conciliacionWorker.on('failed', (job, err) => {

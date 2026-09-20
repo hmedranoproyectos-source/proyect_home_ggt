@@ -1,49 +1,94 @@
 require('dotenv').config();
+const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 const db = require('../config/db');
 const env = require('../config/env');
+const { USUARIO_SISTEMA_NOMBRE } = require('../constants/usuarioSistema');
 
-// Maquina de estados derivada de RR-05 (linea de tiempo de una factura):
-// Correo Recibido -> XML Parseado -> OC Validada -> En Elaboracion SIESA ->
-// Contabilizado. Los estados terminales de error no encadenan (id_estado_
-// siguiente = null): son salidas del flujo, no pasos intermedios.
+async function nextId(table, pkColumn = 'id') {
+  const [rows] = await db.query(
+    `SELECT COALESCE(MAX(${pkColumn}), 0) + 1 AS next FROM ${table}`
+  );
+  return rows[0].next;
+}
+
+// Maquina de estados: NUEVA -> EN_VALIDACION -> {ALERTA | REGISTRADA_ERP} ->
+// CONTABILIZADA. Solo estas 5 filas deben existir en estados_documentos
+// (ver constants/estados.js e instrucciones del usuario) -- id_estado_
+// siguiente queda en NULL para las 5: no se modela aqui una cadena lineal
+// unica porque ALERTA puede resolverse hacia REGISTRADA_ERP tras aprobacion
+// manual de un supervisor (DER §6), no es un estado terminal de error.
 //
 // Los ids son fijos y explicitos porque quedan referenciados desde el codigo
 // (ESTADOS.*) y desde SIESA; estados_documentos no usa AUTO_INCREMENT.
 const ESTADOS = [
-  { id: 1, descripcion: 'CORREO_RECIBIDO', siguiente: 2 },
-  { id: 2, descripcion: 'XML_PARSEADO', siguiente: 3 },
-  { id: 3, descripcion: 'OC_VALIDADA', siguiente: 4 },
-  { id: 4, descripcion: 'EN_ELABORACION_SIESA', siguiente: 5 },
-  { id: 5, descripcion: 'CONTABILIZADO', siguiente: null },
-  // Salidas de error / excepcion.
-  { id: 90, descripcion: 'ERROR_FORMATO', siguiente: null },
-  { id: 91, descripcion: 'DUPLICADO', siguiente: null },
-  // RC-02 / DER §6: FE sin OC se muestra sin comparacion y requiere
-  // aprobacion manual de un supervisor.
-  { id: 92, descripcion: 'SIN_OC', siguiente: null },
+  { id: 1, descripcion: 'NUEVA' },
+  { id: 2, descripcion: 'EN_VALIDACION' },
+  { id: 3, descripcion: 'ALERTA' },
+  { id: 4, descripcion: 'REGISTRADA_ERP' },
+  { id: 5, descripcion: 'CONTABILIZADA' },
 ];
 
 async function seedEstados() {
-  // Se insertan primero todas las filas con siguiente = NULL y luego se
-  // enlazan: estados_documentos.id_estado_siguiente es una FK auto-referente,
-  // asi que apuntar a un id que aun no existe falla.
+  // Elimina cualquier fila fuera de este catalogo de 5 (ej. la maquina de 8
+  // estados de una iteracion anterior) antes de sembrar, para que la tabla
+  // quede exactamente con estos 5 registros como pide el negocio. Se hace
+  // con DELETE explicito en vez de TRUNCATE porque estados_documentos tiene
+  // FKs entrantes (facturas.id_estado, entradas_almacen.id_estado) que un
+  // TRUNCATE no puede tocar si ya hay datos referenciandola.
+  const ids = ESTADOS.map((e) => e.id);
+  await db.query(
+    `DELETE FROM estados_documentos WHERE id NOT IN (${ids.map(() => '?').join(',')})`,
+    ids
+  );
+
   for (const estado of ESTADOS) {
+    // id_estado_siguiente se fuerza a NULL tambien en el UPDATE: una fila
+    // 1-5 que ya existiera de una iteracion anterior (con la cadena lineal
+    // vieja NUEVA->EN_VALIDACION->...->CONTABILIZADA) debe quedar
+    // desencadenada, tal como lo pide el negocio.
     await db.query(
       `INSERT INTO estados_documentos (id, descripcion, id_estado_siguiente)
        VALUES (?, ?, NULL)
-       ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion)`,
+       ON DUPLICATE KEY UPDATE descripcion = VALUES(descripcion), id_estado_siguiente = NULL`,
       [estado.id, estado.descripcion]
     );
   }
 
-  for (const estado of ESTADOS.filter((e) => e.siguiente !== null)) {
-    await db.query(
-      'UPDATE estados_documentos SET id_estado_siguiente = ? WHERE id = ?',
-      [estado.siguiente, estado.id]
-    );
+  console.log(`[seed] ${ESTADOS.length} estados_documentos asegurados`);
+}
+
+// Usuario tecnico usado por auditoria_acciones cuando el cambio de estado lo
+// dispara el worker de conciliacion (BullMQ), sin usuario autenticado detras
+// (RC-06 exige id_usuario NOT NULL). Clave hasheada con un valor no usable
+// para login real -- este usuario no debe poder autenticarse por
+// POST /api/auth/login, solo sirve como FK de atribucion en auditoria.
+async function seedUsuarioSistema() {
+  const [existentes] = await db.query(
+    'SELECT id FROM usuarios WHERE usuario = ? LIMIT 1',
+    [USUARIO_SISTEMA_NOMBRE]
+  );
+  if (existentes.length > 0) {
+    console.log(`[seed] usuario '${USUARIO_SISTEMA_NOMBRE}' ya existe (id=${existentes[0].id})`);
+    return existentes[0].id;
   }
 
-  console.log(`[seed] ${ESTADOS.length} estados_documentos asegurados`);
+  // Hash de un valor aleatorio, no de una contraseña real: nadie debe poder
+  // loguearse como 'sistema' desde el login normal.
+  const hash = await bcrypt.hash(crypto.randomUUID(), 10);
+  // usuarios.id no tiene AUTO_INCREMENT (mismo caso que estados_documentos):
+  // se calcula con MAX+1, igual que seedAuth.js hace para 'admin'. No se usa
+  // un id fijo porque seed:auth (que crea 'admin') siempre corre antes que
+  // este script (seedBuzon ya lo exige), y un id fijo=1 chocaria con el id
+  // que 'admin' ya haya tomado.
+  const id = await nextId('usuarios');
+  await db.query('INSERT INTO usuarios (id, usuario, clave) VALUES (?, ?, ?)', [
+    id,
+    USUARIO_SISTEMA_NOMBRE,
+    hash,
+  ]);
+  console.log(`[seed] usuario '${USUARIO_SISTEMA_NOMBRE}' creado (id=${id})`);
+  return id;
 }
 
 // correos.id_buzon es NOT NULL con FK a buzones, y buzones.id_config_buzon
@@ -105,6 +150,7 @@ async function seedBuzon() {
 async function main() {
   try {
     await seedEstados();
+    await seedUsuarioSistema();
     await seedBuzon();
     console.log('[seed] pipeline listo');
   } catch (err) {
