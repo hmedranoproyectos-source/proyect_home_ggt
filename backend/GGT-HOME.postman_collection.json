@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "GGT-HOME — API Conciliación DIAN-SIESA",
-    "description": "Colección para probar autenticación multiempresa y el catálogo de consultas UnoEE/SIESA (EjecutarConsultaXML) expuesto en /api/siesa.",
+    "description": "Colección para probar autenticación multiempresa y el catálogo de consultas UnoEE/SIESA (EjecutarConsultaXML) y la importación de datos (ImportarXML) expuestos en /api/siesa.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -114,6 +114,44 @@
         "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
       },
       "item": [
+        {
+          "name": "0. Importar - ping (solo inicio/fin, no crea datos)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lineas\": [\n    \"000000100000001001\",\n    \"000000299990001001\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/siesa/importar",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "importar"]
+            },
+            "description": "Llama a ImportarXML (WS UnoEE, ver docs/siesa-ws-importacion-datos.md) con solo el registro inicial (tipo 0000) y el final (tipo 9999), sin registros de detalle: valida conexion, credenciales SIESA_USER/SIESA_PASSWORD y SIESA_CONEXION_NOMBRE sin crear nada en el ERP. Respuestas: 200 {ok:true} = importo sin errores; 422 {error, errores:[{linea,tipoReg,subtipoReg,nivel,valor,detalle}]} = el WS devolvio printTipoError=1; 400 = lineas vacio; 401/403 = token o permiso gestionar_siesa. Requiere haber corrido Login/Select Company antes."
+          }
+        },
+        {
+          "name": "0b. Importar - lineas propias (CUIDADO: escribe en SIESA)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lineas\": [\n    \"000000100000001001\",\n    \"<PEGAR_AQUI_REGISTROS_DE_DETALLE_SEGUN_FORMATO>\",\n    \"000000299990001001\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/siesa/importar",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "importar"]
+            },
+            "description": "Plantilla para importar registros reales (terceros, clientes POS, entrada de almacen, etc.) segun el formato plano UnoEE. Esto SI crea datos en el ERP: usar solo contra el ambiente de pruebas y con un registro descartable. Cada linea lleva numero de linea de 7 digitos al inicio (0000001, 0000002...) y la ultima es el registro 9999. Formato de Entradas de Almacen: docs/siesa-plano-entradas-almacen.md."
+          }
+        },
         {
           "name": "1. Centros de Costos",
           "request": {
