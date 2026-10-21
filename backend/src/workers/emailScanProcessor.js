@@ -7,6 +7,7 @@ const {
 const { extraerAdjuntos } = require('../services/attachmentExtractor');
 const { ingestarCorreo } = require('../services/invoiceIngestService');
 const conciliacionQueue = require('../queues/conciliacionQueue');
+const ESTADOS = require('../constants/estados');
 const {
   CARPETA_PROCESADOS,
   CARPETA_DUPLICADOS,
@@ -25,10 +26,15 @@ const {
 //      Las notas credito/debito (cac:Invoice con root CreditNote/DebitNote)
 //      NO se procesan -- ublInvoiceParser las detecta y lanza
 //      DocumentoNoFacturaError antes de intentar persistir nada de esa linea.
-//   4. encolar la conciliacion de cada factura con OC
-//   5. marcar el correo como leido y moverlo a PROCESADOS/DUPLICADOS/
+//   4. marcar el correo como leido y moverlo a PROCESADOS/DUPLICADOS/
 //      ERROR_FORMATO/NOTA CREDITO/NOTA DEBITO segun el resultado del
-//      analisis del XML, solo si 3 y 4 salieron bien
+//      analisis del XML, solo si 3 salio bien
+//
+// Una vez terminado el lote completo (todos los correos del buzon), se
+// encola la conciliacion contra SIESA de TODAS las facturas en NUEVA con
+// referencia_oc no nula de esta compania -- no solo las ingeridas en esta
+// corrida, para recoger tambien las que quedaron pendientes de un ciclo
+// anterior (ej. fallo de persistencia parcial). Ver encolarConciliaciones.
 //
 // Clasificacion del correo completo (puede traer varios XML): prioridad
 // ERROR_FORMATO > DUPLICADO > NOTA_CREDITO > NOTA_DEBITO > PROCESADOS.
@@ -72,13 +78,40 @@ async function resolverBuzon(mailbox) {
   return rows[0];
 }
 
+// Encola en conciliacionQueue una factura por cada fila NUEVA + referencia_oc
+// no nula de la compania, tras terminar el escaneo del buzon completo (no
+// una consulta por factura durante el ingreso). jobId deterministico: si el
+// mismo lote se reprocesa tras un fallo parcial, BullMQ descarta el
+// duplicado en vez de conciliar dos veces la misma factura.
+async function encolarConciliaciones(idCia) {
+  const [facturas] = await db.query(
+    `SELECT id FROM facturas
+      WHERE id_cia = ? AND id_estado = ? AND referencia_oc IS NOT NULL`,
+    [idCia, ESTADOS.NUEVA]
+  );
+
+  for (const factura of facturas) {
+    await conciliacionQueue.add(
+      'conciliar-factura',
+      { idFactura: factura.id, idCia },
+      { jobId: `conciliacion-${factura.id}` }
+    );
+  }
+
+  return facturas.length;
+}
+
 async function procesarEscaneo(job) {
   const mailbox = job.data?.mailbox || 'INBOX';
   const { id_buzon: idBuzon, id_cia: idCia } = await resolverBuzon(mailbox);
 
   const mensajes = await fetchUnreadMessages(mailbox, { idCia });
   if (mensajes.length === 0) {
-    return { correos: 0, facturas: 0, errores: 0, ignorados: 0 };
+    // Aunque no haya correos nuevos en esta corrida, puede haber facturas
+    // NUEVA con referencia_oc pendientes de un ciclo anterior (ej. fallo
+    // parcial) -- se intentan conciliar igual.
+    const conciliaciones = await encolarConciliaciones(idCia);
+    return { correos: 0, facturas: 0, errores: 0, ignorados: 0, conciliaciones };
   }
 
   const resumen = {
@@ -100,7 +133,7 @@ async function procesarEscaneo(job) {
   };
 
   for (const { uid, mail } of mensajes) {
-    const { archivos, errores: erroresZip } = extraerAdjuntos(mail.attachments);
+    const { archivos, errores: erroresZip } = await extraerAdjuntos(mail.attachments);
 
     for (const err of erroresZip) {
       console.warn(`[email-scan] ${err}`);
@@ -142,20 +175,6 @@ async function procesarEscaneo(job) {
         );
       }
 
-      // Solo se concilia lo que trae OC; las SIN_OC esperan aprobacion
-      // manual de un supervisor (DER §6) y no se encolan aqui.
-      for (const factura of resultado.facturas) {
-        if (!factura.referencia_oc) continue;
-        await conciliacionQueue.add(
-          'conciliar-factura',
-          { idFactura: factura.idFactura, idCia },
-          // jobId deterministico: si el mismo correo se reprocesa tras un
-          // fallo parcial, BullMQ descarta el duplicado en vez de conciliar
-          // dos veces la misma factura.
-          { jobId: `conciliacion-${factura.idFactura}` }
-        );
-      }
-
       uidsProcesados.push(uid);
       uidsPorCarpeta[clasificarCorreo(resultado)].push(uid);
     } catch (err) {
@@ -189,6 +208,11 @@ async function procesarEscaneo(job) {
       );
     }
   }
+
+  // Todo el buzon ya quedo escaneado: se concilian todas las NUEVA con
+  // referencia_oc pendientes de esta compania (las de este lote y las que
+  // hayan quedado de corridas anteriores).
+  resumen.conciliaciones = await encolarConciliaciones(idCia);
 
   return resumen;
 }

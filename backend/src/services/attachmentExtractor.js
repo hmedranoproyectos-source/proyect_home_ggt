@@ -1,5 +1,6 @@
 const path = require('path');
 const AdmZip = require('adm-zip');
+const { simpleParser } = require('mailparser');
 
 // Extraccion de adjuntos de una FE (RP-01 / RI-01).
 // Las facturas electronicas colombianas llegan casi siempre como un .zip que
@@ -57,20 +58,50 @@ function expandirZip(buffer, nombreZip) {
   return { archivos: resultado, error: null };
 }
 
+// Muchos proveedores reenvian las FE como correos adjuntos (.eml /
+// message/rfc822), cada uno con su propio .zip (XML + PDF). Se parsean de
+// forma recursiva; el limite de profundidad evita bucles con correos
+// anidados patologicos.
+const MAX_PROFUNDIDAD_EML = 3;
+
+function esCorreoAdjunto(att, ext) {
+  return ext === 'eml' || att.contentType === 'message/rfc822';
+}
+
 /**
  * Normaliza los adjuntos de un correo parseado por mailparser, expandiendo
- * los .zip y descartando lo que no sea XML/PDF.
+ * los .zip (tambien los que vienen dentro de correos .eml adjuntos) y
+ * descartando lo que no sea XML/PDF.
  *
  * @param {Array} attachments mail.attachments de mailparser
- * @returns {{archivos: Array, errores: Array}}
+ * @returns {Promise<{archivos: Array, errores: Array}>}
  */
-function extraerAdjuntos(attachments = []) {
+async function extraerAdjuntos(attachments = [], profundidad = 0) {
   const archivos = [];
   const errores = [];
 
   for (const att of attachments) {
     const nombre = att.filename || 'adjunto-sin-nombre';
     const ext = extension(nombre);
+
+    if (esCorreoAdjunto(att, ext)) {
+      if (profundidad >= MAX_PROFUNDIDAD_EML) {
+        errores.push(`Correo adjunto demasiado anidado (${nombre})`);
+        continue;
+      }
+      try {
+        const interno = await simpleParser(att.content);
+        const resultado = await extraerAdjuntos(
+          interno.attachments,
+          profundidad + 1
+        );
+        archivos.push(...resultado.archivos);
+        errores.push(...resultado.errores);
+      } catch (err) {
+        errores.push(`Correo adjunto ilegible (${nombre}): ${err.message}`);
+      }
+      continue;
+    }
 
     if (ext === 'zip') {
       const { archivos: expandidos, error } = expandirZip(att.content, nombre);

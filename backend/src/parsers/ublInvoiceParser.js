@@ -83,13 +83,17 @@ function toNumber(value, fallback = 0) {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-// Separa "FE123" / "SETP-970000001" en prefijo alfabetico y consecutivo
-// numerico. facturas.prefijo_fe es varchar(10) y consecutivo_fe es int(10).
+// Separa "FE123" / "SETP-970000001" / "1CL1254671" en prefijo y consecutivo
+// numerico. facturas.prefijo_fe es varchar(10) y consecutivo_fe es bigint
+// (ver mysql-init/07_consecutivo_fe_bigint.sql).
 function splitInvoiceNumber(raw) {
   if (!raw) {
     throw new UblParseError('La factura no tiene cbc:ID (numero de factura)');
   }
-  const match = String(raw).trim().match(/^([A-Za-z]*)[-\s]?(\d+)$/);
+  // El prefijo es todo lo que precede a la racha numerica final: puede traer
+  // digitos propios ("1CL1254671" -> "1CL" + 1254671, "003A42677" -> "003A" +
+  // 42677). El cuantificador perezoso deja el maximo de digitos al consecutivo.
+  const match = String(raw).trim().match(/^([A-Za-z0-9]*?)[-\s]?(\d+)$/);
   if (!match) {
     throw new UblParseError(`Numero de factura con formato no reconocido: "${raw}"`);
   }
