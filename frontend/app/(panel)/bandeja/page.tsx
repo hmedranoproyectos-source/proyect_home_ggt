@@ -1,6 +1,7 @@
 'use client'
 
 import Alert from '@mui/material/Alert'
+import Autocomplete from '@mui/material/Autocomplete'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -11,6 +12,7 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
@@ -31,6 +33,8 @@ const ESTADOS: FacturaApp['estado'][] = [
 	'CONTABILIZADA',
 ]
 
+const FILAS_POR_PAGINA = 10
+
 export default function BandejaPage() {
 	const router = useRouter()
 	const [facturas, setFacturas] = useState<FacturaApp[]>([])
@@ -41,11 +45,7 @@ export default function BandejaPage() {
 	const [estado, setEstado] = useState('Todos')
 	const [busqueda, setBusqueda] = useState('')
 	const [fecha, setFecha] = useState('01/09/2026 - 08/09/2026')
-	const [aplicado, setAplicado] = useState({
-		proveedor: 'Todos',
-		estado: 'Todos',
-		busqueda: '',
-	})
+	const [pagina, setPagina] = useState(0)
 
 	useEffect(() => {
 		let cancelado = false
@@ -79,28 +79,50 @@ export default function BandejaPage() {
 	const filtradas = useMemo(() => {
 		return facturas.filter((factura) => {
 			if (
-				aplicado.proveedor !== 'Todos' &&
-				factura.proveedor !== aplicado.proveedor
+				proveedor !== 'Todos' &&
+				!factura.proveedor
+					.toLowerCase()
+					.includes(proveedor.toLowerCase())
 			) {
 				return false
 			}
-			if (
-				aplicado.estado !== 'Todos' &&
-				factura.estado !== aplicado.estado
-			) {
+			if (estado !== 'Todos' && factura.estado !== estado) {
 				return false
 			}
-			if (!aplicado.busqueda) {
+			if (!busqueda) {
 				return true
 			}
-			const q = aplicado.busqueda.toLowerCase()
+			const q = busqueda.toLowerCase()
 			return (
 				factura.numeroFactura.toLowerCase().includes(q) ||
 				factura.nit.toLowerCase().includes(q) ||
 				(factura.oc ?? '').toLowerCase().includes(q)
 			)
 		})
-	}, [facturas, aplicado])
+	}, [facturas, proveedor, estado, busqueda])
+
+	// Cada cambio de filtro vuelve a la primera pagina, para no quedar en
+	// una pagina que ya no existe si el resultado filtrado es mas chico.
+	// Ajustado durante el render (no en un efecto aparte) con estado, no ref
+	// -- patron de React para estado derivado: https://react.dev/learn/you-might-not-need-an-effect
+	const [filtroAnterior, setFiltroAnterior] = useState({
+		proveedor,
+		estado,
+		busqueda,
+	})
+	if (
+		filtroAnterior.proveedor !== proveedor ||
+		filtroAnterior.estado !== estado ||
+		filtroAnterior.busqueda !== busqueda
+	) {
+		setFiltroAnterior({ proveedor, estado, busqueda })
+		setPagina(0)
+	}
+
+	const paginadas = useMemo(() => {
+		const inicio = pagina * FILAS_POR_PAGINA
+		return filtradas.slice(inicio, inicio + FILAS_POR_PAGINA)
+	}, [filtradas, pagina])
 
 	function handleExportar() {
 		descargarCsv(
@@ -133,20 +155,30 @@ export default function BandejaPage() {
 				sx={{ mb: 2, alignItems: { lg: 'flex-end' } }}
 			>
 				<CampoFiltro etiqueta="Proveedor" sx={{ minWidth: 180, flex: 1 }}>
-					<TextField
-						select
+					<Autocomplete
+						freeSolo
 						fullWidth
 						size="small"
-						value={proveedor}
-						onChange={(e) => setProveedor(e.target.value)}
-					>
-						<MenuItem value="Todos">Seleccionar</MenuItem>
-						{proveedores.map((nombre) => (
-							<MenuItem key={nombre} value={nombre}>
-								{nombre}
-							</MenuItem>
-						))}
-					</TextField>
+						options={proveedores}
+						value={proveedor === 'Todos' ? '' : proveedor}
+						onChange={(_e, valor) =>
+							setProveedor(valor || 'Todos')
+						}
+						onInputChange={(_e, valor, motivo) => {
+							// 'reset' se dispara al seleccionar una opcion o al
+							// perder foco -- ya lo maneja onChange, así que solo
+							// se sincroniza el texto libre mientras se escribe.
+							if (motivo === 'input') {
+								setProveedor(valor || 'Todos')
+							}
+						}}
+						renderInput={(params) => (
+							<TextField
+								{...params}
+								placeholder="Seleccionar o escribir"
+							/>
+						)}
+					/>
 				</CampoFiltro>
 				<CampoFiltro etiqueta="Fecha" sx={{ minWidth: 220, flex: 1 }}>
 					<TextField
@@ -181,19 +213,6 @@ export default function BandejaPage() {
 						onChange={(e) => setBusqueda(e.target.value)}
 					/>
 				</CampoFiltro>
-				<Button
-					variant="contained"
-					onClick={() =>
-						setAplicado({ proveedor, estado, busqueda })
-					}
-					sx={{
-						backgroundColor: colores.azul,
-						borderRadius: RADIO_CARD,
-						'&:hover': { backgroundColor: '#0C4E82' },
-					}}
-				>
-					FILTRAR
-				</Button>
 			</Stack>
 
 			<Stack
@@ -258,7 +277,7 @@ export default function BandejaPage() {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{filtradas.map((factura) => (
+							{paginadas.map((factura) => (
 								<TableRow key={factura.id}>
 									<TableCell>{factura.numeroFactura}</TableCell>
 									<TableCell>{factura.proveedor}</TableCell>
@@ -307,6 +326,21 @@ export default function BandejaPage() {
 						</TableBody>
 					</Table>
 				)}
+				{!cargando && filtradas.length > 0 ? (
+					<TablePagination
+						component="div"
+						count={filtradas.length}
+						page={pagina}
+						onPageChange={(_e, nuevaPagina) =>
+							setPagina(nuevaPagina)
+						}
+						rowsPerPage={FILAS_POR_PAGINA}
+						rowsPerPageOptions={[FILAS_POR_PAGINA]}
+						labelDisplayedRows={({ from, to, count }) =>
+							`${from}–${to} de ${count}`
+						}
+					/>
+				) : null}
 				<Box
 					sx={{
 						px: 3,

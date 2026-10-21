@@ -1,8 +1,9 @@
 'use client'
 
+import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import MenuItem from '@mui/material/MenuItem'
+import CircularProgress from '@mui/material/CircularProgress'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Tab from '@mui/material/Tab'
@@ -10,23 +11,36 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import Tabs from '@mui/material/Tabs'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { useMemo, useRef, useState } from 'react'
-import { ChipEstado, ChipSiesa } from '@/componentes/chip-estado'
+import axios from 'axios'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { EncabezadoPagina } from '@/componentes/encabezado-pagina'
-import { ModalTrazabilidad } from '@/componentes/modal-trazabilidad'
-import {
-	COMPARATIVO,
-	ESTADOS,
-	FACTURAS,
-	PROVEEDORES,
-} from '@/lib/datos-mock'
+import { COMPARATIVO } from '@/lib/datos-mock'
 import { descargarCsv, formatoMoneda, siNo } from '@/lib/formato'
+import {
+	importarFacturasDianExcel,
+	obtenerFacturasDian,
+	type ResumenImportacionDian,
+} from '@/lib/servicios/facturasDianApi'
+import { obtenerFacturasErp } from '@/lib/servicios/facturasErpApi'
 import { colores, RADIO_CARD } from '@/lib/tema'
-import type { FilaComparativo } from '@/lib/tipos'
+import type { FacturaDianApp, FacturaErpApp, FilaComparativo } from '@/lib/tipos'
+
+const FILAS_POR_PAGINA = 10
+
+function formatoFecha(iso: string): string {
+	const fecha = new Date(iso)
+	if (Number.isNaN(fecha.getTime())) {
+		return iso
+	}
+	const dd = String(fecha.getUTCDate()).padStart(2, '0')
+	const mm = String(fecha.getUTCMonth() + 1).padStart(2, '0')
+	return `${dd}/${mm}/${fecha.getUTCFullYear()}`
+}
 
 export default function InformesPage() {
 	const [tab, setTab] = useState(0)
@@ -48,9 +62,12 @@ export default function InformesPage() {
 				}}
 			>
 				<Tab label="Cargar archivo y comparar" />
-				<Tab label="Facturas por estado" />
+				<Tab label="Facturas Dian" />
+				<Tab label="Facturas ERP" />
 			</Tabs>
-			{tab === 0 ? <TabComparativo /> : <TabPorEstado />}
+			{tab === 0 ? <TabComparativo /> : null}
+			{tab === 1 ? <TabFacturasDian /> : null}
+			{tab === 2 ? <TabFacturasErp /> : null}
 		</Box>
 	)
 }
@@ -61,6 +78,13 @@ function TabComparativo() {
 	const [resultado, setResultado] = useState<
 		FilaComparativo[] | null
 	>(null)
+
+	// Estado de la carga a facturas_dian (independiente del comparativo
+	// mock de arriba): botón CARGAR nuevo, solo lee el Excel y lo inserta.
+	const [cargando, setCargando] = useState(false)
+	const [errorCarga, setErrorCarga] = useState<string | null>(null)
+	const [resumenCarga, setResumenCarga] =
+		useState<ResumenImportacionDian | null>(null)
 
 	function handleArchivo(file: File | undefined) {
 		if (!file) {
@@ -74,6 +98,28 @@ function TabComparativo() {
 		}
 		setArchivo(file)
 		setResultado(null)
+		setResumenCarga(null)
+		setErrorCarga(null)
+	}
+
+	async function handleCargar() {
+		if (!archivo) {
+			return
+		}
+		setCargando(true)
+		setErrorCarga(null)
+		try {
+			const resumen = await importarFacturasDianExcel(archivo)
+			setResumenCarga(resumen)
+		} catch (err) {
+			const mensaje =
+				axios.isAxiosError(err) && err.response?.data?.error
+					? err.response.data.error
+					: 'No se pudo procesar el archivo. Intenta nuevamente.'
+			setErrorCarga(mensaje)
+		} finally {
+			setCargando(false)
+		}
 	}
 
 	function handleExportar() {
@@ -229,6 +275,19 @@ function TabComparativo() {
 						desde tu equipo.
 					</Typography>
 				</Box>
+				{errorCarga ? (
+					<Alert severity="error" sx={{ mb: 2 }}>
+						{errorCarga}
+					</Alert>
+				) : null}
+				{resumenCarga ? (
+					<Alert severity="success" sx={{ mb: 2 }}>
+						{resumenCarga.insertadas} factura(s) insertadas en
+						facturas_dian de {resumenCarga.total} leídas
+						({resumenCarga.duplicadas} duplicadas,{' '}
+						{resumenCarga.conError} con error, omitidas).
+					</Alert>
+				) : null}
 				<Stack
 					direction="row"
 					spacing={2}
@@ -255,6 +314,28 @@ function TabComparativo() {
 						}}
 					>
 						SELECCIONAR ARCHIVO
+					</Button>
+					<Button
+						variant="contained"
+						disabled={!archivo || cargando}
+						onClick={handleCargar}
+						startIcon={
+							cargando ? (
+								<CircularProgress size={16} color="inherit" />
+							) : undefined
+						}
+						sx={{
+							backgroundColor: colores.okFg,
+							borderRadius: RADIO_CARD,
+							'&:hover': { backgroundColor: '#0C6A4B' },
+							'&.Mui-disabled': {
+								backgroundColor: colores.okFg,
+								color: '#FFFFFF',
+								opacity: 0.85,
+							},
+						}}
+					>
+						{cargando ? 'CARGANDO...' : 'CARGAR'}
 					</Button>
 					<Typography variant="body2">
 						{archivo
@@ -322,35 +403,89 @@ function KpiMini({
 	)
 }
 
-function TabPorEstado() {
-	const [proveedor, setProveedor] = useState('Todos')
-	const [estado, setEstado] = useState('Todos')
-	const [fecha] = useState('01/09/2026 - 08/09/2026')
-	const [trazabilidad, setTrazabilidad] = useState<string | null>(
-		null,
-	)
-	const [aplicado, setAplicado] = useState({
-		proveedor: 'Todos',
-		estado: 'Todos',
-	})
+function TabFacturasDian() {
+	const [facturas, setFacturas] = useState<FacturaDianApp[]>([])
+	const [cargando, setCargando] = useState(true)
+	const [error, setError] = useState('')
 
-	const filas = useMemo(() => {
-		return FACTURAS.filter((factura) => {
-			if (
-				aplicado.proveedor !== 'Todos' &&
-				factura.proveedor !== aplicado.proveedor
-			) {
+	const [fecha, setFecha] = useState('')
+	const [factura, setFactura] = useState('')
+	const [nitProveedor, setNitProveedor] = useState('')
+	const [pagina, setPagina] = useState(0)
+
+	useEffect(() => {
+		let cancelado = false
+		setCargando(true)
+		setError('')
+		obtenerFacturasDian()
+			.then((data) => {
+				if (cancelado) return
+				setFacturas(data)
+			})
+			.catch((err) => {
+				if (cancelado) return
+				setError(
+					axios.isAxiosError(err) && err.response?.data?.error
+						? err.response.data.error
+						: 'No se pudieron cargar las facturas Dian.',
+				)
+			})
+			.finally(() => {
+				if (!cancelado) setCargando(false)
+			})
+		return () => {
+			cancelado = true
+		}
+	}, [])
+
+	const filtradas = useMemo(() => {
+		return facturas.filter((f) => {
+			if (fecha && formatoFecha(f.fechaEmision) !== fecha) {
 				return false
 			}
 			if (
-				aplicado.estado !== 'Todos' &&
-				factura.estado !== aplicado.estado
+				factura &&
+				!f.numeroFactura
+					.toLowerCase()
+					.includes(factura.toLowerCase())
 			) {
 				return false
+			}
+			if (nitProveedor) {
+				const q = nitProveedor.toLowerCase()
+				const coincide =
+					f.nit.toLowerCase().includes(q) ||
+					f.proveedor.toLowerCase().includes(q)
+				if (!coincide) {
+					return false
+				}
 			}
 			return true
 		})
-	}, [aplicado])
+	}, [facturas, fecha, factura, nitProveedor])
+
+	// Cada cambio de filtro vuelve a la primera pagina, para no quedar en
+	// una pagina que ya no existe si el resultado filtrado es mas chico.
+	// Ajustado durante el render (no en un efecto aparte) con estado, no ref
+	// -- patron de React para estado derivado: https://react.dev/learn/you-might-not-need-an-effect
+	const [filtroAnterior, setFiltroAnterior] = useState({
+		fecha,
+		factura,
+		nitProveedor,
+	})
+	if (
+		filtroAnterior.fecha !== fecha ||
+		filtroAnterior.factura !== factura ||
+		filtroAnterior.nitProveedor !== nitProveedor
+	) {
+		setFiltroAnterior({ fecha, factura, nitProveedor })
+		setPagina(0)
+	}
+
+	const paginadas = useMemo(() => {
+		const inicio = pagina * FILAS_POR_PAGINA
+		return filtradas.slice(inicio, inicio + FILAS_POR_PAGINA)
+	}, [filtradas, pagina])
 
 	return (
 		<Box>
@@ -359,79 +494,60 @@ function TabPorEstado() {
 				spacing={1.5}
 				sx={{ mb: 2, alignItems: { md: 'flex-end' } }}
 			>
-				<CampoFiltro etiqueta="Fecha" sx={{ minWidth: 220 }}>
+				<CampoFiltro etiqueta="Fecha" sx={{ minWidth: 180 }}>
 					<TextField
 						fullWidth
 						size="small"
-						value={fecha}
+						type="date"
+						value={fecha ? isoDesdeFormatoFecha(fecha) : ''}
+						onChange={(e) =>
+							setFecha(
+								e.target.value
+									? formatoFecha(e.target.value)
+									: '',
+							)
+						}
 					/>
 				</CampoFiltro>
-				<CampoFiltro etiqueta="Estado" sx={{ minWidth: 180 }}>
+				<CampoFiltro etiqueta="Factura" sx={{ minWidth: 180 }}>
 					<TextField
-						select
 						fullWidth
 						size="small"
-						value={estado}
-						onChange={(e) => setEstado(e.target.value)}
-					>
-						<MenuItem value="Todos">Todos</MenuItem>
-						{ESTADOS.map((item) => (
-							<MenuItem key={item} value={item}>
-								{item}
-							</MenuItem>
-						))}
-					</TextField>
+						placeholder="Prefijo-consecutivo"
+						value={factura}
+						onChange={(e) => setFactura(e.target.value)}
+					/>
 				</CampoFiltro>
 				<CampoFiltro
-					etiqueta="Proveedor"
-					sx={{ minWidth: 180, flex: 1 }}
+					etiqueta="Nit Proveedor"
+					sx={{ minWidth: 200, flex: 1 }}
 				>
 					<TextField
-						select
 						fullWidth
 						size="small"
-						value={proveedor}
-						onChange={(e) => setProveedor(e.target.value)}
-					>
-						<MenuItem value="Todos">Todos</MenuItem>
-						{PROVEEDORES.map((nombre) => (
-							<MenuItem key={nombre} value={nombre}>
-								{nombre}
-							</MenuItem>
-						))}
-					</TextField>
+						placeholder="NIT o nombre del proveedor"
+						value={nitProveedor}
+						onChange={(e) => setNitProveedor(e.target.value)}
+					/>
 				</CampoFiltro>
-				<Button
-					variant="contained"
-					onClick={() => setAplicado({ proveedor, estado })}
-					sx={{
-						backgroundColor: colores.azul,
-						borderRadius: RADIO_CARD,
-						'&:hover': { backgroundColor: '#0C4E82' },
-					}}
-				>
-					FILTRAR
-				</Button>
 				<Button
 					variant="outlined"
 					onClick={() =>
 						descargarCsv(
-							'facturas-por-estado.csv',
+							'facturas-dian.csv',
 							[
-								'Factura',
+								'NIT',
 								'Proveedor',
-								'Estado',
-								'Fecha estado',
-								'Entrada',
-								'Causación',
+								'Factura',
+								'Valor Total',
+								'Fecha Emisión',
 							],
-							filas.map((f) => [
-								f.id,
+							filtradas.map((f) => [
+								f.nit,
 								f.proveedor,
-								f.estado,
-								f.fechaEstado,
-								f.entradaSiesa,
-								f.causacionSiesa,
+								f.numeroFactura,
+								f.vlrTotal,
+								formatoFecha(f.fechaEmision),
 							]),
 						)
 					}
@@ -441,58 +557,82 @@ function TabPorEstado() {
 				</Button>
 			</Stack>
 
+			{error ? (
+				<Alert severity="error" sx={{ mb: 2 }}>
+					{error}
+				</Alert>
+			) : null}
+
 			<Paper sx={{ borderRadius: RADIO_CARD, overflow: 'hidden' }}>
-				<Table>
-					<TableHead
-						sx={{
-							'& .MuiTableCell-root': {
-								fontWeight: 800,
-								fontSize: 12,
-							},
-						}}
-					>
-						<TableRow>
-							<TableCell>Factura</TableCell>
-							<TableCell>Proveedor</TableCell>
-							<TableCell>Estado</TableCell>
-							<TableCell>Fecha estado</TableCell>
-							<TableCell>Entrada Siesa</TableCell>
-							<TableCell>Causación</TableCell>
-							<TableCell>Acción</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{filas.map((factura) => (
-							<TableRow key={factura.id}>
-								<TableCell>{factura.id}</TableCell>
-								<TableCell>{factura.proveedor}</TableCell>
-								<TableCell>
-									<ChipEstado estado={factura.estado} />
+				{cargando ? (
+					<Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+						<CircularProgress size={28} />
+					</Box>
+				) : (
+					<Table>
+						<TableHead
+							sx={{
+								'& .MuiTableCell-root': {
+									fontWeight: 800,
+									fontSize: 12,
+								},
+							}}
+						>
+							<TableRow>
+								<TableCell>NIT</TableCell>
+								<TableCell>Proveedor</TableCell>
+								<TableCell>Factura</TableCell>
+								<TableCell align="right">
+									Valor Total
 								</TableCell>
-								<TableCell>{factura.fechaEstado}</TableCell>
-								<TableCell>
-									<ChipSiesa valor={factura.entradaSiesa} />
-								</TableCell>
-								<TableCell>
-									<ChipSiesa
-										valor={factura.causacionSiesa}
-									/>
-								</TableCell>
-								<TableCell>
-									<Button
-										size="small"
-										variant="outlined"
-										onClick={() =>
-											setTrazabilidad(factura.id)
-										}
-									>
-										Ver trazabilidad
-									</Button>
-								</TableCell>
+								<TableCell>Fecha Emisión</TableCell>
 							</TableRow>
-						))}
-					</TableBody>
-				</Table>
+						</TableHead>
+						<TableBody>
+							{paginadas.map((f) => (
+								<TableRow key={f.id}>
+									<TableCell>{f.nit}</TableCell>
+									<TableCell>{f.proveedor}</TableCell>
+									<TableCell>{f.numeroFactura}</TableCell>
+									<TableCell align="right">
+										{formatoMoneda(f.vlrTotal)}
+									</TableCell>
+									<TableCell>
+										{formatoFecha(f.fechaEmision)}
+									</TableCell>
+								</TableRow>
+							))}
+							{!cargando && filtradas.length === 0 ? (
+								<TableRow>
+									<TableCell colSpan={5} align="center">
+										<Typography
+											variant="body2"
+											sx={{ py: 3 }}
+										>
+											No hay facturas Dian que
+											coincidan con los filtros.
+										</Typography>
+									</TableCell>
+								</TableRow>
+							) : null}
+						</TableBody>
+					</Table>
+				)}
+				{!cargando && filtradas.length > 0 ? (
+					<TablePagination
+						component="div"
+						count={filtradas.length}
+						page={pagina}
+						onPageChange={(_e, nuevaPagina) =>
+							setPagina(nuevaPagina)
+						}
+						rowsPerPage={FILAS_POR_PAGINA}
+						rowsPerPageOptions={[FILAS_POR_PAGINA]}
+						labelDisplayedRows={({ from, to, count }) =>
+							`${from}–${to} de ${count}`
+						}
+					/>
+				) : null}
 				<Box
 					sx={{
 						px: 3,
@@ -501,20 +641,276 @@ function TabPorEstado() {
 					}}
 				>
 					<Typography variant="body2">
-						Estados disponibles: Por ingresar, Con
-						novedad, Conciliada y En ERP. La trazabilidad
-						se consulta desde la acción de cada factura,
-						sin un módulo independiente.
+						Espejo del reporte DIAN cargado por Excel
+						(facturas_dian), sin cruzar contra el buzón ni
+						el ERP.
 					</Typography>
 				</Box>
 			</Paper>
-
-			<ModalTrazabilidad
-				facturaId={trazabilidad}
-				onClose={() => setTrazabilidad(null)}
-			/>
 		</Box>
 	)
+}
+
+function TabFacturasErp() {
+	const [facturas, setFacturas] = useState<FacturaErpApp[]>([])
+	const [cargando, setCargando] = useState(true)
+	const [error, setError] = useState('')
+
+	const [fecha, setFecha] = useState('')
+	const [factura, setFactura] = useState('')
+	const [nitProveedor, setNitProveedor] = useState('')
+	const [pagina, setPagina] = useState(0)
+
+	useEffect(() => {
+		let cancelado = false
+		setCargando(true)
+		setError('')
+		obtenerFacturasErp()
+			.then((data) => {
+				if (cancelado) return
+				setFacturas(data)
+			})
+			.catch((err) => {
+				if (cancelado) return
+				setError(
+					axios.isAxiosError(err) && err.response?.data?.error
+						? err.response.data.error
+						: 'No se pudieron cargar las facturas ERP.',
+				)
+			})
+			.finally(() => {
+				if (!cancelado) setCargando(false)
+			})
+		return () => {
+			cancelado = true
+		}
+	}, [])
+
+	// "Factura" busca por el identificador del documento ERP
+	// (cod_erp_tipo_docto-consecutivo), equivalente a numeroFactura en el
+	// tab Facturas Dian (que usa prefijo-consecutivo de la FE).
+	const filtradas = useMemo(() => {
+		return facturas.filter((f) => {
+			if (fecha && formatoFecha(f.fecha) !== fecha) {
+				return false
+			}
+			if (factura) {
+				const documento = `${f.codDocumento}-${f.consecutivo}`
+				if (!documento.toLowerCase().includes(factura.toLowerCase())) {
+					return false
+				}
+			}
+			if (nitProveedor) {
+				const q = nitProveedor.toLowerCase()
+				const coincide =
+					f.nit.toLowerCase().includes(q) ||
+					f.proveedor.toLowerCase().includes(q)
+				if (!coincide) {
+					return false
+				}
+			}
+			return true
+		})
+	}, [facturas, fecha, factura, nitProveedor])
+
+	// Cada cambio de filtro vuelve a la primera pagina, mismo patron de
+	// estado derivado que TabFacturasDian (ver comentario alli).
+	const [filtroAnterior, setFiltroAnterior] = useState({
+		fecha,
+		factura,
+		nitProveedor,
+	})
+	if (
+		filtroAnterior.fecha !== fecha ||
+		filtroAnterior.factura !== factura ||
+		filtroAnterior.nitProveedor !== nitProveedor
+	) {
+		setFiltroAnterior({ fecha, factura, nitProveedor })
+		setPagina(0)
+	}
+
+	const paginadas = useMemo(() => {
+		const inicio = pagina * FILAS_POR_PAGINA
+		return filtradas.slice(inicio, inicio + FILAS_POR_PAGINA)
+	}, [filtradas, pagina])
+
+	return (
+		<Box>
+			<Stack
+				direction={{ xs: 'column', md: 'row' }}
+				spacing={1.5}
+				sx={{ mb: 2, alignItems: { md: 'flex-end' } }}
+			>
+				<CampoFiltro etiqueta="Fecha" sx={{ minWidth: 180 }}>
+					<TextField
+						fullWidth
+						size="small"
+						type="date"
+						value={fecha ? isoDesdeFormatoFecha(fecha) : ''}
+						onChange={(e) =>
+							setFecha(
+								e.target.value
+									? formatoFecha(e.target.value)
+									: '',
+							)
+						}
+					/>
+				</CampoFiltro>
+				<CampoFiltro etiqueta="Factura" sx={{ minWidth: 180 }}>
+					<TextField
+						fullWidth
+						size="small"
+						placeholder="Cod documento-consecutivo"
+						value={factura}
+						onChange={(e) => setFactura(e.target.value)}
+					/>
+				</CampoFiltro>
+				<CampoFiltro
+					etiqueta="Nit Proveedor"
+					sx={{ minWidth: 200, flex: 1 }}
+				>
+					<TextField
+						fullWidth
+						size="small"
+						placeholder="NIT o nombre del proveedor"
+						value={nitProveedor}
+						onChange={(e) => setNitProveedor(e.target.value)}
+					/>
+				</CampoFiltro>
+				<Button
+					variant="outlined"
+					onClick={() =>
+						descargarCsv(
+							'facturas-erp.csv',
+							[
+								'Nit Proveedor',
+								'Proveedor',
+								'Cod Documento',
+								'Consecutivo',
+								'Prefijo',
+								'Valor Total',
+								'Fecha',
+							],
+							filtradas.map((f) => [
+								f.nit,
+								f.proveedor,
+								f.codDocumento,
+								f.consecutivo,
+								f.prefijo,
+								f.vlrTotal,
+								formatoFecha(f.fecha),
+							]),
+						)
+					}
+					sx={{ borderRadius: RADIO_CARD }}
+				>
+					EXPORTAR
+				</Button>
+			</Stack>
+
+			{error ? (
+				<Alert severity="error" sx={{ mb: 2 }}>
+					{error}
+				</Alert>
+			) : null}
+
+			<Paper sx={{ borderRadius: RADIO_CARD, overflow: 'hidden' }}>
+				{cargando ? (
+					<Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+						<CircularProgress size={28} />
+					</Box>
+				) : (
+					<Table>
+						<TableHead
+							sx={{
+								'& .MuiTableCell-root': {
+									fontWeight: 800,
+									fontSize: 12,
+								},
+							}}
+						>
+							<TableRow>
+								<TableCell>Nit Proveedor</TableCell>
+								<TableCell>Proveedor</TableCell>
+								<TableCell>Cod Documento</TableCell>
+								<TableCell>Consecutivo</TableCell>
+								<TableCell>Prefijo</TableCell>
+								<TableCell align="right">
+									Valor Total
+								</TableCell>
+								<TableCell>Fecha</TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{paginadas.map((f) => (
+								<TableRow key={f.id}>
+									<TableCell>{f.nit}</TableCell>
+									<TableCell>{f.proveedor}</TableCell>
+									<TableCell>{f.codDocumento}</TableCell>
+									<TableCell>{f.consecutivo}</TableCell>
+									<TableCell>{f.prefijo}</TableCell>
+									<TableCell align="right">
+										{formatoMoneda(f.vlrTotal)}
+									</TableCell>
+									<TableCell>
+										{formatoFecha(f.fecha)}
+									</TableCell>
+								</TableRow>
+							))}
+							{!cargando && filtradas.length === 0 ? (
+								<TableRow>
+									<TableCell colSpan={7} align="center">
+										<Typography
+											variant="body2"
+											sx={{ py: 3 }}
+										>
+											No hay facturas ERP que
+											coincidan con los filtros.
+										</Typography>
+									</TableCell>
+								</TableRow>
+							) : null}
+						</TableBody>
+					</Table>
+				)}
+				{!cargando && filtradas.length > 0 ? (
+					<TablePagination
+						component="div"
+						count={filtradas.length}
+						page={pagina}
+						onPageChange={(_e, nuevaPagina) =>
+							setPagina(nuevaPagina)
+						}
+						rowsPerPage={FILAS_POR_PAGINA}
+						rowsPerPageOptions={[FILAS_POR_PAGINA]}
+						labelDisplayedRows={({ from, to, count }) =>
+							`${from}–${to} de ${count}`
+						}
+					/>
+				) : null}
+				<Box
+					sx={{
+						px: 3,
+						py: 2,
+						backgroundColor: colores.azulSuave,
+					}}
+				>
+					<Typography variant="body2">
+						Documentos aprobados en SIESA (facturas_erp),
+						cargados por el job diario contra el WS.
+					</Typography>
+				</Box>
+			</Paper>
+		</Box>
+	)
+}
+
+// El input type="date" nativo exige valor en formato ISO (yyyy-mm-dd); se
+// usa solo para alimentar ese input, el filtro se aplica siempre contra
+// formatoFecha (dd/mm/yyyy) para comparar contra lo que ya se ve en la fila.
+function isoDesdeFormatoFecha(ddmmyyyy: string): string {
+	const [dd, mm, yyyy] = ddmmyyyy.split('/')
+	return `${yyyy}-${mm}-${dd}`
 }
 
 function CampoFiltro({

@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { EncabezadoPagina } from '@/componentes/encabezado-pagina'
+import { ModalIngresarFactura } from '@/componentes/modal-ingresar-factura'
 import { ModalOrdenCompra } from '@/componentes/modal-orden-compra'
 import { ModalPreviewPdf } from '@/componentes/modal-preview-pdf'
 import { obtenerFactura, obtenerPdfFactura } from '@/lib/servicios/facturasApi'
@@ -37,6 +38,7 @@ export default function FacturaPage() {
 	const [pdfAbierto, setPdfAbierto] = useState(false)
 	const [pdfUrl, setPdfUrl] = useState<string | null>(null)
 	const [cargandoPdf, setCargandoPdf] = useState(false)
+	const [modalIngresoAbierto, setModalIngresoAbierto] = useState(false)
 
 	useEffect(() => {
 		if (!Number.isInteger(idFactura)) {
@@ -325,11 +327,7 @@ export default function FacturaPage() {
 				) : (
 					<Button
 						variant="contained"
-						onClick={() =>
-							setAviso(
-								'Factura enviada a ingreso (mock).',
-							)
-						}
+						onClick={() => setModalIngresoAbierto(true)}
 						sx={{
 							backgroundColor: colores.okFg,
 							borderRadius: RADIO_CARD,
@@ -342,8 +340,22 @@ export default function FacturaPage() {
 			</Stack>
 
 			<ModalOrdenCompra
-				oc={ocAbierta}
+				abierto={ocAbierta !== null}
+				idFactura={idFactura}
+				referencia={ocAbierta}
 				onClose={() => setOcAbierta(null)}
+			/>
+			<ModalIngresarFactura
+				abierto={modalIngresoAbierto}
+				idFactura={idFactura}
+				numeroFactura={factura.numeroFactura}
+				onClose={() => setModalIngresoAbierto(false)}
+				onExito={(idEntradaAlmacen) => {
+					setModalIngresoAbierto(false)
+					setAviso(
+						`Entrada de almacén #${idEntradaAlmacen} creada en SIESA.`,
+					)
+				}}
 			/>
 			<ModalPreviewPdf
 				abierto={pdfAbierto}

@@ -1,5 +1,9 @@
 import { api } from '../api'
-import type { FacturaApp, FacturaDetalleApp } from '../tipos'
+import type {
+	FacturaApp,
+	FacturaDetalleApp,
+	OrdenCompraFacturaApp,
+} from '../tipos'
 
 export async function obtenerFacturas(): Promise<FacturaApp[]> {
 	const { data } = await api.get<FacturaApp[]>('/facturas')
@@ -8,6 +12,15 @@ export async function obtenerFacturas(): Promise<FacturaApp[]> {
 
 export async function obtenerFactura(id: number): Promise<FacturaDetalleApp> {
 	const { data } = await api.get<FacturaDetalleApp>(`/facturas/${id}`)
+	return data
+}
+
+export async function obtenerOrdenCompraFactura(
+	id: number,
+): Promise<OrdenCompraFacturaApp> {
+	const { data } = await api.get<OrdenCompraFacturaApp>(
+		`/facturas/${id}/orden-compra`,
+	)
 	return data
 }
 

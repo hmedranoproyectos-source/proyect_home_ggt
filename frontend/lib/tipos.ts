@@ -62,6 +62,48 @@ export interface FacturaDetalleApp extends FacturaApp {
 	lineas: LineaFacturaApp[]
 }
 
+// Linea de la OC tal como la devuelve GET /api/facturas/:id/orden-compra
+// (detalles_ordenes_compras, copia local de lo que reporta SIESA).
+export interface LineaOrdenCompraApp {
+	id: number
+	item: string
+	unidadMedida: string
+	cantidad: number
+	valorUnitario: number
+	vlrBruto: number
+	vlrDescuento: number
+	vlrImpuestos: number
+	vlrNeto: number
+}
+
+export interface OrdenCompraApp {
+	id: number
+	documento: string
+	centroOperacion: string
+	fecha: string
+	proveedor: string
+	nit: string
+	vlrBruto: number
+	vlrDescuento: number
+	vlrImpuestos: number
+	vlrNeto: number
+	vlrRetencion: number
+	vlrTotal: number
+	// Diferencia porcentual de total factura vs OC (RC-02); null si el total
+	// de la factura es 0.
+	diferenciaPct: number | null
+	lineas: LineaOrdenCompraApp[]
+}
+
+// GET /api/facturas/:id/orden-compra. ordenCompra es null cuando la
+// referencia del XML aun no tiene una OC persistida (no hallada en SIESA o
+// factura sin conciliar).
+export interface OrdenCompraFacturaApp {
+	referencia: string | null
+	vlrTotalFactura: number
+	ordenCompra: OrdenCompraApp | null
+}
+
 export interface Factura {
 	id: string
 	proveedor: string
@@ -135,6 +177,64 @@ export interface SesionUsuario {
 	companias: CompaniaApp[]
 	token: string
 	permisos: string[]
+}
+
+// Fila tal como la devuelve GET /api/facturas/dian
+// (facturasDianImportService.listarParaCia) -- espejo fiel de facturas_dian,
+// sin cruzar con facturas/proveedores.
+export interface FacturaDianApp {
+	id: number
+	nit: string
+	proveedor: string
+	numeroFactura: string
+	vlrTotal: number
+	fechaEmision: string
+}
+
+// Fila tal como la devuelve GET /api/facturas/erp
+// (facturasErpService.listarParaCia) -- facturas_erp cruzado con
+// proveedores (facturas_erp solo guarda id_proveedor FK).
+export interface FacturaErpApp {
+	id: number
+	nit: string
+	proveedor: string
+	codDocumento: string
+	consecutivo: number
+	prefijo: string
+	vlrTotal: number
+	fecha: string
+}
+
+// Fila cruda de una consulta de catalogo SIESA (GET /api/siesa/*, ver
+// siesaConsultasService.js -- EjecutarConsultaXMLAsync). El shape exacto
+// de columnas de cada consulta NO esta confirmado contra una respuesta
+// real del WS (ggt-home-ws-unoee.md no existe en este checkout); se
+// intenta leer varios nombres candidatos para id/descripcion. Ver
+// componentes/modal-ingresar-factura.tsx (extraerOpcion) y
+// docs/siesa-plano-entradas-almacen.md.
+export interface FilaCatalogoSiesa {
+	[campo: string]: unknown
+}
+
+// Body de POST /api/entradas-almacen (entradaAlmacenService.crearEntradaAlmacen
+// en el backend). Alcance actual: solo facturas con oc === null (ver
+// assertSinOrdenCompra). Los 8 campos son los que el usuario captura en el
+// formulario de ingreso a almacen -- ver docs/siesa-plano-entradas-almacen.md,
+// "Origen de cada campo del registro 470".
+export interface ParametrosFormularioEntradaAlmacen {
+	centro_operacion: string
+	tipo_documento: string
+	bodega: string
+	motivo: string
+	centro_operacion_movto: string
+	unidad_negocio: string
+	centro_costo: string
+	tercero_comprador: string
+	moneda: string
+}
+
+export interface CrearEntradaAlmacenResponse {
+	idEntradaAlmacen: number
 }
 
 export interface FilaComparativo {
