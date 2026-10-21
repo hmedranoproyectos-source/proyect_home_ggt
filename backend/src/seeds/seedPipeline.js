@@ -21,12 +21,21 @@ async function nextId(table, pkColumn = 'id') {
 //
 // Los ids son fijos y explicitos porque quedan referenciados desde el codigo
 // (ESTADOS.*) y desde SIESA; estados_documentos no usa AUTO_INCREMENT.
+//
+// ids 6-8: catalogo separado para entradas_almacen.id_estado (ver
+// constants/estadosEntradaAlmacen.js, ESTADOS_ENTRADA_ALMACEN). Van en el
+// mismo arreglo/seed porque comparten tabla fisica (estados_documentos) y
+// este seed hace DELETE de cualquier fila fuera de la lista -- omitirlos
+// aqui los borraria en la proxima corrida de "npm run seed:pipeline".
 const ESTADOS = [
   { id: 1, descripcion: 'NUEVA' },
   { id: 2, descripcion: 'EN_VALIDACION' },
   { id: 3, descripcion: 'ALERTA' },
   { id: 4, descripcion: 'REGISTRADA_ERP' },
   { id: 5, descripcion: 'CONTABILIZADA' },
+  { id: 6, descripcion: 'EN_ELABORACION_SIESA' },
+  { id: 7, descripcion: 'APROBADO_CONTABILIZADO_SIESA' },
+  { id: 8, descripcion: 'ANULADO_SIESA' },
 ];
 
 async function seedEstados() {

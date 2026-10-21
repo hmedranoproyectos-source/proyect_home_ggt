@@ -43,6 +43,10 @@ const CONSULTAS = {
     idConsulta: 'listar_ordenes_compras',
     parametrosExtra: ['fecha_desde', 'fecha_hasta'],
   },
+  ordenesComprasPorReferencia: {
+    idConsulta: 'listar_ordenes_compras_x_referencia',
+    parametrosExtra: ['cod_erp_proveedor', 'referencia_oc'],
+  },
   facturasComprasProveedores: {
     idConsulta: 'listar_facturas_compras_proveedores',
     parametrosExtra: ['fecha_desde', 'fecha_hasta'],

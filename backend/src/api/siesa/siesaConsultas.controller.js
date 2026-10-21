@@ -31,6 +31,7 @@ module.exports = {
   tipoDocumentoPorClase: consultaHandler('tipoDocumentoPorClase'),
   centrosOperacion: consultaHandler('centrosOperacion'),
   ordenesCompras: consultaHandler('ordenesCompras'),
+  ordenesComprasPorReferencia: consultaHandler('ordenesComprasPorReferencia'),
   facturasComprasProveedores: consultaHandler('facturasComprasProveedores'),
   entradaCompraPorReferencia: consultaHandler('entradaCompraPorReferencia'),
 };

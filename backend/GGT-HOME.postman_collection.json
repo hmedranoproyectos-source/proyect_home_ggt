@@ -10,7 +10,9 @@
     { "key": "clave", "value": "", "type": "string" },
     { "key": "pre_token", "value": "", "type": "string" },
     { "key": "token", "value": "", "type": "string" },
-    { "key": "id_cia", "value": "1", "type": "string" }
+    { "key": "id_cia", "value": "1", "type": "string" },
+    { "key": "cod_erp_proveedor", "value": "", "type": "string" },
+    { "key": "referencia_oc", "value": "", "type": "string" }
   ],
   "item": [
     {
@@ -149,7 +151,7 @@
               "host": ["{{base_url}}"],
               "path": ["api", "siesa", "importar"]
             },
-            "description": "Plantilla para importar registros reales (terceros, clientes POS, entrada de almacen, etc.) segun el formato plano UnoEE. Esto SI crea datos en el ERP: usar solo contra el ambiente de pruebas y con un registro descartable. Cada linea lleva numero de linea de 7 digitos al inicio (0000001, 0000002...) y la ultima es el registro 9999. Formato de Entradas de Almacen: docs/siesa-plano-entradas-almacen.md."
+            "description": "Plantilla para importar registros reales (terceros, clientes POS, entrada de almacen, etc.) segun el formato plano UnoEE. Esto SI crea datos en el ERP. OJO: la conexion 'Real' apunta a PRODUCCION; ejecutar solo con datos validados y con confirmacion del equipo contable. Cada linea lleva numero de linea de 7 digitos al inicio (0000001, 0000002...) y la ultima es el registro 9999. Formato de Entradas de Almacen: docs/siesa-plano-entradas-almacen.md."
           }
         },
         {
@@ -272,6 +274,23 @@
                 { "key": "fecha_hasta", "value": "20260831" }
               ]
             }
+          }
+        },
+        {
+          "name": "9b. Orden de Compra por Referencia",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/siesa/ordenes-compras-por-referencia?cod_erp_proveedor={{cod_erp_proveedor}}&referencia_oc={{referencia_oc}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "siesa", "ordenes-compras-por-referencia"],
+              "query": [
+                { "key": "cod_erp_proveedor", "value": "{{cod_erp_proveedor}}", "description": "Codigo ERP del proveedor (proveedores.cod_erp)" },
+                { "key": "referencia_oc", "value": "{{referencia_oc}}", "description": "Referencia de la OC (facturas.referencia_oc)" }
+              ]
+            },
+            "description": "Consulta listar_ordenes_compras_x_referencia. El backend arma <Parametros> con id_cia (de la sesion), cod_erp_proveedor y referencia_oc, los tres xsd:string requeridos por el WS. Completar las variables de coleccion cod_erp_proveedor y referencia_oc."
           }
         },
         {

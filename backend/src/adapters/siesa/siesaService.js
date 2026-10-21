@@ -59,7 +59,15 @@ async function importarXML({ idCia, lineas }) {
   const tipoError = Number(result?.printTipoError ?? 0);
 
   if (tipoError === 0) {
-    return { ok: true, errores: [] };
+    // TODO: no esta confirmado el shape de `result`/`result.ImportarXMLResult`
+    // en el caso de exito para la creacion de Entrada de Almacen (registro
+    // 451 con F_CONSEC_AUTO_REG=1) -- en particular, en que campo viene el
+    // consecutivo de documento autogenerado por SIESA. No se expone un campo
+    // `consecutivoDocto` inventado aqui; `resultadoCrudo` queda disponible
+    // para que el caller inspeccione la respuesta real (log/debug) mientras
+    // se confirma contra el WS (ver docs/siesa-plano-entradas-almacen.md,
+    // checklist "Shape de la respuesta exitosa").
+    return { ok: true, errores: [], resultadoCrudo: result };
   }
 
   const errores = parseErrorDataSet(result?.ImportarXMLResult);

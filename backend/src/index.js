@@ -16,6 +16,8 @@ const rolesRoutes = require('./api/roles/roles.routes');
 const permisosRoutes = require('./api/permisos/permisos.routes');
 const companiasRoutes = require('./api/companias/companias.routes');
 const facturasRoutes = require('./api/facturas/facturas.routes');
+const entradasAlmacenRoutes = require('./api/entradas-almacen/entradasAlmacen.routes');
+const multer = require('multer');
 
 const app = express();
 
@@ -72,8 +74,16 @@ app.use('/api/roles', rolesRoutes);
 app.use('/api/permisos', permisosRoutes);
 app.use('/api/companias', companiasRoutes);
 app.use('/api/facturas', facturasRoutes);
+app.use('/api/entradas-almacen', entradasAlmacenRoutes);
 
 app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    const mensaje =
+      err.code === 'LIMIT_FILE_SIZE'
+        ? 'El archivo supera el tamaño máximo permitido (20 MB)'
+        : `Error al subir el archivo: ${err.message}`;
+    return res.status(400).json({ error: mensaje });
+  }
   console.error('[api] error no controlado:', err.stack);
   res.status(err.status || 500).json({ error: 'Error interno del servidor' });
 });

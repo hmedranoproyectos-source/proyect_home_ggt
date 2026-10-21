@@ -70,6 +70,12 @@ router.get(
   consultasController.ordenesCompras
 );
 router.get(
+  '/ordenes-compras-por-referencia',
+  requireAuth,
+  requirePermission('gestionar_siesa'),
+  consultasController.ordenesComprasPorReferencia
+);
+router.get(
   '/facturas-compras-proveedores',
   requireAuth,
   requirePermission('gestionar_siesa'),

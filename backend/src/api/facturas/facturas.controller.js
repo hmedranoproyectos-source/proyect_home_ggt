@@ -30,6 +30,25 @@ async function obtener(req, res, next) {
   }
 }
 
+// GET /api/facturas/:id/orden-compra -- OC ligada a la factura (solo lectura).
+async function obtenerOrdenCompra(req, res, next) {
+  try {
+    const idFactura = Number(req.params.id);
+    if (!Number.isInteger(idFactura)) {
+      return res.status(400).json({ error: 'Id de factura inválido' });
+    }
+
+    const resultado = await facturasService.obtenerOrdenCompra(req.user.id_cia, idFactura);
+    if (!resultado) {
+      return res.status(404).json({ error: 'Factura no encontrada' });
+    }
+
+    res.json(resultado);
+  } catch (err) {
+    next(err);
+  }
+}
+
 // GET /api/facturas/:id/pdf -- sirve el PDF adjunto para previsualizacion
 // (RR-05 / visualizacion de factura). No usa express.static: el archivo
 // vive fuera de /public y su ruta depende de la fila en BD, no de la URL,
@@ -82,4 +101,4 @@ async function previsualizarPdf(req, res, next) {
   }
 }
 
-module.exports = { listar, obtener, previsualizarPdf };
+module.exports = { listar, obtener, obtenerOrdenCompra, previsualizarPdf };

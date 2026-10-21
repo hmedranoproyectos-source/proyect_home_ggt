@@ -27,6 +27,19 @@ ALTER TABLE detalles_facturas MODIFY id int(10) NOT NULL AUTO_INCREMENT;
 ALTER TABLE config_buzon_fe   MODIFY id int(10) NOT NULL AUTO_INCREMENT;
 ALTER TABLE buzones           MODIFY id int(10) NOT NULL AUTO_INCREMENT;
 
+-- entradas_almacen / detalles_entrada_almacen: mismo problema, necesario para
+-- el servicio de creacion de Entrada de Almacen SIESA (docs/siesa-plano-
+-- entradas-almacen.md). Dos inserts separados por documento (uno tras exito
+-- del registro 451, otro tras exito del registro 470) -- igual que facturas,
+-- MAX(id)+1 en la app colisionaria entre requests concurrentes.
+ALTER TABLE entradas_almacen         MODIFY id int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE detalles_entrada_almacen MODIFY id int(10) NOT NULL AUTO_INCREMENT;
+
+-- ordenes_compras / detalles_ordenes_compras: las llena la conciliacion contra
+-- SIESA (ordenesCompraService.conciliarOrdenCompra) al encontrar la OC.
+ALTER TABLE ordenes_compras          MODIFY id int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE detalles_ordenes_compras MODIFY id int(10) NOT NULL AUTO_INCREMENT;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- RC-04 (duplicidad NIT + Prefijo + Numero): facturas ya trae la UNIQUE

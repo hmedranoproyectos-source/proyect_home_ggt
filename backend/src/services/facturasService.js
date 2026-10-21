@@ -142,4 +142,87 @@ async function obtenerRutaPdf(idCia, idFactura) {
   return { existe: true, pdf: { ruta: rows[0].ruta, nombreArchivo: rows[0].nombre_archivo } };
 }
 
-module.exports = { listarParaCia, obtenerDetalle, obtenerRutaPdf };
+// Orden de compra ligada a la factura (ordenes_compras.id_factura), tal como
+// la dejo la conciliacion contra SIESA (ordenesCompraService). Solo lectura.
+// Devuelve null si la factura no existe en la compania; { ...,
+// ordenCompra: null } si existe pero aun no hay OC persistida (la referencia
+// del XML no se encontro en SIESA o la factura no se ha conciliado).
+async function obtenerOrdenCompra(idCia, idFactura) {
+  const [facturas] = await db.query(
+    `SELECT id, referencia_oc, vlr_total
+       FROM facturas
+      WHERE id_cia = ? AND id = ?
+      LIMIT 1`,
+    [idCia, idFactura]
+  );
+  if (facturas.length === 0) return null;
+  const factura = facturas[0];
+
+  const base = {
+    referencia: factura.referencia_oc || null,
+    vlrTotalFactura: Number(factura.vlr_total),
+    ordenCompra: null,
+  };
+
+  const [ocs] = await db.query(
+    `SELECT oc.id, oc.fecha, oc.cod_erp_co, oc.cod_erp_tipo_docto,
+            oc.cod_erp_consecutivo, oc.vlr_bruto, oc.vlr_descuento,
+            oc.vlr_impuestos, oc.vlr_neto, oc.vlr_retencion, oc.vlr_total,
+            p.cod_erp AS proveedor_cod_erp, p.razon_social AS proveedor
+       FROM ordenes_compras oc
+       JOIN proveedores p ON p.id = oc.id_proveedor
+      WHERE oc.id_factura = ? AND oc.id_cia = ?
+      ORDER BY oc.id DESC
+      LIMIT 1`,
+    [idFactura, idCia]
+  );
+  if (ocs.length === 0) return base;
+  const oc = ocs[0];
+
+  const [lineas] = await db.query(
+    `SELECT id, cod_erp_item, cod_erp_um, cantidad, vlr_unitario, vlr_bruto,
+            vlr_descuento, vlr_impuestos, vlr_neto
+       FROM detalles_ordenes_compras
+      WHERE id_orden_compra = ?
+      ORDER BY id`,
+    [oc.id]
+  );
+
+  const vlrTotal = Number(oc.vlr_total);
+  const totalFactura = base.vlrTotalFactura;
+  return {
+    ...base,
+    ordenCompra: {
+      id: oc.id,
+      documento: `${oc.cod_erp_tipo_docto}-${oc.cod_erp_consecutivo}`,
+      centroOperacion: oc.cod_erp_co,
+      fecha: oc.fecha,
+      proveedor: oc.proveedor,
+      nit: oc.proveedor_cod_erp,
+      vlrBruto: Number(oc.vlr_bruto),
+      vlrDescuento: Number(oc.vlr_descuento),
+      vlrImpuestos: Number(oc.vlr_impuestos),
+      vlrNeto: Number(oc.vlr_neto),
+      vlrRetencion: Number(oc.vlr_retencion),
+      vlrTotal,
+      // RC-02: misma metrica que ordenesCompraService.calcularDiferenciaPct.
+      diferenciaPct:
+        totalFactura === 0
+          ? null
+          : (Math.abs(vlrTotal - totalFactura) / Math.abs(totalFactura)) * 100,
+      lineas: lineas.map((l) => ({
+        id: l.id,
+        item: String(l.cod_erp_item),
+        unidadMedida: l.cod_erp_um,
+        cantidad: Number(l.cantidad),
+        valorUnitario: Number(l.vlr_unitario),
+        vlrBruto: Number(l.vlr_bruto),
+        vlrDescuento: Number(l.vlr_descuento),
+        vlrImpuestos: Number(l.vlr_impuestos),
+        vlrNeto: Number(l.vlr_neto),
+      })),
+    },
+  };
+}
+
+module.exports = { listarParaCia, obtenerDetalle, obtenerRutaPdf, obtenerOrdenCompra };
