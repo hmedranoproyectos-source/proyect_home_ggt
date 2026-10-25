@@ -71,7 +71,16 @@ async function importarXML({ idCia, lineas }) {
   }
 
   const errores = parseErrorDataSet(result?.ImportarXMLResult);
-  return { ok: false, errores };
+  return { ok: false, errores, resultadoCrudo: result };
 }
 
-module.exports = { importarXML };
+// XML que importarXML enviaria, con la clave de SIESA enmascarada. Solo para
+// diagnostico (dry-run); no llama al WS.
+function previsualizarXml({ idCia, lineas }) {
+  return buildPvstrDatos({ idCia, lineas }).replace(
+    /<Clave>[\s\S]*?<\/Clave>/,
+    '<Clave>***</Clave>'
+  );
+}
+
+module.exports = { importarXML, previsualizarXml };

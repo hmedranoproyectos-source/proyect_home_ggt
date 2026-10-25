@@ -11,4 +11,12 @@ router.post(
   entradasAlmacenController.crear
 );
 
+// Diagnostico para Postman (ver controller). Dry-run salvo enviar:true.
+router.post(
+  '/prueba-importacion',
+  requireAuth,
+  requirePermission('gestionar_siesa'),
+  entradasAlmacenController.probarImportacion
+);
+
 module.exports = router;

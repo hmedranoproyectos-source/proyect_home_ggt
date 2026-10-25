@@ -5,14 +5,111 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "base_url", "value": "http://localhost:3001", "type": "string" },
-    { "key": "usuario", "value": "admin", "type": "string" },
-    { "key": "clave", "value": "", "type": "string" },
-    { "key": "pre_token", "value": "", "type": "string" },
-    { "key": "token", "value": "", "type": "string" },
-    { "key": "id_cia", "value": "1", "type": "string" },
-    { "key": "cod_erp_proveedor", "value": "", "type": "string" },
-    { "key": "referencia_oc", "value": "", "type": "string" }
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "usuario",
+      "value": "admin",
+      "type": "string"
+    },
+    {
+      "key": "clave",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pre_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "id_cia",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "cod_erp_proveedor",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "referencia_oc",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "co",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tipo_docto",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "bodega",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "motivo",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "unidad_negocio",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "centro_costo",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tercero_comprador",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "moneda",
+      "value": "COP",
+      "type": "string"
+    },
+    {
+      "key": "sucursal_proveedor",
+      "value": "001",
+      "type": "string"
+    },
+    {
+      "key": "consecutivo_prueba",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "consec_docto",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "item",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "um",
+      "value": "",
+      "type": "string"
+    }
   ],
   "item": [
     {
@@ -43,7 +140,10 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
@@ -51,8 +151,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             },
             "description": "Si el usuario tiene 1 sola compania devuelve token final directo. Si tiene varias, devuelve requiereSeleccionCompania=true + un pre_token (5 min) -> usar 'Select Company'."
           }
@@ -78,8 +184,14 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" },
-              { "key": "Authorization", "value": "Bearer {{pre_token}}" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{pre_token}}"
+              }
             ],
             "body": {
               "mode": "raw",
@@ -87,8 +199,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/auth/select-company",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "select-company"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "select-company"
+              ]
             },
             "description": "Solo necesario si Login devolvio requiereSeleccionCompania=true. Usa el pre_token guardado por Login."
           }
@@ -98,12 +216,21 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{token}}" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
             ],
             "url": {
               "raw": "{{base_url}}/api/auth/me",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "me"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
             }
           }
         }
@@ -113,7 +240,13 @@
       "name": "SIESA - Consultas UnoEE",
       "auth": {
         "type": "bearer",
-        "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        ]
       },
       "item": [
         {
@@ -121,7 +254,10 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
@@ -129,8 +265,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/siesa/importar",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "importar"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "importar"
+              ]
             },
             "description": "Llama a ImportarXML (WS UnoEE, ver docs/siesa-ws-importacion-datos.md) con solo el registro inicial (tipo 0000) y el final (tipo 9999), sin registros de detalle: valida conexion, credenciales SIESA_USER/SIESA_PASSWORD y SIESA_CONEXION_NOMBRE sin crear nada en el ERP. Respuestas: 200 {ok:true} = importo sin errores; 422 {error, errores:[{linea,tipoReg,subtipoReg,nivel,valor,detalle}]} = el WS devolvio printTipoError=1; 400 = lineas vacio; 401/403 = token o permiso gestionar_siesa. Requiere haber corrido Login/Select Company antes."
           }
@@ -140,7 +282,10 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
@@ -148,8 +293,14 @@
             },
             "url": {
               "raw": "{{base_url}}/api/siesa/importar",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "importar"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "importar"
+              ]
             },
             "description": "Plantilla para importar registros reales (terceros, clientes POS, entrada de almacen, etc.) segun el formato plano UnoEE. Esto SI crea datos en el ERP. OJO: la conexion 'Real' apunta a PRODUCCION; ejecutar solo con datos validados y con confirmacion del equipo contable. Cada linea lleva numero de linea de 7 digitos al inicio (0000001, 0000002...) y la ultima es el registro 9999. Formato de Entradas de Almacen: docs/siesa-plano-entradas-almacen.md."
           }
@@ -161,8 +312,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/centros-costos",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "centros-costos"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "centros-costos"
+              ]
             }
           }
         },
@@ -173,8 +330,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/unidades-negocios",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "unidades-negocios"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "unidades-negocios"
+              ]
             }
           }
         },
@@ -185,10 +348,20 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/motivos-por-concepto?id_concepto=401",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "motivos-por-concepto"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "motivos-por-concepto"
+              ],
               "query": [
-                { "key": "id_concepto", "value": "401", "description": "Codigo del concepto a filtrar" }
+                {
+                  "key": "id_concepto",
+                  "value": "401",
+                  "description": "Codigo del concepto a filtrar"
+                }
               ]
             }
           }
@@ -200,8 +373,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/monedas",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "monedas"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "monedas"
+              ]
             }
           }
         },
@@ -212,8 +391,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/compradores",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "compradores"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "compradores"
+              ]
             }
           }
         },
@@ -224,10 +409,20 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/bodegas-por-co?id_co=01",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "bodegas-por-co"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "bodegas-por-co"
+              ],
               "query": [
-                { "key": "id_co", "value": "01", "description": "Codigo del Centro de Operacion" }
+                {
+                  "key": "id_co",
+                  "value": "01",
+                  "description": "Codigo del Centro de Operacion"
+                }
               ]
             }
           }
@@ -239,10 +434,20 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/tipo-documento-por-clase?id_clase_docto=COM",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "tipo-documento-por-clase"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "tipo-documento-por-clase"
+              ],
               "query": [
-                { "key": "id_clase_docto", "value": "COM", "description": "PENDIENTE: el WS espera smallint, no varchar. 'COM' devuelve error de conversion. Confirmar codigo numerico real de clase de documento con el admin del ERP UnoEE antes de probar." }
+                {
+                  "key": "id_clase_docto",
+                  "value": "COM",
+                  "description": "PENDIENTE: el WS espera smallint, no varchar. 'COM' devuelve error de conversion. Confirmar codigo numerico real de clase de documento con el admin del ERP UnoEE antes de probar."
+                }
               ]
             },
             "description": "PENDIENTE de confirmar id_clase_docto real (numerico) con el administrador del ERP. 'COM' (Tipo_Documento de SIESA) no aplica aqui, el WS lo rechaza con: \"Error de conversion al convertir el valor varchar 'COM' al tipo de datos smallint.\""
@@ -255,8 +460,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/centros-operacion",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "centros-operacion"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "centros-operacion"
+              ]
             }
           }
         },
@@ -267,11 +478,24 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/ordenes-compras?fecha_desde=20260101&fecha_hasta=20260831",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "ordenes-compras"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "ordenes-compras"
+              ],
               "query": [
-                { "key": "fecha_desde", "value": "20260101", "description": "Formato a confirmar con admin ERP: YYYYMMDD o YYYY-MM-DD" },
-                { "key": "fecha_hasta", "value": "20260831" }
+                {
+                  "key": "fecha_desde",
+                  "value": "20260101",
+                  "description": "Formato a confirmar con admin ERP: YYYYMMDD o YYYY-MM-DD"
+                },
+                {
+                  "key": "fecha_hasta",
+                  "value": "20260831"
+                }
               ]
             }
           }
@@ -283,11 +507,25 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/ordenes-compras-por-referencia?cod_erp_proveedor={{cod_erp_proveedor}}&referencia_oc={{referencia_oc}}",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "ordenes-compras-por-referencia"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "ordenes-compras-por-referencia"
+              ],
               "query": [
-                { "key": "cod_erp_proveedor", "value": "{{cod_erp_proveedor}}", "description": "Codigo ERP del proveedor (proveedores.cod_erp)" },
-                { "key": "referencia_oc", "value": "{{referencia_oc}}", "description": "Referencia de la OC (facturas.referencia_oc)" }
+                {
+                  "key": "cod_erp_proveedor",
+                  "value": "{{cod_erp_proveedor}}",
+                  "description": "Codigo ERP del proveedor (proveedores.cod_erp)"
+                },
+                {
+                  "key": "referencia_oc",
+                  "value": "{{referencia_oc}}",
+                  "description": "Referencia de la OC (facturas.referencia_oc)"
+                }
               ]
             },
             "description": "Consulta listar_ordenes_compras_x_referencia. El backend arma <Parametros> con id_cia (de la sesion), cod_erp_proveedor y referencia_oc, los tres xsd:string requeridos por el WS. Completar las variables de coleccion cod_erp_proveedor y referencia_oc."
@@ -300,11 +538,24 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/facturas-compras-proveedores?fecha_desde=20260101&fecha_hasta=20260831",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "facturas-compras-proveedores"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "facturas-compras-proveedores"
+              ],
               "query": [
-                { "key": "fecha_desde", "value": "20260101", "description": "Formato a confirmar con admin ERP: YYYYMMDD o YYYY-MM-DD" },
-                { "key": "fecha_hasta", "value": "20260831" }
+                {
+                  "key": "fecha_desde",
+                  "value": "20260101",
+                  "description": "Formato a confirmar con admin ERP: YYYYMMDD o YYYY-MM-DD"
+                },
+                {
+                  "key": "fecha_hasta",
+                  "value": "20260831"
+                }
               ]
             }
           }
@@ -316,12 +567,231 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/siesa/entrada-compra-por-referencia?documento_referencia=FE12345",
-              "host": ["{{base_url}}"],
-              "path": ["api", "siesa", "entrada-compra-por-referencia"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "siesa",
+                "entrada-compra-por-referencia"
+              ],
               "query": [
-                { "key": "documento_referencia", "value": "FE12345", "description": "Numero de documento externo (remision/factura proveedor)" }
+                {
+                  "key": "documento_referencia",
+                  "value": "FE12345",
+                  "description": "Numero de documento externo (remision/factura proveedor)"
+                }
               ]
             }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entradas de Almacen - pruebas ImportarXML",
+      "description": "Endpoint de DIAGNOSTICO POST /api/entradas-almacen/prueba-importacion. Sirve para capturar la respuesta real de ImportarXML (de donde sale el consecutivo de la entrada). NO usa facturas ni escribe en MySQL. Por defecto enviar=false (dry-run: devuelve las lineas y el XML sin llamar a SIESA). Con enviar=true ESCRIBE en SIESA (la conexion Real es PRODUCCION: usar datos de prueba y avisar a contabilidad; el documento queda en estado 0 En Elaboracion). 'overrides' fusiona cualquier campo del plano (ej. f350_consec_docto, F_CONSEC_AUTO_REG, f350_fecha) en todas las lineas. Flujo: 1) Login/Select Company, 2) completar variables de coleccion, 3) dry-run 451, 4) enviar 451 y copiar el consecutivo de resultadoCrudo a la variable consec_docto, 5) dry-run/enviar 470.",
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        ]
+      },
+      "item": [
+        {
+          "name": "1. 451 Documento - dry-run (no llama a SIESA)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enviar\": false,\n  \"registro\": \"451\",\n  \"parametros\": {\n    \"centro_operacion\": \"{{co}}\",\n    \"tipo_documento\": \"{{tipo_docto}}\",\n    \"bodega\": \"{{bodega}}\",\n    \"motivo\": \"{{motivo}}\",\n    \"centro_operacion_movto\": \"{{co}}\",\n    \"unidad_negocio\": \"{{unidad_negocio}}\",\n    \"centro_costo\": \"{{centro_costo}}\",\n    \"tercero_comprador\": \"{{tercero_comprador}}\",\n    \"moneda\": \"{{moneda}}\"\n  },\n  \"proveedor\": {\n    \"cod_erp\": \"{{cod_erp_proveedor}}\",\n    \"cod_erp_sucursal\": \"{{sucursal_proveedor}}\"\n  },\n  \"factura\": {\n    \"prefijo_fe\": \"PRUEBA\",\n    \"consecutivo_fe\": \"{{consecutivo_prueba}}\"\n  },\n  \"notas\": \"Prueba Postman ImportarXML - borrar\",\n  \"overrides\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/entradas-almacen/prueba-importacion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "entradas-almacen",
+                "prueba-importacion"
+              ]
+            },
+            "description": "Devuelve las lineas y el XML (Clave enmascarada) que se enviarian. No escribe nada."
+          }
+        },
+        {
+          "name": "2. 451 Documento - ENVIAR a SIESA (escribe)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enviar\": true,\n  \"registro\": \"451\",\n  \"parametros\": {\n    \"centro_operacion\": \"{{co}}\",\n    \"tipo_documento\": \"{{tipo_docto}}\",\n    \"bodega\": \"{{bodega}}\",\n    \"motivo\": \"{{motivo}}\",\n    \"centro_operacion_movto\": \"{{co}}\",\n    \"unidad_negocio\": \"{{unidad_negocio}}\",\n    \"centro_costo\": \"{{centro_costo}}\",\n    \"tercero_comprador\": \"{{tercero_comprador}}\",\n    \"moneda\": \"{{moneda}}\"\n  },\n  \"proveedor\": {\n    \"cod_erp\": \"{{cod_erp_proveedor}}\",\n    \"cod_erp_sucursal\": \"{{sucursal_proveedor}}\"\n  },\n  \"factura\": {\n    \"prefijo_fe\": \"PRUEBA\",\n    \"consecutivo_fe\": \"{{consecutivo_prueba}}\"\n  },\n  \"notas\": \"Prueba Postman ImportarXML - borrar\",\n  \"overrides\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/entradas-almacen/prueba-importacion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "entradas-almacen",
+                "prueba-importacion"
+              ]
+            },
+            "description": "enviar=true: crea la Entrada de Almacen en estado 0 en SIESA. Revisar la consola de Postman: resultadoCrudo trae la respuesta real de ImportarXML."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const d = pm.response.json();",
+                  "console.log('enviado:', d.enviado, 'ok:', d.ok);",
+                  "console.log('errores:', JSON.stringify(d.errores));",
+                  "console.log('resultadoCrudo:', JSON.stringify(d.resultadoCrudo, null, 2));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3. 470 Detalle - dry-run (no llama a SIESA)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enviar\": false,\n  \"registro\": \"470\",\n  \"consec_docto\": \"{{consec_docto}}\",\n  \"parametros\": {\n    \"centro_operacion\": \"{{co}}\",\n    \"tipo_documento\": \"{{tipo_docto}}\",\n    \"bodega\": \"{{bodega}}\",\n    \"motivo\": \"{{motivo}}\",\n    \"centro_operacion_movto\": \"{{co}}\",\n    \"unidad_negocio\": \"{{unidad_negocio}}\",\n    \"centro_costo\": \"{{centro_costo}}\",\n    \"tercero_comprador\": \"{{tercero_comprador}}\",\n    \"moneda\": \"{{moneda}}\"\n  },\n  \"detalles\": [\n    {\n      \"item\": \"{{item}}\",\n      \"um\": \"{{um}}\",\n      \"um_precio\": \"{{um}}\",\n      \"cantidad\": 1,\n      \"vlr_bruto\": 1000,\n      \"notas\": \"Prueba Postman\"\n    }\n  ],\n  \"overrides\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/entradas-almacen/prueba-importacion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "entradas-almacen",
+                "prueba-importacion"
+              ]
+            },
+            "description": "Requiere la variable consec_docto (consecutivo obtenido en el paso 2)."
+          }
+        },
+        {
+          "name": "4. 470 Detalle - ENVIAR a SIESA (escribe)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enviar\": true,\n  \"registro\": \"470\",\n  \"consec_docto\": \"{{consec_docto}}\",\n  \"parametros\": {\n    \"centro_operacion\": \"{{co}}\",\n    \"tipo_documento\": \"{{tipo_docto}}\",\n    \"bodega\": \"{{bodega}}\",\n    \"motivo\": \"{{motivo}}\",\n    \"centro_operacion_movto\": \"{{co}}\",\n    \"unidad_negocio\": \"{{unidad_negocio}}\",\n    \"centro_costo\": \"{{centro_costo}}\",\n    \"tercero_comprador\": \"{{tercero_comprador}}\",\n    \"moneda\": \"{{moneda}}\"\n  },\n  \"detalles\": [\n    {\n      \"item\": \"{{item}}\",\n      \"um\": \"{{um}}\",\n      \"um_precio\": \"{{um}}\",\n      \"cantidad\": 1,\n      \"vlr_bruto\": 1000,\n      \"notas\": \"Prueba Postman\"\n    }\n  ],\n  \"overrides\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/entradas-almacen/prueba-importacion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "entradas-almacen",
+                "prueba-importacion"
+              ]
+            },
+            "description": "enviar=true: agrega los movimientos al documento ya creado."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const d = pm.response.json();",
+                  "console.log('enviado:', d.enviado, 'ok:', d.ok);",
+                  "console.log('errores:', JSON.stringify(d.errores));",
+                  "console.log('resultadoCrudo:', JSON.stringify(d.resultadoCrudo, null, 2));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "5. Libre - lineas propias con overrides (dry-run)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enviar\": false,\n  \"registro\": \"451\",\n  \"parametros\": {\n    \"centro_operacion\": \"{{co}}\",\n    \"tipo_documento\": \"{{tipo_docto}}\",\n    \"bodega\": \"{{bodega}}\",\n    \"motivo\": \"{{motivo}}\",\n    \"centro_operacion_movto\": \"{{co}}\",\n    \"unidad_negocio\": \"{{unidad_negocio}}\",\n    \"centro_costo\": \"{{centro_costo}}\",\n    \"tercero_comprador\": \"{{tercero_comprador}}\",\n    \"moneda\": \"{{moneda}}\"\n  },\n  \"proveedor\": {\n    \"cod_erp\": \"{{cod_erp_proveedor}}\",\n    \"cod_erp_sucursal\": \"{{sucursal_proveedor}}\"\n  },\n  \"factura\": {\n    \"prefijo_fe\": \"PRUEBA\",\n    \"consecutivo_fe\": \"{{consecutivo_prueba}}\"\n  },\n  \"notas\": \"Prueba Postman ImportarXML - borrar\",\n  \"overrides\": {\n    \"F_CONSEC_AUTO_REG\": 0,\n    \"f350_consec_docto\": 99999999\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/entradas-almacen/prueba-importacion",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "entradas-almacen",
+                "prueba-importacion"
+              ]
+            },
+            "description": "Ejemplo para probar variantes del 451: p.ej. overrides con F_CONSEC_AUTO_REG=0 y f350_consec_docto manual."
           }
         }
       ]
@@ -330,7 +800,13 @@
       "name": "Config - Email",
       "auth": {
         "type": "bearer",
-        "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        ]
       },
       "item": [
         {
@@ -340,8 +816,15 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/config/email/test-connection",
-              "host": ["{{base_url}}"],
-              "path": ["api", "config", "email", "test-connection"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "config",
+                "email",
+                "test-connection"
+              ]
             }
           }
         },
@@ -352,10 +835,21 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/config/email/count?mailbox=INBOX",
-              "host": ["{{base_url}}"],
-              "path": ["api", "config", "email", "count"],
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "config",
+                "email",
+                "count"
+              ],
               "query": [
-                { "key": "mailbox", "value": "INBOX", "description": "Nombre del buzon/carpeta IMAP a consultar (default INBOX)" }
+                {
+                  "key": "mailbox",
+                  "value": "INBOX",
+                  "description": "Nombre del buzon/carpeta IMAP a consultar (default INBOX)"
+                }
               ]
             },
             "description": "Devuelve { mailbox, total, noLeidos } del buzon configurado por IMAP_HOST/IMAP_USER/IMAP_PASSWORD."
