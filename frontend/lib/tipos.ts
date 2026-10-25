@@ -248,3 +248,43 @@ export interface FilaComparativo {
 	resultado: 'Falta ERP' | 'Falta buzón' | 'Valor' | 'Coincide'
 }
 
+
+// GET /api/informes/conciliacion-dian-erp (Informes -> tab "Conciliacion").
+// Calculo en memoria en el backend: no se persiste en BD.
+export type EstadoConciliacion =
+	| 'Coincide'
+	| 'Diferencia'
+	| 'Solo DIAN'
+	| 'Solo ERP'
+	| 'Duplicado ERP'
+
+export interface FilaConciliacionDianErp {
+	nit: string
+	proveedor: string
+	factura: string
+	fecha: string | null
+	enDian: boolean
+	enErp: boolean
+	valorDian: number | null
+	valorErp: number | null
+	diferencia: number | null
+	estado: EstadoConciliacion
+}
+
+export interface ResultadoConciliacionDianErp {
+	generadoEn: string
+	filtros: {
+		fechaDesde: string | null
+		fechaHasta: string | null
+		nit: string | null
+	}
+	resumen: {
+		total: number
+		coincide: number
+		diferencia: number
+		soloDian: number
+		soloErp: number
+		duplicadoErp: number
+	}
+	filas: FilaConciliacionDianErp[]
+}

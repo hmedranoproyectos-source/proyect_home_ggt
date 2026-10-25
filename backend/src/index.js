@@ -16,6 +16,7 @@ const rolesRoutes = require('./api/roles/roles.routes');
 const permisosRoutes = require('./api/permisos/permisos.routes');
 const companiasRoutes = require('./api/companias/companias.routes');
 const facturasRoutes = require('./api/facturas/facturas.routes');
+const informesRoutes = require('./api/informes/informes.routes');
 const entradasAlmacenRoutes = require('./api/entradas-almacen/entradasAlmacen.routes');
 const multer = require('multer');
 
@@ -74,6 +75,7 @@ app.use('/api/roles', rolesRoutes);
 app.use('/api/permisos', permisosRoutes);
 app.use('/api/companias', companiasRoutes);
 app.use('/api/facturas', facturasRoutes);
+app.use('/api/informes', informesRoutes);
 app.use('/api/entradas-almacen', entradasAlmacenRoutes);
 
 app.use((err, req, res, next) => {

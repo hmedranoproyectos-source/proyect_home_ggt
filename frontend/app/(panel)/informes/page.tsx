@@ -19,6 +19,7 @@ import Typography from '@mui/material/Typography'
 import axios from 'axios'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { EncabezadoPagina } from '@/componentes/encabezado-pagina'
+import { TabConciliacion } from './tab-conciliacion'
 import { COMPARATIVO } from '@/lib/datos-mock'
 import { descargarCsv, formatoMoneda, siNo } from '@/lib/formato'
 import {
@@ -64,10 +65,12 @@ export default function InformesPage() {
 				<Tab label="Cargar archivo y comparar" />
 				<Tab label="Facturas Dian" />
 				<Tab label="Facturas ERP" />
+				<Tab label="Conciliación" />
 			</Tabs>
 			{tab === 0 ? <TabComparativo /> : null}
 			{tab === 1 ? <TabFacturasDian /> : null}
 			{tab === 2 ? <TabFacturasErp /> : null}
+			{tab === 3 ? <TabConciliacion /> : null}
 		</Box>
 	)
 }
