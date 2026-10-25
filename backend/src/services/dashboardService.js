@@ -1,16 +1,20 @@
 const db = require('../config/db');
 const ESTADOS = require('../constants/estados');
 
-const LIMITE_ATENCION = 10;
+const LIMITE_ATENCION_DEFAULT = 10;
+const LIMITE_ATENCION_MAX = 100;
 
 // Resumen del Dashboard de facturacion (etapa 1). Solo lectura y siempre
 // filtrado por id_cia. Por ahora cubre solo lo que hoy tiene dato real:
 //   - porIngresar: facturas en NUEVA
 //   - conNovedad:  facturas en ALERTA
-//   - atencion:    las ALERTA mas recientes
+//   - atencion:    las ALERTA mas recientes, paginadas (pagina base 0)
 // Conciliadas/En ERP, la serie de 7 dias y "Registro en Siesa" quedan
 // pendientes (dependen del flujo Entrada -> Causacion y de fecha_recepcion).
-async function resumen(idCia) {
+async function resumen(idCia, { pagina = 0, limite = LIMITE_ATENCION_DEFAULT } = {}) {
+  const limiteSeguro = Math.min(Math.max(Number(limite) || LIMITE_ATENCION_DEFAULT, 1), LIMITE_ATENCION_MAX);
+  const offset = Math.max(Number(pagina) || 0, 0) * limiteSeguro;
+
   const [conteos] = await db.query(
     `SELECT id_estado, COUNT(*) AS n
        FROM facturas
@@ -28,8 +32,8 @@ async function resumen(idCia) {
        JOIN estados_documentos ed ON ed.id = f.id_estado
       WHERE f.id_cia = ? AND f.id_estado = ?
       ORDER BY f.fecha_fe DESC, f.id DESC
-      LIMIT ?`,
-    [idCia, ESTADOS.ALERTA, LIMITE_ATENCION]
+      LIMIT ? OFFSET ?`,
+    [idCia, ESTADOS.ALERTA, limiteSeguro, offset]
   );
 
   return {
@@ -39,6 +43,7 @@ async function resumen(idCia) {
     },
     // entradaSiesa/causacionSiesa: igual que facturasService.mapearCabecera,
     // fijo 'Pendiente' hasta que exista el flujo de entradas de almacen.
+    // El total de la tabla es el KPI conNovedad (mismo filtro: ALERTA).
     atencion: alertas.map((r) => ({
       id: r.id,
       numeroFactura: `${r.prefijo_fe}-${r.consecutivo_fe}`,

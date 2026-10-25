@@ -11,6 +11,7 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
@@ -57,15 +58,18 @@ const KPI = [
 	},
 ]
 
+const FILAS_POR_PAGINA = 10
+
 export default function DashboardPage() {
 	const router = useRouter()
 	const [resumen, setResumen] = useState<ResumenDashboardApp | null>(null)
 	const [cargando, setCargando] = useState(true)
 	const [error, setError] = useState('')
+	const [pagina, setPagina] = useState(0)
 
 	useEffect(() => {
 		let cancelado = false
-		obtenerResumenDashboard()
+		obtenerResumenDashboard(pagina, FILAS_POR_PAGINA)
 			.then((data) => {
 				if (!cancelado) setResumen(data)
 			})
@@ -83,7 +87,7 @@ export default function DashboardPage() {
 		return () => {
 			cancelado = true
 		}
-	}, [])
+	}, [pagina])
 
 	const atencion = resumen?.atencion ?? []
 	const maxSiesa = Math.max(
@@ -136,7 +140,7 @@ export default function DashboardPage() {
 									}}
 								>
 									{item.real
-										? cargando
+										? resumen === null && cargando
 											? '…'
 											: (resumen?.kpis[
 													item.clave as keyof ResumenDashboardApp['kpis']
@@ -195,7 +199,13 @@ export default function DashboardPage() {
 				Facturas que requieren atención
 			</Typography>
 			<Paper sx={{ borderRadius: RADIO_CARD, overflow: 'hidden' }}>
-				<Table>
+				<Table
+					size="small"
+					sx={{
+						'& .MuiTableCell-root': { py: 0.5 },
+						'& .MuiButton-root': { py: 0.25 },
+					}}
+				>
 					<TableHead>
 						<TableRow>
 							<TableCell>Factura</TableCell>
@@ -255,6 +265,22 @@ export default function DashboardPage() {
 						))}
 					</TableBody>
 				</Table>
+				{resumen && resumen.kpis.conNovedad > 0 ? (
+					<TablePagination
+						component="div"
+						count={resumen.kpis.conNovedad}
+						page={pagina}
+						onPageChange={(_e, nueva) => {
+							setCargando(true)
+							setPagina(nueva)
+						}}
+						rowsPerPage={FILAS_POR_PAGINA}
+						rowsPerPageOptions={[FILAS_POR_PAGINA]}
+						labelDisplayedRows={({ from, to, count }) =>
+							`${from}–${to} de ${count}`
+						}
+					/>
+				) : null}
 			</Paper>
 		</Box>
 	)
