@@ -288,3 +288,18 @@ export interface ResultadoConciliacionDianErp {
 	}
 	filas: FilaConciliacionDianErp[]
 }
+
+// GET /api/dashboard/resumen (Dashboard de facturación, etapa 1).
+export interface FacturaAtencionApp {
+	id: number
+	numeroFactura: string
+	proveedor: string
+	estado: EstadoFactura
+	entradaSiesa: MarcaSiesa
+	causacionSiesa: MarcaSiesa
+}
+
+export interface ResumenDashboardApp {
+	kpis: { porIngresar: number; conNovedad: number }
+	atencion: FacturaAtencionApp[]
+}
